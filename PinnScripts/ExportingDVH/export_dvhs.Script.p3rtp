@@ -1,0 +1,309 @@
+// export-dvhs.script
+//
+// S Woodings
+//
+// (1) Medical Engineering and Physics, Royal Perth Hospital, Perth,
+//     Western Australia, 6000
+//
+// Description:
+//   This script exports up to a fixed number of DVHs (nominally 10) 
+//    from all trials within the current open plan.
+//   The DVH files are named by MRN-plan-trial-region.txt
+//   The export directory is nominally "/home/p3rtp/dvhs".
+//   To increase the limiting number of DVHs, the TempMaxDVH number
+//    should be increased, the 'export chunk' of code should be copied
+//    and pasted the desired number of times, and the DVHList number 
+//    updated in each pasted section.
+//    
+//
+// Revision History: 
+//   v1.0.0 - 26 Jul 2007 - prelim version ready.
+//
+// Requirements: 
+//   Script requires get-input-string.script
+//
+//
+// ----------------------------------------------------------------------
+// Use at your own risk. Neither the authors nor the institutions make
+// any claims or warranties regarding the suitability or unsuitability of
+// this script for a particular use or mis-use. Users are free to modify
+// this script, also at their own risk.
+// ----------------------------------------------------------------------
+
+
+// clear and define variables
+Store.FreeAt.TempDir = "";
+Store.At.TempDir = SimpleString {};
+Store.FreeAt.TempMRN = "";
+Store.At.TempMRN = SimpleString {};
+Store.FreeAt.TempPlan = "";
+Store.At.TempPlan = SimpleString {};
+Store.FreeAt.TempBaseName = "";
+Store.At.TempBaseName = SimpleString {};
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.FreeAt.TempExportMessage = "";
+Store.At.TempExportMessage = SimpleString {};
+Store.FreeAt.TempMaxDVH = "";
+
+
+// write common data
+Store.FloatAt.TempMaxDVH = 20;
+Store.At.TempDir.AppendString = "/home/ycw/dvhs/";
+Store.At.TempMRN.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.TempPlan.AppendString = PlanInfo.PlanName;
+
+Store.At.TempBaseName.AppendString = "DVHList.Current.Data.Save = ";
+Store.At.TempBaseName.AppendString = Store.At.TempDir.String;
+Store.At.TempBaseName.AppendString = Store.At.TempMRN.String;
+Store.At.TempBaseName.AppendString = "-";
+Store.At.TempBaseName.AppendString = Store.At.TempPlan.String;
+Store.At.TempBaseName.AppendString = "-";
+
+// ----------------------------------------------------------
+// begin exporting DVHs
+// ----------------------------------------------------------
+
+DVHList.#"#0".MakeCurrent = 1;
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = Store.At.TempBaseName.String;
+Store.At.TempCommand.AppendString = DVHList.Current.TrialName;
+Store.At.TempCommand.AppendString = "-";
+Store.At.TempCommand.AppendString = DVHList.Current.RegionOfInterestName;
+Store.At.TempCommand.AppendString = ".txt";
+Store.At.TempCommand.Execute = "";
+
+DVHList.#"#1".MakeCurrent = 1;
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = Store.At.TempBaseName.String;
+Store.At.TempCommand.AppendString = DVHList.Current.TrialName;
+Store.At.TempCommand.AppendString = "-";
+Store.At.TempCommand.AppendString = DVHList.Current.RegionOfInterestName;
+Store.At.TempCommand.AppendString = ".txt";
+Store.At.TempCommand.Execute = "";
+
+DVHList.#"#2".MakeCurrent = 1;
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = Store.At.TempBaseName.String;
+Store.At.TempCommand.AppendString = DVHList.Current.TrialName;
+Store.At.TempCommand.AppendString = "-";
+Store.At.TempCommand.AppendString = DVHList.Current.RegionOfInterestName;
+Store.At.TempCommand.AppendString = ".txt";
+Store.At.TempCommand.Execute = "";
+
+DVHList.#"#3".MakeCurrent = 1;
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = Store.At.TempBaseName.String;
+Store.At.TempCommand.AppendString = DVHList.Current.TrialName;
+Store.At.TempCommand.AppendString = "-";
+Store.At.TempCommand.AppendString = DVHList.Current.RegionOfInterestName;
+Store.At.TempCommand.AppendString = ".txt";
+Store.At.TempCommand.Execute = "";
+
+DVHList.#"#4".MakeCurrent = 1;
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = Store.At.TempBaseName.String;
+Store.At.TempCommand.AppendString = DVHList.Current.TrialName;
+Store.At.TempCommand.AppendString = "-";
+Store.At.TempCommand.AppendString = DVHList.Current.RegionOfInterestName;
+Store.At.TempCommand.AppendString = ".txt";
+Store.At.TempCommand.Execute = "";
+
+DVHList.#"#5".MakeCurrent = 1;
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = Store.At.TempBaseName.String;
+Store.At.TempCommand.AppendString = DVHList.Current.TrialName;
+Store.At.TempCommand.AppendString = "-";
+Store.At.TempCommand.AppendString = DVHList.Current.RegionOfInterestName;
+Store.At.TempCommand.AppendString = ".txt";
+Store.At.TempCommand.Execute = "";
+
+DVHList.#"#6".MakeCurrent = 1;
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = Store.At.TempBaseName.String;
+Store.At.TempCommand.AppendString = DVHList.Current.TrialName;
+Store.At.TempCommand.AppendString = "-";
+Store.At.TempCommand.AppendString = DVHList.Current.RegionOfInterestName;
+Store.At.TempCommand.AppendString = ".txt";
+Store.At.TempCommand.Execute = "";
+
+DVHList.#"#7".MakeCurrent = 1;
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = Store.At.TempBaseName.String;
+Store.At.TempCommand.AppendString = DVHList.Current.TrialName;
+Store.At.TempCommand.AppendString = "-";
+Store.At.TempCommand.AppendString = DVHList.Current.RegionOfInterestName;
+Store.At.TempCommand.AppendString = ".txt";
+Store.At.TempCommand.Execute = "";
+
+DVHList.#"#8".MakeCurrent = 1;
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = Store.At.TempBaseName.String;
+Store.At.TempCommand.AppendString = DVHList.Current.TrialName;
+Store.At.TempCommand.AppendString = "-";
+Store.At.TempCommand.AppendString = DVHList.Current.RegionOfInterestName;
+Store.At.TempCommand.AppendString = ".txt";
+Store.At.TempCommand.Execute = "";
+
+DVHList.#"#9".MakeCurrent = 1;
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = Store.At.TempBaseName.String;
+Store.At.TempCommand.AppendString = DVHList.Current.TrialName;
+Store.At.TempCommand.AppendString = "-";
+Store.At.TempCommand.AppendString = DVHList.Current.RegionOfInterestName;
+Store.At.TempCommand.AppendString = ".txt";
+Store.At.TempCommand.Execute = "";
+
+// ----------------------------------------------------------
+// begin 10
+// ----------------------------------------------------------
+
+DVHList.#"#10".MakeCurrent = 1;
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = Store.At.TempBaseName.String;
+Store.At.TempCommand.AppendString = DVHList.Current.TrialName;
+Store.At.TempCommand.AppendString = "-";
+Store.At.TempCommand.AppendString = DVHList.Current.RegionOfInterestName;
+Store.At.TempCommand.AppendString = ".txt";
+Store.At.TempCommand.Execute = "";
+
+DVHList.#"#11".MakeCurrent = 1;
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = Store.At.TempBaseName.String;
+Store.At.TempCommand.AppendString = DVHList.Current.TrialName;
+Store.At.TempCommand.AppendString = "-";
+Store.At.TempCommand.AppendString = DVHList.Current.RegionOfInterestName;
+Store.At.TempCommand.AppendString = ".txt";
+Store.At.TempCommand.Execute = "";
+
+DVHList.#"#12".MakeCurrent = 1;
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = Store.At.TempBaseName.String;
+Store.At.TempCommand.AppendString = DVHList.Current.TrialName;
+Store.At.TempCommand.AppendString = "-";
+Store.At.TempCommand.AppendString = DVHList.Current.RegionOfInterestName;
+Store.At.TempCommand.AppendString = ".txt";
+Store.At.TempCommand.Execute = "";
+
+DVHList.#"#13".MakeCurrent = 1;
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = Store.At.TempBaseName.String;
+Store.At.TempCommand.AppendString = DVHList.Current.TrialName;
+Store.At.TempCommand.AppendString = "-";
+Store.At.TempCommand.AppendString = DVHList.Current.RegionOfInterestName;
+Store.At.TempCommand.AppendString = ".txt";
+Store.At.TempCommand.Execute = "";
+
+DVHList.#"#14".MakeCurrent = 1;
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = Store.At.TempBaseName.String;
+Store.At.TempCommand.AppendString = DVHList.Current.TrialName;
+Store.At.TempCommand.AppendString = "-";
+Store.At.TempCommand.AppendString = DVHList.Current.RegionOfInterestName;
+Store.At.TempCommand.AppendString = ".txt";
+Store.At.TempCommand.Execute = "";
+
+DVHList.#"#15".MakeCurrent = 1;
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = Store.At.TempBaseName.String;
+Store.At.TempCommand.AppendString = DVHList.Current.TrialName;
+Store.At.TempCommand.AppendString = "-";
+Store.At.TempCommand.AppendString = DVHList.Current.RegionOfInterestName;
+Store.At.TempCommand.AppendString = ".txt";
+Store.At.TempCommand.Execute = "";
+
+DVHList.#"#16".MakeCurrent = 1;
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = Store.At.TempBaseName.String;
+Store.At.TempCommand.AppendString = DVHList.Current.TrialName;
+Store.At.TempCommand.AppendString = "-";
+Store.At.TempCommand.AppendString = DVHList.Current.RegionOfInterestName;
+Store.At.TempCommand.AppendString = ".txt";
+Store.At.TempCommand.Execute = "";
+
+DVHList.#"#17".MakeCurrent = 1;
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = Store.At.TempBaseName.String;
+Store.At.TempCommand.AppendString = DVHList.Current.TrialName;
+Store.At.TempCommand.AppendString = "-";
+Store.At.TempCommand.AppendString = DVHList.Current.RegionOfInterestName;
+Store.At.TempCommand.AppendString = ".txt";
+Store.At.TempCommand.Execute = "";
+
+DVHList.#"#18".MakeCurrent = 1;
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = Store.At.TempBaseName.String;
+Store.At.TempCommand.AppendString = DVHList.Current.TrialName;
+Store.At.TempCommand.AppendString = "-";
+Store.At.TempCommand.AppendString = DVHList.Current.RegionOfInterestName;
+Store.At.TempCommand.AppendString = ".txt";
+Store.At.TempCommand.Execute = "";
+
+DVHList.#"#19".MakeCurrent = 1;
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = Store.At.TempBaseName.String;
+Store.At.TempCommand.AppendString = DVHList.Current.TrialName;
+Store.At.TempCommand.AppendString = "-";
+Store.At.TempCommand.AppendString = DVHList.Current.RegionOfInterestName;
+Store.At.TempCommand.AppendString = ".txt";
+Store.At.TempCommand.Execute = "";
+
+// ----------------------------------------------------------
+// end of exporting DVHs
+// ----------------------------------------------------------
+
+// prepare successful export message
+Store.FreeAt.TempExportMessage = "";
+Store.At.TempExportMessage = SimpleString {};
+Store.At.TempExportMessage.AppendString = DVHList.Count;
+Store.At.TempExportMessage.AppendString = " DVHs (combined from all trials) have been exported to ";
+Store.At.TempExportMessage.AppendString = Store.At.TempDir.String;
+
+// if all DVHs exported then report success...
+IF.DVHList.Count.LESSTHANOREQUALTO.Store.At.TempMaxDVH.Value
+  .THEN.WarningMessage = Store.At.TempExportMessage.String;
+
+// prepare unsuccessful export message
+Store.FreeAt.TempExportMessage = "";
+Store.At.TempExportMessage = SimpleString {};
+Store.At.TempExportMessage.AppendString = "This program will only export up to ";
+Store.At.TempExportMessage.AppendString = Store.At.TempMaxDVH.Value;
+Store.At.TempExportMessage.AppendString = " DVHs.  ";
+Store.At.TempExportMessage.AppendString = DVHList.Count;
+Store.At.TempExportMessage.AppendString = " DVHs were detected in this plan (across all trials).";
+
+// if too many DVHs in trial then report failure to export all...
+IF.DVHList.Count.GREATERTHAN.Store.At.TempMaxDVH.Value
+  .THEN.WarningMessage = Store.At.TempExportMessage.String;
+    
+// clear variables
+Store.FreeAt.TempDir = "";
+Store.FreeAt.TempMRN = "";
+Store.FreeAt.TempPlan = "";
+Store.FreeAt.TempTrial = "";
+Store.FreeAt.TempBaseName = "";
+Store.FreeAt.TempCommand = "";
+Store.FreeAt.TempExportMessage = "";
+Store.FreeAt.TempMaxDVH = "";
+
+

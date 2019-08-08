@@ -1,0 +1,72 @@
+#!/bin/sh
+
+# 2010-11-08 SPF 
+
+# Takes a medical record number as a commandline parameter 
+# and creates the appropriate path for Pinnacle to save
+# dose planes
+
+if [ -z "$1" ] ; then 
+{ 
+   echo "\n No medical record number typed." ; 
+   echo "\n Usage:" ; 
+   echo "\n    printoutCreatePatientDirectory <MRN>" ; 
+   echo "\n where <MRN> is a medical record number, e.g. 15345.\n" ; 
+   exit ; 
+} ; 
+fi
+
+# Ensure that MRN is always uppercase
+# Could also use MRN=`echo $1 | tr a-z A-Z`
+
+#MRN=`echo $1 | sed "s/s/S/g"`
+#MRN=`echo $MRN | sed "s/c/C/g"`
+MRN=$1
+USERNAME=`whoami`
+
+# Create patient path
+PATIENT_PATH=/var/tmp/feed/process/
+VARTEMP_PATH=/var/tmp/
+
+if [ ! -r "$VARTEMP_PATH" ] ; then 
+{ 
+   echo "\n No connection to patient share."; 
+   echo "\n $VARTEMP_PATH"
+   echo "\n Exiting.\n"; 
+   exit ; 
+} ; 
+fi
+
+if [ ! -r "$PATIENT_PATH" ] ; then 
+{ 
+   echo "\n Creating var/tmp/feed/process/"; 
+   cd $VARTEMP_PATH ;
+   if [ ! -d /feed ] ; then 
+   { 
+      mkdir feed ;
+   } ;
+   fi 
+   cd feed ;
+   mkdir process ;
+   PATIENT_PATH=/var/tmp/feed/process/
+   echo "\n $PATIENT_PATH"; 
+} ; 
+fi
+
+# If patient dir doesn't exist, create it
+if [ -r "$PATIENT_PATH/$MRN" ] ; then 
+{ 
+   echo "\n The directory"; 
+   echo "\n    $PATIENT_PATH/$MRN" ; 
+   echo "\n already exists.\n" ; 
+
+} ; 
+   else 
+{ 
+   echo "\n Creating patient directory in" ; 
+   echo "\n    $PATIENT_PATH/$MRN\n" ;
+   cd $PATIENT_PATH ;
+   mkdir "$MRN" ; 
+} ; 
+fi
+

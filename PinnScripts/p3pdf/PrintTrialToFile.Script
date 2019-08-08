@@ -1,0 +1,63 @@
+// Prints current trial information to postscript file
+// Would like for planner to be prompted to select trial
+
+// Print output test string
+Store.StringAt.HyphenString = "-";
+
+// Set directory for all scripts
+Store.StringAt.ScriptDirectory = "/usr/local/adacnew/p3pdf/";
+Store.StringAt.PatientDirectory = "/var/tmp/feed/process/";
+
+//Check if MRN does not exist, display a warning message
+Store.FloatAt.VersionOK=0;
+IF.AppVersion.GREATERTHAN.#"#9.6".THEN.Store.FloatAt.VersionOK=1;
+IF.AppVersion.STRINGEQUALTO.#"#9.10".THEN.Store.FloatAt.VersionOK=1;
+IF.ISNOTALPHANUMERIC.PlanInfo.MedicalRecordNumber.AND.Store.FloatAt.VersionOK.THEN.WarningMessage="This patient does not have an MRN. Before you can create a PDF, you must add an MRN for this patient.";
+IF.PlanInfo.EmptyStringToDashFilter.MedicalRecordNumber.STRINGEQUALTO.#"# --".THEN.WarningMessage="This patient does not have an MRN. Before you can create a PDF, you must add an MRN for this patient.";
+
+// Check if saving directory exists and if not create
+Store.StringAt.CommandString = Store.At.ScriptDirectory.Value; 
+Store.At.CommandString.AppendString = "CreatePatientDirectory";
+Store.At.CommandString.AppendString = " ";
+//Store.At.CommandString.AppendString =  "\"";
+
+Store.StringAt.NewMRN=PlanInfo.MedicalRecordNumber;
+IF.AppVersion.GREATERTHAN.#"#9.6".THEN.Store.At.NewMRN.RemoveSpecialCharactersAndGetFileName = 0;
+IF.AppVersion.STRINGEQUALTO.#"#9.10".THEN.Store.At.NewMRN.RemoveSpecialCharactersAndGetFileName = 0;
+Store.At.CommandString.AppendString = Store.At.NewMRN.String;
+SpawnCommand = Store.StringAt.CommandString;
+// Compose filename
+Store.StringAt.FileName = Store.At.PatientDirectory.Value; 
+
+//Store.StringAt.FileName = "\"";
+//Store.At.FileName.AppendString = Store.At.PatientDirectory.Value; 
+Store.At.FileName.AppendString = Store.At.NewMRN.String;
+Store.At.FileName.AppendString = "/";
+Store.At.FileName.AppendString = "printoutPinnacleTrial";
+Store.At.FileName.AppendString = Store.At.NewMRN.String;
+Store.At.FileName.AppendString = ".ps";
+//Store.At.FileName.AppendString ="\"";
+
+// Print to file
+Echo = Store.At.FileName.Value;
+IF.PlanInfo.EmptyStringToDashFilter.MedicalRecordNumber.STRINGNOTEQUALTO.#"# --".THEN.PrinterControl.PrintToFile = 1;
+PrinterControl.PrintToFilePaperSize = "Letter";
+PrinterControl.PrintToFileFileList.File = Store.At.FileName.String; 
+IF.PlanInfo.EmptyStringToDashFilter.MedicalRecordNumber.STRINGNOTEQUALTO.#"# --".THEN.PrinterControl.ValidateSelectedPrinter = "Print";
+IF.PlanInfo.EmptyStringToDashFilter.MedicalRecordNumber.STRINGNOTEQUALTO.#"# --".THEN.TrialList.Current.Report = "Print";
+PrinterControl.PrintToFile = 0;
+
+// Add date time stamp to filename for sorting
+Store.StringAt.CommandString = Store.At.ScriptDirectory.Value;
+Store.At.CommandString.AppendString = "InsertDateTimeStamp";
+Store.At.CommandString.AppendString = " ";
+Store.At.CommandString.AppendString = Store.At.FileName.Value;
+SpawnCommand = Store.StringAt.CommandString;
+
+//Clean up objects
+Store.FreeAt.ScriptDirectory = "";
+Store.FreeAt.PatientDirectory = "";
+Store.FreeAt.HyphenString = "";
+Store.FreeAt.FileName = "";
+Store.FreeAt.CommandString = "";
+

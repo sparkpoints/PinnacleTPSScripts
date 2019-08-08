@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Inserts a datetime stamp for a supplied postscript file 
+# $1  = file name with path 
+# depends on shell script DateTimeStamp 
+
+userName=`whoami`
+scriptPath=/usr/local/adacnew/p3pdf
+
+DateTimeStamp=`${scriptPath}/EchoDateTimeStamp`
+
+fileName=`echo "$1" | sed -e s/\.ps//`
+fileName="$fileName-"
+fileName=${fileName}${DateTimeStamp}
+fileName="$fileName.ps"
+
+mv $1 $fileName
+

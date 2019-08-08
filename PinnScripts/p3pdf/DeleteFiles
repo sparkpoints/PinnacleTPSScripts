@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# cleans out all intermediate ps files for a specific patient using MRN
+# $1  = directory path
+# $2  = MRN 
+
+cd $1
+ls -1 printoutPinnacle*$2*.ps > listFiles
+rm `cat listFiles`
+rm listFiles
+

@@ -1,0 +1,40 @@
+#!/bin/sh
+
+# Must determine paths which are different for sparc/solaris8
+# and i386/solaris10 installations
+
+ARCH=`arch`
+
+case $ARCH in
+   i86pc)               # i386/solaris10 on 810 boxes
+      {
+      ARCH_FOUND=true
+      GS_LIB=/usr/sfw/share/ghostscript/fonts     #To find fonts
+      GS_PATH=/usr/sfw/bin
+      export GS_LIB
+      export GS_PATH
+      } ;;
+   sun4)                # sparc/solaris8 on Blade boxes
+      {
+      ARCH_FOUND=true
+      GS_LIB=/opt/sfw/share/ghostscript/fonts     #To find fonts
+      GS_PATH=/opt/sfw/bin
+      export GS_LIB
+      export GS_PATH
+      } ;;
+   *)
+      {
+      ARCH_FOUND=false
+      echo "Architecture not supported. Exiting..."
+      exit
+      } ;;
+esac
+
+if [ $ARCH_FOUND = true ] ; then
+   {
+   echo $1
+   cd `dirname $1`
+   $GS_PATH/ps2pdf -dAutoRotatePages=/PageByPage -sPAPERSIZE=letter -dPDFSETTINGS=/prepress -dBATCH $1
+   } ;
+fi
+

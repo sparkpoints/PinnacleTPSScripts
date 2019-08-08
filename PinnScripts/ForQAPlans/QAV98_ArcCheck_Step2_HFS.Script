@@ -1,0 +1,107 @@
+//create Storage_temp_file(MedicalRecordNumber)
+Store.StringAt.WorkFile = GetEnv.HOME;
+Store.At.WorkFile.AppendString = '/';
+Store.At.WorkFile.AppendString = PlanInfo.MedicalRecordNumber;
+
+//tricks
+Store.Load = Store.At.WorkFile.String;
+
+//
+WindowList .CTSim .PanelList .#"#0" .GotoPanel = "FunctionLayoutIcon0";
+TrialList .Current .LaserLocalizer .LockCouch = "0";
+ControlPanel .Icon .CouchRemoval .MakeCurrent = "CouchLockedIcon";
+TrialList .Current .CouchRemovalYCoordinate = " -23.7";
+TrialList .Current .LaserLocalizer .LockCouch = "1";
+
+WindowList .NewBeamSpreadsheet .Create = "Beam Spreadsheet...";
+BeamLayout .Index = 1;
+TrialList .Current .BeamList .#"#0" .Isocenter = "ArcCheck_Iso";
+TrialList .Current .BeamList .#"#1" .Isocenter = "ArcCheck_Iso";
+//TrialList .Current .BeamList .#"#2" .Isocenter = "ArcCheck_Iso";
+
+
+WindowList .CTSim .PanelList .#"#4" .GotoPanel = "FunctionLayoutIcon4";
+ViewWindowList .#"*" .CineOnOff = "0";
+TrialList .Current .DoseGrid .VoxelSize .X = "0.3";
+TrialList .Current .DoseGrid .VoxelSize .Y = "0.3";
+TrialList .Current .DoseGrid .VoxelSize .Z = "0.3";
+TrialList .Current .DoseGrid .Dimension .X = "96";
+TrialList .Current .DoseGrid .Dimension .Y = "95";
+TrialList .Current .DoseGrid .Dimension .Y = "92";
+TrialList .Current .DoseGrid .Origin .DisplayX = "-14";
+TrialList .Current .DoseGrid .Origin .DisplayY = "-20.14";
+TrialList .Current .DoseGrid .Origin .DisplayZ = "55.95";
+
+
+WindowList .TrialPrescription .Create = "Edit Prescriptions...";
+WindowList .PrescriptionEditor .Create = "Edit...";
+TrialList .Current .PrescriptionList .Current .Method = "Set Monitor Units";
+TrialList .Current .PrescriptionList .Current .NumberOfFractions = "1";
+WindowList .TrialPrescription .Unrealize = "Dismiss";
+
+TrialList .Current .ComputeDose .#"#0" = "Compute";
+TrialList .Current .ComputeDose .#"#1" = "Compute";
+TrialList .Current .SetBeamMonitorUnits .#"#0" .Address = Store.FloatAt.Beam0;
+TrialList .Current .SetBeamMonitorUnits .#"#1" .Address = Store.FloatAt.Beam1;
+
+//isodoselines
+WindowList .CTSim .PanelList .#"#5" .GotoPanel = "FunctionLayoutIcon5";
+ViewWindowList .#"*" .CineOnOff = "0";
+IsodoseControl .NormalizationMode = "Percent of Max Dose";
+IsodoseControl .LineList .#"#0" .IsoValue = "100 %";
+IsodoseControl .LineList .#"#1" .IsoValue = "90 %";
+IsodoseControl .LineList .#"#2" .IsoValue = "80 %";
+IsodoseControl .LineList .#"#3" .IsoValue = "50 %";
+WindowList .IsodoseWindow .Create = "Line Details...";
+IsodoseControl .LineList .#"#0" .LineWidthString = "Thin";
+IsodoseControl .LineList .#"#1" .LineWidthString = "Thin";
+IsodoseControl .LineList .#"#2" .LineWidthString = "Thin";
+IsodoseControl .LineList .#"#3" .LineWidthString = "Thin";
+
+//Print Plan_summary_Report_Only
+ConfirmLockPlan = "Lock Plan...";
+PlanInfo .PlanLockStatus = "p3rtp";
+LockPlan = "Lock Plan";
+WindowList .TrialPrintConfirmation .Create = "Print Plan...";
+TrialList .Current .ReportType = "Summary Report Only";
+PrinterControl .ValidateSelectedPrinter = "Print";
+WindowList .TrialPrintConfirmation .Unrealize = "Print";
+TrialList .Current .Report = "Print";
+
+//export RPlan to run
+SavePlan = "Save Plan";
+WindowList .DICOMExport .Create = "DICOM...";
+PluginManager .DICOMExportPlugin .RemoteAETitle = "VARIAN_10.36.126.10";
+DyeKom .AETitle = "VARIAN_10.36.126.10";
+DICOM .TimeOutLength = "60";
+PluginManager .DICOMExportPlugin .SendPlan = 1;
+PluginManager .DICOMExportPlugin .SSDInArcs = 0;
+TrialList .Current .PrescriptionList .#"#0" .SelectedForDICOMExport = 1;
+WindowList .DICOMExport .WidgetList .RTAETitleOption .Activate = "Transmit Data";
+ExportDICOMRT = "Transmit Data";
+
+//for Sun_nuclear_reconstruct_dose
+PluginManager .DICOMExportPlugin .SendRTDose = 1;
+PluginManager .DICOMExportPlugin .SendRTDosePerPrescription = 1;
+PluginManager .DICOMExportPlugin .RemoteAETitle = "SunNuclear_SCP_10.36.126.47";
+DyeKom .AETitle = "SunNuclear_SCP_10.36.126.47";
+WindowList .DICOMExport .WidgetList .RTStructureList .Activate = "Transmit Data";
+WindowList .DICOMExport .WidgetList .RTPrescriptionList .Activate = "Transmit Data";
+WindowList .DICOMExport .WidgetList .DICOMImageList .Activate = "Transmit Data";
+WindowList .DICOMExport .WidgetList .SetupBeamList .Activate = "Transmit Data";
+WindowList .DICOMExport .WidgetList .RTAETitleOption .Activate = "Transmit Data";
+ExportDICOMRT = "Transmit Data";
+
+//del temp file
+Store.FreeAt.TempCMD = "";
+Store.At.TempCMD = SimpleString {};
+Store.At.TempCMD.AppendString = "rm \"";
+Store.At.TempCMD.AppendString = Store.At.WorkFile.String;
+Store.At.TempCMD.AppendString = "\"";
+SpawnCommand = Store.At.TempCMD.String;
+
+WarningMessage = "QA_completed!!!";
+
+QuitWithSave = "";
+
+/* Q� */

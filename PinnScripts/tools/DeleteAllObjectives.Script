@@ -1,0 +1,3 @@
+StartIMRT = "IPButton";
+IF.PluginManager.InversePlanningManager.CombinedObjectiveList.HasElements.THEN.PluginManager .InversePlanningManager .DeleteCurrentObjective = "Delete Objective";
+IF.PluginManager.InversePlanningManager.CombinedObjectiveList.HasElements.THEN.Script.ExecuteNow = "/usr/local/adacnew/PinnacleSiteData///Scripts/PY/DeleteAllObjectives.Script";

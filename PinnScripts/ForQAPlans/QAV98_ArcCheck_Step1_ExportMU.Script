@@ -1,0 +1,25 @@
+//create Storage_temp_file(MedicalRecordNumber)
+Store.StringAt.WorkFile = GetEnv.HOME;
+Store.At.WorkFile.AppendString = '/';
+Store.At.WorkFile.AppendString = PlanInfo.MedicalRecordNumber;
+
+Store.FreeAt.TempCMD = "";
+Store.At.TempCMD = SimpleString {};
+Store.At.TempCMD.AppendString = "touch \"";
+Store.At.TempCMD.AppendString = Store.At.WorkFile.String;
+Store.At.TempCMD.AppendString = "\"";
+SpawnCommand = Store.At.TempCMD.String;
+
+
+//export max 4 VMAT BeamS(BeamName and MU)
+TrialList.Current.BeamList.#"#0".MakeCurrent = 1;
+Store.FloatAt.Beam0 = TrialList.Current.BeamList.Current.MonitorUnits;
+
+TrialList.Current.BeamList.#"#1".MakeCurrent = 1;
+Store.FloatAt.Beam1 = TrialList.Current.BeamList.Current.MonitorUnits;
+
+//tricks
+Store.Save = Store.At.WorkFile.String;
+
+WarningMessage = "VMAT Beam MUs Exported!";
+Quit = "";

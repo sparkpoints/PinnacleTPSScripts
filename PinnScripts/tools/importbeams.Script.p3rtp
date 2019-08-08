@@ -1,0 +1,2 @@
+IF .PinnPreferences .ComputeUncomputedBeams .THEN .TrialList .Current .ComputeUncomputedBeams = "Add New Beam";
+TrialList.Current.BeamList.Load="/home/ycw/inoutbeam/beamuf.out";

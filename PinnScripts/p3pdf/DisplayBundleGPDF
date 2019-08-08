@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# Displays PDF file prior to import using Acrobat reader
+# $1 = path
+# $2 = filename 
+
+cd $1
+
+fileList=`ls -1 *$2*.pdf`
+
+for file in $fileList; do
+   if [ -f $file ] ; then 
+   	if [ -f /usr/bin/gpdf ] ; then
+      		gpdf --geometry=800x990+480+0 $file
+      	else
+      		xpdf -g 800x990+480+0 $file
+      	fi;	 
+   else
+   	echo "File does not exist.";
+   fi;
+done;
+

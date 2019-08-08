@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# delete all the files and subdirectories in the 
+# patient folder every time the P3PDF is invoked
+
+# parameters passed by Pinnacle script:
+# $1   patient directory
+
+cd $1
+echo $1
+
+find . -mtime +7 -ls > listToDelete
+
+if [ ! -s listToDelete ] ; then
+   echo "\n No old file to delete.\n"
+   exit
+else
+   echo "/n Deleting old files ...\n"
+   more listToDelete
+   rm -rf `cat listToDelete`
+   rm -f listToDelete
+fi

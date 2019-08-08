@@ -1,0 +1,28 @@
+//Set bin  Home Dir "bin/"
+Store.At.HomeDir = SimpleString {};
+Store.At.HomeDir.AppendString = "/home/peter/OutData/";
+
+//Set Pinnacle Scripts dir
+Store.At.OutFile = SimpleString {};
+Store.At.OutFile.AppendString = Store.At.HomeDir.String;
+Store.At.OutFile.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.OutFile.AppendString = DVHList.Current.TrialName;
+
+//export volume,Max,mean,min dose
+Store.FreeAt.Command = "";
+Store.At.Command = SimpleString {};
+Store.At.Command.AppendString = "echo ";
+Store.At.Command.AppendString = "Name,\t\t Volume,\t\tDoseMax,\t\tDoseMean,\t\t DoseMin,\t\tDoseStd";
+Store.At.Command.AppendString = "  >> ";
+Store.At.Command.AppendString = Store.At.OutFile.String;
+SpawnCommand = Store.At.Command.String;
+Store.FreeAt.Command = "";
+// export each ROI
+DVHList.ChildrenEachCurrent.#"@".Script.ExecuteNow = "/home/peter/DVH_dose.Script.peter";
+
+//export DVH raw Data
+Store.FreeAt.myCommand = "";
+Store.At.myCommand = SimpleString {};
+Store.At.myCommand.AppendString = "LoadNoCheckSum = /home/peter/export_dvhs.Script.p3rtp";
+Store.At.myCommand.Execute = "";
+Store.FreeAt.myCommand = "";

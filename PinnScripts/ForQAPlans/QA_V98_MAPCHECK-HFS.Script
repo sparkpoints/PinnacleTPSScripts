@@ -1,0 +1,267 @@
+Store.FreeAt.TempPatient = "";
+Store.At.TempPatient = SimpleString {};
+Store.At.TempPatient.AppendString = PlanInfo.MedicalRecordNumber;
+
+//Set Home Dir "/home/p3rtp/QA/"
+Store.FreeAt.TempHomeDir = "";
+Store.At.TempHomeDir = SimpleString {};
+Store.At.TempHomeDir.AppendString = "/home/p3rtp/QA/";
+Store.At.TempHomeDir.AppendString = Store.At.TempPatient.String;
+
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = "mkdir ";
+Store.At.TempCommand.AppendString = Store.At.TempHomeDir.String;
+SpawnCommand = Store.At.TempCommand.String;
+Store.FreeAt.TempCommand = "";
+
+WindowList .CTSim .PanelList .#"#1" .GotoPanel = "FunctionLayoutIcon0";
+WindowList .WindowLevel .Create = "Window / Level...";
+WindowLevelList .Current = "Lung";
+VolumeList .Current .LoadWindowLevelPreset = "Lung";
+WindowList .WindowLevel .Unrealize = "Dismiss";
+
+TrialList .Current .LaserLocalizer .LockCouch = "0";
+ControlPanel .Icon .CouchRemoval .MakeCurrent = "CouchLockedIcon";
+TrialList .Current .CouchRemovalYCoordinate = " -24.";
+TrialList .Current .LaserLocalizer .LockCouch = "1";
+
+//BeamSetup
+WindowList .NewBeamSpreadsheet .Create = "BeamSpreadsheetButton";
+BeamLayout .Index = 1;
+TrialList .Current .BeamList .#"#0" .Gantry = "0";
+TrialList .Current .BeamList .#"#1" .Gantry = "0";
+TrialList .Current .BeamList .#"#2" .Gantry = "0";
+TrialList .Current .BeamList .#"#3" .Gantry = "0";
+TrialList .Current .BeamList .#"#4" .Gantry = "0";
+TrialList .Current .BeamList .#"#5" .Gantry = "0";
+TrialList .Current .BeamList .#"#6" .Gantry = "0";
+TrialList .Current .BeamList .#"#7" .Gantry = "0";
+TrialList .Current .BeamList .#"#8" .Gantry = "0";
+TrialList .Current .BeamList .#"#9" .Gantry = "0";
+TrialList .Current .BeamList .#"#10" .Gantry = "0";
+TrialList .Current .BeamList .#"#11" .Gantry = "0";
+TrialList .Current .BeamList .#"#12" .Gantry = "0";
+TrialList .Current .BeamList .#"#13" .Gantry = "0";
+TrialList .Current .BeamList .#"#14" .Gantry = "0";
+TrialList .Current .BeamList .#"#15" .Gantry = "0";
+TrialList .Current .BeamList .#"#16" .Gantry = "0";
+TrialList .Current .BeamList .#"#17" .Gantry = "0";
+TrialList .Current .BeamList .#"#0" .Isocenter = "Iso.Mapcheck_surface";
+TrialList .Current .BeamList .#"#1" .Isocenter = "Iso.Mapcheck_surface";
+TrialList .Current .BeamList .#"#2" .Isocenter = "Iso.Mapcheck_surface";
+TrialList .Current .BeamList .#"#3" .Isocenter = "Iso.Mapcheck_surface";
+TrialList .Current .BeamList .#"#4" .Isocenter = "Iso.Mapcheck_surface";
+TrialList .Current .BeamList .#"#5" .Isocenter = "Iso.Mapcheck_surface";
+TrialList .Current .BeamList .#"#6" .Isocenter = "Iso.Mapcheck_surface";
+TrialList .Current .BeamList .#"#7" .Isocenter = "Iso.Mapcheck_surface";
+TrialList .Current .BeamList .#"#8" .Isocenter = "Iso.Mapcheck_surface";
+TrialList .Current .BeamList .#"#9" .Isocenter = "Iso.Mapcheck_surface";
+TrialList .Current .BeamList .#"#10" .Isocenter = "Iso.Mapcheck_surface";
+TrialList .Current .BeamList .#"#11" .Isocenter = "Iso.Mapcheck_surface";
+TrialList .Current .BeamList .#"#12" .Isocenter = "Iso.Mapcheck_surface";
+TrialList .Current .BeamList .#"#13" .Isocenter = "Iso.Mapcheck_surface";
+TrialList .Current .BeamList .#"#14" .Isocenter = "Iso.Mapcheck_surface";
+TrialList .Current .BeamList .#"#15" .Isocenter = "Iso.Mapcheck_surface";
+TrialList .Current .BeamList .#"#16" .Isocenter = "Iso.Mapcheck_surface";
+TrialList .Current .BeamList .#"#17" .Isocenter = "Iso.Mapcheck_surface";
+WindowList .NewBeamSpreadsheet .Unrealize = "Close Beam Spreadsheet";
+
+//del unuseful points
+//WindowList .CTSim .PanelList .#"#1" .GotoPanel = "FunctionLayoutIcon1";
+//TrialList .Current .LaserLocalizer .LockJaw = "0";
+//WindowList .PoiDelete .Create = "Delete Point...";
+//PoiList .Current .Destroy = "Delete Selected POI   (Ref.point)";
+//PoiList .Current .Destroy = "Delete Selected POI   (Iso.center)";
+//WindowList .PoiDelete .Unrealize = "Dismiss";
+
+//modifying the Prescriptions:(1) MU model (2) fraction = 1
+WindowList .CTSim .PanelList .#"#4" .GotoPanel = "FunctionLayoutIcon4";
+WindowList .TrialPrescription .Create = "Edit Prescriptions...";
+WindowList .PrescriptionEditor .Create = "Edit...";
+TrialList .Current .PrescriptionList .Current .Method = "Set Monitor Units";
+TrialList .Current .PrescriptionList .Current .NumberOfFractions = " 1";
+WindowList .PrescriptionEditor .Unrealize = "Dismiss";
+WindowList .TrialPrescription .Unrealize = "Dismiss";
+TrialList .Current .PatientRepresentation .TopZPadding = "0";
+TrialList .Current .WarnAboutPadding = "0";
+TrialList .Current .PatientRepresentation .BottomZPadding = "0";
+TrialList .Current .WarnAboutPadding = "0";
+
+//compute the entire plan doses
+TrialList .Current .DoseGrid .VoxelSize .X = "0.2";
+TrialList .Current .DoseGrid .VoxelSize .Y = "0.2";
+TrialList .Current .DoseGrid .VoxelSize .Z = "0.2";
+TrialList .Current .DoseGrid .Dimension .X = "271";
+TrialList .Current .DoseGrid .Dimension .Y = "268";
+TrialList .Current .DoseGrid .Dimension .Z = "235";
+TrialList .Current .DoseGrid .Origin .DisplayX = "-26.500";
+TrialList .Current .DoseGrid .Origin .DisplayY = "-46.100";
+TrialList .Current .DoseGrid .Origin .DisplayZ = "71.10";
+TrialList .Current .ComputeDose .#"#0" = "Compute";
+TrialList .Current .ComputeDose .#"#1" = "Compute";
+TrialList .Current .ComputeDose .#"#2" = "Compute";
+TrialList .Current .ComputeDose .#"#3" = "Compute";
+TrialList .Current .ComputeDose .#"#4" = "Compute";
+TrialList .Current .ComputeDose .#"#5" = "Compute";
+TrialList .Current .ComputeDose .#"#6" = "Compute";
+TrialList .Current .ComputeDose .#"#7" = "Compute";
+TrialList .Current .ComputeDose .#"#8" = "Compute";
+TrialList .Current .ComputeDose .#"#9" = "Compute";
+TrialList .Current .ComputeDose .#"#10" = "Compute";
+TrialList .Current .ComputeDose .#"#11" = "Compute";
+TrialList .Current .ComputeDose .#"#12" = "Compute";
+TrialList .Current .ComputeDose .#"#13" = "Compute";
+TrialList .Current .ComputeDose .#"#14" = "Compute";
+TrialList .Current .ComputeDose .#"#15" = "Compute";
+TrialList .Current .ComputeDose .#"#16" = "Compute";
+TrialList .Current .ComputeDose .#"#17" = "Compute";
+
+//isodoselines
+WindowList .CTSim .PanelList .#"#5" .GotoPanel = "FunctionLayoutIcon5";
+ViewWindowList .#"*" .CineOnOff = "0";
+IsodoseControl .NormalizationMode = "Percent of Max Dose";
+IsodoseControl .LineList .#"#0" .IsoValue = "100 %";
+IsodoseControl .LineList .#"#1" .IsoValue = "90 %";
+IsodoseControl .LineList .#"#2" .IsoValue = "80 %";
+IsodoseControl .LineList .#"#3" .IsoValue = "50 %";
+WindowList .IsodoseWindow .Create = "Line Details...";
+IsodoseControl .LineList .#"#0" .LineWidthString = "Thin";
+IsodoseControl .LineList .#"#1" .LineWidthString = "Thin";
+IsodoseControl .LineList .#"#2" .LineWidthString = "Thin";
+IsodoseControl .LineList .#"#3" .LineWidthString = "Thin";
+
+WindowList .IsodoseWindow .Unrealize = "Dismiss";
+//modifying all Beam MU = 50
+WindowList .NewBeamSpreadsheet .Create = "BeamSpreadsheetButton";
+BeamLayout .Index = 5;
+TrialList .Current .SetBeamMonitorUnits .#"#0" .Address = "50";
+TrialList .Current .SetBeamMonitorUnits .#"#1" .Address = "50";
+TrialList .Current .SetBeamMonitorUnits .#"#2" .Address = "50";
+TrialList .Current .SetBeamMonitorUnits .#"#3" .Address = "50";
+TrialList .Current .SetBeamMonitorUnits .#"#4" .Address = "50";
+TrialList .Current .SetBeamMonitorUnits .#"#5" .Address = "50";
+TrialList .Current .SetBeamMonitorUnits .#"#6" .Address = "50";
+TrialList .Current .SetBeamMonitorUnits .#"#7" .Address = "50 ";
+TrialList .Current .SetBeamMonitorUnits .#"#8" .Address = "50 ";
+TrialList .Current .SetBeamMonitorUnits .#"#9" .Address = "50";
+TrialList .Current .SetBeamMonitorUnits .#"#10" .Address = "50";
+TrialList .Current .SetBeamMonitorUnits .#"#11" .Address = "50";
+TrialList .Current .SetBeamMonitorUnits .#"#12" .Address = "50";
+TrialList .Current .SetBeamMonitorUnits .#"#13" .Address = "50 ";
+TrialList .Current .SetBeamMonitorUnits .#"#14" .Address = "50";
+TrialList .Current .SetBeamMonitorUnits .#"#15" .Address = "50";
+TrialList .Current .SetBeamMonitorUnits .#"#16" .Address = "50";
+TrialList .Current .SetBeamMonitorUnits .#"#17" .Address = "50";
+WindowList .NewBeamSpreadsheet .Unrealize = "Close Beam Spreadsheet";
+
+//calculate planar doses
+WindowList .CTSim .PanelList .#"#4" .GotoPanel = "FunctionLayoutIcon4";
+WindowList .PlanarBeamDose .Create = "Planar Dose...";
+ExportFileList .Directory = Store.At.TempHomeDir.String;
+TrialList .Current .AddPlanarDoseForAllBeams = "Add Plane Per Beam";
+TrialList .Current .PlanarDoseList .Last .MakeCurrent = "Add Plane Per Beam";
+TrialList .Current .PlanarDoseList .#"#0" .SourceToPlaneDistance = " 103";
+TrialList .Current .PlanarDoseList .#"#1" .SourceToPlaneDistance = " 103";
+TrialList .Current .PlanarDoseList .#"#2" .SourceToPlaneDistance = " 103";
+TrialList .Current .PlanarDoseList .#"#3" .SourceToPlaneDistance = " 103";
+TrialList .Current .PlanarDoseList .#"#4" .SourceToPlaneDistance = " 103";
+TrialList .Current .PlanarDoseList .#"#5" .SourceToPlaneDistance = " 103";
+TrialList .Current .PlanarDoseList .#"#6" .SourceToPlaneDistance = " 103";
+TrialList .Current .PlanarDoseList .#"#7" .SourceToPlaneDistance = " 103";
+TrialList .Current .PlanarDoseList .#"#8" .SourceToPlaneDistance = " 103";
+TrialList .Current .PlanarDoseList .#"#9" .SourceToPlaneDistance = " 103";
+TrialList .Current .PlanarDoseList .#"#10" .SourceToPlaneDistance = " 103";
+TrialList .Current .PlanarDoseList .#"#11" .SourceToPlaneDistance = " 103";
+TrialList .Current .PlanarDoseList .#"#12" .SourceToPlaneDistance = " 103";
+TrialList .Current .PlanarDoseList .#"#13" .SourceToPlaneDistance = " 103";
+TrialList .Current .PlanarDoseList .#"#14" .SourceToPlaneDistance = " 103";
+TrialList .Current .PlanarDoseList .#"#15" .SourceToPlaneDistance = " 103";
+TrialList .Current .PlanarDoseList .#"#16" .SourceToPlaneDistance = " 103";
+TrialList .Current .PlanarDoseList .#"#17" .SourceToPlaneDistance = " 103";
+TrialList .Current .PlanarDoseList .#"#0" .SetDataType = "Primary data";
+TrialList .Current .PlanarDoseList .#"#1" .SetDataType = "Primary data";
+TrialList .Current .PlanarDoseList .#"#2" .SetDataType = "Primary data";
+TrialList .Current .PlanarDoseList .#"#3" .SetDataType = "Primary data";
+TrialList .Current .PlanarDoseList .#"#4" .SetDataType = "Primary data";
+TrialList .Current .PlanarDoseList .#"#5" .SetDataType = "Primary data";
+TrialList .Current .PlanarDoseList .#"#6" .SetDataType = "Primary data";
+TrialList .Current .PlanarDoseList .#"#7" .SetDataType = "Primary data";
+TrialList .Current .PlanarDoseList .#"#8" .SetDataType = "Primary data";
+TrialList .Current .PlanarDoseList .#"#9" .SetDataType = "Primary data";
+TrialList .Current .PlanarDoseList .#"#10" .SetDataType = "Primary data";
+TrialList .Current .PlanarDoseList .#"#11" .SetDataType = "Primary data";
+TrialList .Current .PlanarDoseList .#"#12" .SetDataType = "Primary data";
+TrialList .Current .PlanarDoseList .#"#13" .SetDataType = "Primary data";
+TrialList .Current .PlanarDoseList .#"#14" .SetDataType = "Primary data";
+TrialList .Current .PlanarDoseList .#"#15" .SetDataType = "Primary data";
+TrialList .Current .PlanarDoseList .#"#16" .SetDataType = "Primary data";
+TrialList .Current .PlanarDoseList .#"#17" .SetDataType = "Primary data";
+WindowList .PlanarBeamDose .StateList .Current = 1;
+TrialList .Current .PlanarDoseList .#"#0" .VoxelSize = "  0.2";
+TrialList .Current .PlanarDoseList .#"#1" .VoxelSize = "  0.2";
+TrialList .Current .PlanarDoseList .#"#2" .VoxelSize = "  0.2";
+TrialList .Current .PlanarDoseList .#"#3" .VoxelSize = "  0.2";
+TrialList .Current .PlanarDoseList .#"#4" .VoxelSize = "  0.2";
+TrialList .Current .PlanarDoseList .#"#5" .VoxelSize = "  0.2";
+TrialList .Current .PlanarDoseList .#"#6" .VoxelSize = "  0.2";
+TrialList .Current .PlanarDoseList .#"#7" .VoxelSize = "  0.2";
+TrialList .Current .PlanarDoseList .#"#8" .VoxelSize = "  0.2";
+TrialList .Current .PlanarDoseList .#"#9" .VoxelSize = "  0.2";
+TrialList .Current .PlanarDoseList .#"#10" .VoxelSize = "  0.2";
+TrialList .Current .PlanarDoseList .#"#11" .VoxelSize = "  0.2";
+TrialList .Current .PlanarDoseList .#"#12" .VoxelSize = "  0.2";
+TrialList .Current .PlanarDoseList .#"#13" .VoxelSize = "  0.2";
+TrialList .Current .PlanarDoseList .#"#14" .VoxelSize = "  0.2";
+TrialList .Current .PlanarDoseList .#"#15" .VoxelSize = "  0.2";
+TrialList .Current .PlanarDoseList .#"#16" .VoxelSize = "  0.2";
+TrialList .Current .PlanarDoseList .#"#17" .VoxelSize = "  0.2";
+
+WindowList .CTSim .PanelList .#"#4" .GotoPanel = "FunctionLayoutIcon4";
+ViewWindowList .#"*" .CineOnOff = "0";
+TrialList .Current .ComputePlanarDose .#"#0" = 0;
+TrialList .Current .ComputePlanarDose .#"#1" = 0;
+TrialList .Current .ComputePlanarDose .#"#2" = 0;
+TrialList .Current .ComputePlanarDose .#"#3" = 0;
+TrialList .Current .ComputePlanarDose .#"#4" = 0;
+TrialList .Current .ComputePlanarDose .#"#5" = 0;
+TrialList .Current .ComputePlanarDose .#"#6" = 0;
+TrialList .Current .ComputePlanarDose .#"#7" = 0;
+TrialList .Current .ComputePlanarDose .#"#8" = 0;
+TrialList .Current .ComputePlanarDose .#"#9" = 0;
+TrialList .Current .ComputePlanarDose .#"#10" = 0;
+TrialList .Current .ComputePlanarDose .#"#11" = 0;
+TrialList .Current .ComputePlanarDose .#"#12" = 0;
+TrialList .Current .ComputePlanarDose .#"#13" = 0;
+TrialList .Current .ComputePlanarDose .#"#14" = 0;
+TrialList .Current .ComputePlanarDose .#"#15" = 0;
+TrialList .Current .ComputePlanarDose .#"#16" = 0;
+TrialList .Current .ComputePlanarDose .#"#17" = 0;
+
+//export planar doses(in ascii model)
+TrialList .Current .ExportPlanarDoseAscii = 1;
+WindowList .ExportDirectory .Unrealize = "Dismiss";
+
+TrialList .Current .OutputAllPlanarDose = "Export All Planes To File";
+
+
+//Print Plan_summary_Report_Only
+WindowList .TrialPrintConfirmation .Create = "Print Plan...";
+TrialList .Current .ReportType = "Summary Report Only";
+PrinterControl .ValidateSelectedPrinter = "Print";
+WindowList .TrialPrintConfirmation .Unrealize = "Print";
+TrialList .Current .Report = "Print";
+
+//export RPlan
+SavePlan = "Save Plan";
+WindowList .DICOMExport .Create = "DICOM...";
+PluginManager .DICOMExportPlugin .RemoteAETitle = "VARIAN_10.36.126.10";
+DyeKom .AETitle = "VARIAN_10.36.126.10";
+DICOM .TimeOutLength = "60";
+PluginManager .DICOMExportPlugin .SendPlan = 1;
+PluginManager .DICOMExportPlugin .SSDInArcs = 0;
+TrialList .Current .PrescriptionList .#"#0" .SelectedForDICOMExport = 1;
+WindowList .DICOMExport .WidgetList .RTAETitleOption .Activate = "Transmit Data";
+//ExportDICOMRT = "Transmit Data";
+
+/* �� */

@@ -1,0 +1,37 @@
+// Collects information to delete all printout
+// files associated with paient's MRN
+// Staging area passed as argval $1 to shell script
+// MRN passes as argval $2 to shell script
+
+// Configured paths
+Store.StringAt.ScriptPath = "/usr/local/adacnew/p3pdf/";
+Store.StringAt.PatientPath = "/var/tmp/feed/process/";
+
+// Compose pathname for patient area
+Store.StringAt.PathName = Store.At.PatientPath.Value; 
+Store.StringAt.NewMRN=PlanInfo.MedicalRecordNumber;
+IF.AppVersion.GREATERTHAN.#"#9.6".THEN.Store.At.NewMRN.RemoveSpecialCharactersAndGetFileName=0;
+IF.AppVersion.STRINGEQUALTO.#"#9.10".THEN.Store.At.NewMRN.RemoveSpecialCharactersAndGetFileName=0;
+Store.At.PathName.AppendString = Store.At.NewMRN.String;
+Store.At.PathName.AppendString = "/";
+
+// Find MRN
+Store.StringAt.MRN = PlanInfo.MedicalRecordNumber;
+
+// Compose command and execute
+Store.StringAt.CommandString = Store.StringAt.ScriptPath.Value;
+Store.At.CommandString.AppendString ="DeleteFiles";
+Store.At.CommandString.AppendString = " ";
+Store.At.CommandString.AppendString =  Store.StringAt.PathName.Value;
+Store.At.CommandString.AppendString = " ";
+Store.At.CommandString.AppendString = Store.StringAt.NewMRN.Value;
+//Echo = Store.At.CommandString.Value;
+SpawnCommand = Store.StringAt.CommandString;
+
+//Clean up objects
+Store.FreeAt.ScriptPath = "";
+Store.FreeAt.PatientPath = "";
+Store.FreeAt.PathName = "";
+Store.FreeAt.MRN = "";
+Store.FreeAt.CommandString = "";
+

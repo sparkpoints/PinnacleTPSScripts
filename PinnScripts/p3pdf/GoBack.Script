@@ -1,0 +1,11 @@
+// Reload the main HotScripts window
+HotScriptList.DestroyAllChildren = "";
+HotScriptList.Load = "";
+
+//Enable the Edit and Browse buttons in the main HotScripts window
+WindowList.HotScript.WidgetList.HotScript_EditButton.RemoveCurrentQuerySensitiveKey = "";
+//Added to fix PINN17777 caused by UI refresh issue
+WindowList.HotScript.WidgetList.HotScript_EditButton.Recreate = "";
+WindowList.HotScript.WidgetList.BrowseButton.RemoveCurrentQuerySensitiveKey = "";
+//Added to fix PINN17777 caused by UI refresh issue
+WindowList.HotScript.WidgetList.BrowseButton.Recreate = "";

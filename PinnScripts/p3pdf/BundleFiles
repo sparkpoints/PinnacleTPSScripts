@@ -1,0 +1,42 @@
+#!/bin/sh
+
+# bundles a list of postscript files into one pdf file
+# operates only on files with printoutPinnacle prefix
+# files should have a date-time-stamp for sorting
+
+# parameters passed by Pinnacle script:
+# $1   directory of *.ps files
+# $2   patient MRN
+# $3   file name
+
+fileNameString=$3
+userName=`whoami`
+scriptPath=/usr/local/adacnew/p3pdf
+
+# build file list to be concatenated
+cd $1
+echo $1
+
+LIST_FILES="`ls printoutPinnacle*$2*.ps | sort`"
+if [ -z "$LIST_FILES" ] ; then
+   echo No postscript files to bundle.
+   exit
+fi
+
+echo "File list is:"
+echo $LIST_FILES
+
+if [ -n $LIST_FILES ] ; then
+   {
+   FILENAME=$fileNameString".ps"
+   cat $LIST_FILES > $FILENAME 
+   } ;
+fi
+
+# convert to pdf 
+${scriptPath}/ConvertPostscriptToPDF $FILENAME 
+
+# perform housekeeping
+cp $fileNameString".pdf" /home/p3reports/
+rm $FILENAME 
+${scriptPath}/DeleteFiles $1 $2

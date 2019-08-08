@@ -1,0 +1,4 @@
+SpawnCommand="rm /home/peter/inoutbeam/*.*";
+TrialList.Current.BeamList.Save="/home/peter/inoutbeam/beamuf.out";
+SpawnCommand="rm /home/peter/inoutbeam/beamuf.out.binary.*";
+

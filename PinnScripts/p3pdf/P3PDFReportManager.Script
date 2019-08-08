@@ -1,0 +1,68 @@
+//  Destroy all existing scripts in HotScriptList
+
+HotScriptList.DestroyAllChildren = "";
+
+// Common path to scripts
+
+Store.StringAt.BasePath =  "/usr/local/adacnew/p3pdf/";
+Store.StringAt.PatientPath = "/var/tmp/feed/process/";
+
+// Build buttons
+
+HotScriptList.CreateChild = "";
+HotScriptList.Last.ScriptName = "Create a Trial PS File";
+Store.StringAt.FileName = Store.At.BasePath.Value;
+Store.At.FileName.AppendString = "PrintTrialToFile.Script";
+HotScriptList.Last.ScriptFile = Store.At.FileName.Value;
+
+HotScriptList.CreateChild = "";
+HotScriptList.Last.ScriptName = "Create a Window PS File";
+Store.StringAt.FileName = Store.At.BasePath.Value;
+Store.At.FileName.AppendString = "PrintWindowToFile.Script";
+HotScriptList.Last.ScriptFile = Store.At.FileName.Value;
+
+HotScriptList.CreateChild = "";
+HotScriptList.Last.ScriptName = "Create a Concatenated PDF File";
+Store.StringAt.FileName = Store.At.BasePath.Value;
+Store.At.FileName.AppendString = "BundleFiles.Script";
+HotScriptList.Last.ScriptFile = Store.At.FileName.Value;
+
+HotScriptList.CreateChild = "";
+HotScriptList.Last.ScriptName = "Display the PDF File";
+Store.StringAt.FileName = Store.At.BasePath.Value;
+Store.At.FileName.AppendString = "DisplayPrintoutBundleGPDF.Script";
+HotScriptList.Last.ScriptFile = Store.At.FileName.Value;
+
+HotScriptList.CreateChild = "";
+HotScriptList.Last.ScriptName = "Delete All Temporary Files";
+Store.StringAt.FileName = Store.At.BasePath.Value;
+Store.At.FileName.AppendString = "DeleteFiles.Script";
+HotScriptList.Last.ScriptFile = Store.At.FileName.Value;
+
+HotScriptList.CreateChild = "";
+HotScriptList.Last.ScriptName = "Go to HotScripts Main Window";
+Store.StringAt.FileName = Store.At.BasePath.Value;
+Store.At.FileName.AppendString = "GoBack.Script";
+HotScriptList.Last.ScriptFile = Store.At.FileName.Value;
+
+// Compose command and execute to delete all the files and directories
+// that are more than one week old.
+Store.StringAt.CommandString = Store.At.BasePath.Value;
+Store.At.CommandString.AppendString = "AutoDeleteP3PDF";
+Store.At.CommandString.AppendString = " ";
+Store.At.CommandString.AppendString = Store.StringAt.PatientPath;
+
+SpawnCommand = Store.StringAt.CommandString;
+
+//Clean up objects
+Store.FreeAt.BasePath = "";
+Store.FreeAt.PatientPath = "";
+Store.FreeAt.CommandString = "";
+
+//Disable the Edit and Browse buttons in the report manager window
+WindowList.HotScript.WidgetList.HotScript_EditButton.AddQuerySensitiveKey = "";
+//Added to fix PINN17777 caused by UI refresh issue
+WindowList.HotScript.WidgetList.HotScript_EditButton.Recreate = "";
+WindowList.HotScript.WidgetList.BrowseButton.AddQuerySensitiveKey = "";
+//Added to fix PINN17777 caused by UI refresh issue
+WindowList.HotScript.WidgetList.BrowseButton.Recreate = "";

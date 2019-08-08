@@ -1,0 +1,64 @@
+// Collects information to delete all printout
+// files associated with paient's MRN
+// Staging area is passed as argval $1 to shell script
+// Information for composing filename based on patient information is passed
+// as remaining argvals
+
+// Set status message
+WaitMessage = "Bundling up into one plan file...";
+
+// Common path to scripts
+Store.StringAt.ScriptPath = "/usr/local/adacnew/p3pdf/";
+Store.StringAt.PatientPath = "/var/tmp/feed/process/";
+
+// Check if saving directory exists and if not create
+Store.StringAt.CommandString = Store.At.ScriptPath.Value;
+Store.At.CommandString.AppendString = "CreatePatientDirectory";
+Store.At.CommandString.AppendString = " ";
+
+Store.FloatAt.VersionOK=0;
+IF.AppVersion.GREATERTHAN.#"#9.6".THEN.Store.FloatAt.VersionOK=1;
+IF.AppVersion.STRINGEQUALTO.#"#9.10".THEN.Store.FloatAt.VersionOK=1;
+IF.ISNOTALPHANUMERIC.PlanInfo.MedicalRecordNumber.AND.Store.FloatAt.VersionOK.THEN.WarningMessage="This patient does not have an MRN. Before you can create a PDF, you must add an MRN for this patient.";
+IF.PlanInfo.EmptyStringToDashFilter.MedicalRecordNumber.STRINGEQUALTO.#"# --".THEN.WarningMessage="This patient does not have a MRN. Before you can create a PDF, you must add a MRN for this patient.";
+
+Store.StringAt.NewMRN=PlanInfo.MedicalRecordNumber;
+IF.AppVersion.GREATERTHAN.#"#9.6".THEN.Store.At.NewMRN.RemoveSpecialCharactersAndGetFileName=0;
+IF.AppVersion.STRINGEQUALTO.#"#9.10".THEN.Store.At.NewMRN.RemoveSpecialCharactersAndGetFileName=0;
+Store.At.CommandString.AppendString=Store.At.NewMRN.String;
+SpawnCommand=Store.StringAt.CommandString;
+
+// Compose pathname for staging area
+Store.StringAt.PathName = Store.At.PatientPath.Value; 
+Store.At.PathName.AppendString = Store.At.NewMRN.String;
+Store.At.PathName.AppendString = "/";
+
+// Compose command and execute
+Store.StringAt.CommandString = Store.At.ScriptPath.Value;
+Store.At.CommandString.AppendString = "BundleFiles";
+Store.At.CommandString.AppendString = " ";
+Store.At.CommandString.AppendString = Store.At.PathName.String;
+Store.At.CommandString.AppendString = " ";
+Store.At.CommandString.AppendString = Store.At.NewMRN.String;
+Store.At.CommandString.AppendString = " ";
+
+Store.StringAt.FileName = "pinnaclePatient_";
+Store.At.FileName.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.FileName.AppendString = "-";
+Store.At.FileName.AppendString = TrialList.Current.Name;
+IF.AppVersion.GREATERTHAN.#"#9.6".THEN.Store.At.FileName.RemoveSpecialCharactersAndGetFileName = 0 ;
+IF.AppVersion.STRINGEQUALTO.#"#9.10".THEN.Store.At.FileName.RemoveSpecialCharactersAndGetFileName = 0 ;
+Store.At.CommandString.AppendString=Store.At.FileName.String;
+
+Store.At.CommandString.Value;
+SpawnCommand = Store.StringAt.CommandString;
+
+//Clean up objects
+Store.FreeAt.ScriptPath = "";
+Store.FreeAt.PatientPath = "";
+Store.FreeAt.PathName = "";
+Store.FreeAt.CommandString = "";
+
+// Status off
+WaitMessageOff = "";
+
