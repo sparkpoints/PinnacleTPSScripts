@@ -1,0 +1,38 @@
+/**************************************************************
+*                                                             *
+*  **   ** ******   ****   *   *********  *******    ******   *
+*  **   **     *   ** **   *         **  *       *         *  *
+*  **   **    *   **  **   *       **    *       *  ********  *
+*  **   **   *   **   **   *     **      *       * *       *  *
+*  *******  *   **  ****   *   ********* *       * *********  *
+*   **** * ******     **   *                                  *
+*                                                             *
+**************************************************************/
+/*
+***************************************************************
+*** Name: DVHOutputToTxtRunCheck.Script                     ***
+***                                                         ***
+*** Purpose: Check to see if there aren't to many roi's and ***
+***          trials selected for the output                 ***
+***                                                         ***
+*** Remarks:                                                ***  
+***                                                         ***
+*** Goudry Bert 19-01-2011                                  ***
+***                                                         ***
+*** Adjustments:                                            ***
+***       Product of Trials x Roi max = 200                 ***
+***       Goudry Bert 03-02-2011                            ***
+***       Value of Last cell in tabular DVH is stored       ***
+***       Goudry Bert 21-03-2011                            ***
+***                                                         ***
+***************************************************************
+*/
+
+IF.DVHList.Count.GREATERTHAN.#"#200". THEN.WarningMessage = "Script can't continue because Selected ROI's X Selected Trials is > 200!";
+
+IF.DVHList.Count.LESSTHAN.#"#201".
+THEN.Script.ExecuteNow = "/usr/local/adacnew/PinnacleSiteData/Scripts/Fysica/DVHOutputToTxt/DVHOutputToTxt.Script";
+
+DVHList .#"#0" .MakeCurrent = 1;
+
+/* Ë */

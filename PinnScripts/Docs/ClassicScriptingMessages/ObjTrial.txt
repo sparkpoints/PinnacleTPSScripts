@@ -1,0 +1,485 @@
+
+Key:  P=Persistent Q=Query S=Set A=Action E=EnumeratedList
+
+          Query/Set Access types: 
+
+              '-' = Not Direct Access 
+              '*' = Direct Access
+              '?' = Indeterminate
+              '=' = Old Style if/then/else structure
+
+    pq*s*ae       Type       Class Messages
+    -------  --------------  --------------------------------------------------
+    -Q*S*--       Bool       "AddOtherGrids"
+
+    PQ*S*--     SubObject    "CoordRefPoint"
+
+    PQ*S*--     ObjString    "CouchDisplayColor"
+
+    -Q*S*--       Float      "CouchRemovalDisplayYCoordinate"
+
+    PQ*S---       Float      "CouchRemovalYCoordinate"
+
+    PQ*S*--       Bool       "Display2dCouchPosition"
+
+    PQ*S*--       Bool       "Display3dCouchPosition"
+
+    -Q*S*--       Bool       "DisplayAir"
+
+    -Q*S*--       Bool       "DisplayPrimaryVOI"
+
+    -Q*S*--     SubObject    "LaserLocalizer"
+
+    -Q*S*--     SubObject    "LocalizerList"
+
+    PQ*S*--     SubObject    "PrimaryVOI"
+
+    -Q*S*--       Bool       "ProfileCancel"
+
+    -Q*S*--     ObjString    "ProfileComputationStatus"
+
+    -Q*S*--        Int       "ProfileCount"
+
+    -Q*S*--        Int       "ProfileIndex"
+
+    -Q*S*--       Bool       "ProfileIsComputing"
+
+    -Q*S*--        Int       "ProfilePercentDone"
+
+    -Q*S*--     SubObject    "QABeamList"
+
+    -Q*S*--       Float      "ROICoverageMarginInCm"
+
+    PQ*S*--       Bool       "RemoveCouchFromScan"
+
+    -Q*S*--     ObjString    "ScanditronixOutputFile"
+
+    -Q*S*--     SubObject    "StereoLocalizerList"
+
+    -Q*S*--     SubObject    "TransFromRefPoint"
+
+    -Q*S*--     SubObject    "TransToRefPoint"
+
+    PQ*S*--       Bool       "UseCoordRefPoint"
+
+    -Q*S*--       Bool       "WarnAboutCouchRemoval"
+
+
+    pq*s*ae       Type       Instance Messages
+    -------  --------------  --------------------------------------------------
+    -----A-        ---       "AddPlanarDose"
+
+    -----A-        ---       "AddPlanarDoseForAllBeams"
+
+    -----A-        ---       "AddPrescription"
+
+    ---S---        ---       "AddQABeam"
+
+    -Q-----        ---       "AllBeamsCPsHaveRoundedMUs"
+
+    -Q-----        ---       "AllBeamsHaveValidAbsoluteDose"
+
+    -Q-----        ---       "AllBeamsHaveValidDose"
+
+    -Q-----        ---       "AllBeamsHaveValidSSD"
+
+    PQ*S*--       Bool       "AlwaysDisplay2dCouchPosition"
+
+    PQ*S*--       Bool       "AlwaysDisplay3dCouchPosition"
+
+    -Q-----        ---       "AnyBeamsHaveValidDose"
+
+    ---S---        ---       "AutoCoverPatient"
+
+    ---S---        ---       "AutoCoverROI"
+
+    ---S---        ---       "AutoCoverSlices"
+
+    -Q-----        ---       "BeamForWindowID"
+
+    PQ*S*--     SubObject    "BeamList"
+
+    -Q-----        ---       "BeamListHaveSameBottomJawLabels"
+
+    -Q-----        ---       "BeamListHaveSameLeftJawLabels"
+
+    -Q-----        ---       "BeamListHaveSameLeftRightLabels"
+
+    -Q-----        ---       "BeamListHaveSameRightJawLabels"
+
+    -Q-----        ---       "BeamListHaveSameTopBottomLabels"
+
+    -Q-----        ---       "BeamListHaveSameTopJawLabels"
+
+    PQ*S*-E  EnumeratedList  "BeamPageSelection"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0          Modality "Modality"
+                    1         Isocenter "Isocenter"
+
+    PQ*S*--     SubObject    "BeamPoiWeightOptimizer"
+
+    ---S---        ---       "BeamPrescriptionChange"
+
+    ---S---        ---       "BeamWeightChange"
+
+    ---S---        ---       "BeginMessageBatch"
+
+    PQ-S---        ---       "BrachyDose"
+
+    PQ*S*--     ObjString    "BrachyDoseComputationVersion"
+
+    PQ*S*--     SubObject    "BrachyImplantDateAndTime"
+
+    PQ*S*--       Float      "BrachyImplantDuration"
+
+    -Q-----        ---       "BrachyImplantDurationDescription"
+
+    PQ*S*-E  EnumeratedList  "BrachyImplantDurationUnits"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0             Hours "Hours"
+
+    PQ*S*--     SubObject    "BrachyManager"
+
+    -Q-----        ---       "BrachyPrescriptionDescription"
+
+    PQ*S*-E  EnumeratedList  "BrachyPrescriptionMethod"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0         Dose Rate "Dose Rate"
+                    1         Temporary "Temporary"
+                    2         Permanent "Permanent"
+                    3        Per Source "Per Source"
+
+    -----A-        ---       "CenterOpposedBeams"
+
+    -Q*S*-E  EnumeratedList  "ChangeShiftDirection"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0            Normal "Normal"
+                    1           Reverse "Reverse"
+
+    -Q-----        ---       "CheckDoseWhenRounding"
+
+    ---S---        ---       "Colorwash"
+
+    ---S---        ---       "ComputeDose"
+
+    -----A-        ---       "ComputeICF"
+
+    ---S---        ---       "ComputeIrregPoints"
+
+    ---S---        ---       "ComputeMCDose"
+
+    ---S---        ---       "ComputePlanarDose"
+
+    PQ*S---       Bool       "ComputeRelativeDose"
+
+    ---S---        ---       "ComputeSeedDose"
+
+    -----A-        ---       "ComputeUncomputedBeams"
+
+    -Q-----        ---       "ConfirmDoseChange"
+
+    -Q-----        ---       "ConfirmUnlockWeights"
+
+    -Q-----        ---       "ConfirmUnlockWeightsAndCheckDose"
+
+    ---S---        ---       "CopyPatientVolumeToDoseGrid"
+
+    -Q*S*--      VoidPtr     "CopySource"
+
+    PQ-S---        ---       "CourseID"
+
+    -----A-        ---       "CreateDummyDose"
+
+    -----A-        ---       "CreateRefPointTransform"
+
+    -Q*S*--     SubObject    "CtToDensityName"
+
+    -Q*S*--     SubObject    "CtToDensityVersion"
+
+    -Q*S*--     SubObject    "DensityBottomZPadding"
+
+    -Q*S*--     SubObject    "DensityTopZPadding"
+
+    -Q*----     SubObject    "DepthGrid"
+
+    PQ*S*-E  EnumeratedList  "DisplayState"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0            Normal "Normal"
+                    1         Read Only "Read Only"
+
+    -Q-----        ---       "DoseChangeNode"
+
+    -Q*S*--       Bool       "DoseDisplayValid"
+
+    PQ*S*--        Int       "DoseEndSlice"
+
+    -Q-----        ---       "DoseErrorMessage"
+
+    -Q*S*--     SubObject    "DoseGrid"
+
+    -Q*S*--       Bool       "DoseInvalidWhileFiling"
+
+    -Q*----       Bool       "DoseIsValid"
+
+    -Q-S---        ---       "DoseObjective"
+
+    -Q-S---        ---       "DoseOptimizer"
+
+    PQ*S*--        Int       "DoseStartSlice"
+
+    ---S---        ---       "DoseStatusChange"
+
+    -Q-----        ---       "DrawCatheterDependencies"
+
+    -Q-S---        ---       "DrawCatheterImageValues"
+
+    -Q-S---        ---       "DrawCatheterRoiIntersection"
+
+    -Q-----        ---       "DrawCatheterSegmentsAndSeeds"
+
+    ---S---        ---       "EndMessageBatch"
+
+    PQ*S*--       Bool       "ExportPlanarDoseAscii"
+
+    -Q*S*--     SubObject    "FluenceGrid"
+
+    PQ*S*--       Bool       "FluenceGridMatchesDoseGrid"
+
+    PQ*S*--       Float      "FluenceGridResolution"
+
+    -Q*----       Bool       "FluenceValid"
+
+    -Q-----        ---       "HasBeamsOrSources"
+
+    -Q-----        ---       "HasCArmPlan"
+
+    -Q-----        ---       "HasLockedWeights"
+
+    -Q-----        ---       "IncludesObject"
+
+    -----A-        ---       "InitializeForProstatePrePlan"
+
+    -Q-----        ---       "InvalidDoseText"
+
+    -Q-----        ---       "IsOkForExport"
+
+    -Q*S*--     SubObject    "IsocenterList"
+
+    -Q*S*--     SubObject    "IsodoseNormPoint"
+
+    -Q*S*--       Float      "IsodoseNormPointDose"
+
+    PQ-S---        ---       "IsodoseNormPointName"
+
+    -Q*S*--     ObjString    "IsodoseNormPointStatus"
+
+    -Q-----        ---       "LaserLocalizerInUseAndComputed"
+
+    -----A-        ---       "LaserOutput"
+
+    PQ*S*--     ObjString    "LastRelativeDoseReferenceField"
+
+    PQ*S*--     ObjString    "MCGlobalUncertaintyType"
+
+    PQ*S*--       Float      "MCMaxSeconds"
+
+    -----A-        ---       "MCProfileCancel"
+
+    PQ*S*--       Float      "MCStatisticsThreshold"
+
+    PQ*S*--       Float      "MCUncertaintyGoal"
+
+    PQ*S*--     SubObject    "MLCExport"
+
+    -Q-----        ---       "MUInvalidForTrials"
+
+    -Q*S*--     ObjString    "MatchBeam1"
+
+    -Q*S*--     ObjString    "MatchBeam2"
+
+    -----A-        ---       "MatchOpposedBeams"
+
+    -------        ---       "MaxDoseForSeeds"
+
+    -Q*S*--     SubObject    "MaxDosePoint"
+
+    -Q-S---        ---       "MaxDosePointDisplayOn"
+
+    -Q*----       Bool       "MaxDosePointIsInDisplayList"
+
+    -Q*----       Bool       "MaxDosePointIsValid"
+
+    PQ*S*--       Float      "MaximumDoseForSeeds"
+
+    -Q*----       Bool       "MessageBatch"
+
+    -Q*S*--     ObjString    "MonitorUnitStatus"
+
+    PQ*S*--     ObjString    "Name"
+
+    -Q-----        ---       "NumberOfMUApproximateBeams"
+
+    PQ*S*--     SubObject    "ObjectVersion"
+
+    -----A-        ---       "OptimizeCompensator"
+
+    -----A-        ---       "OutputAllPlanarDose"
+
+    -----A-        ---       "OutputCurrentPlanarDose"
+
+    -Q*S*--     SubObject    "OutsidePatientAirThreshold"
+
+    -Q*S*--     SubObject    "OutsidePatientIsCtNumber"
+
+    PQ*S*--     SubObject    "PatientRepresentation"
+
+    -Q*S*--     SubObject    "PatientVolume"
+
+    PQ-S---        ---       "PhysicsPlan"
+
+    PQ*S*--     SubObject    "PlanarDoseList"
+
+    ---S---        ---       "PrescriptionChange"
+
+    PQ*S*--     SubObject    "PrescriptionList"
+
+    PQ*S*--       Bool       "PrintBrachyByCatheter"
+
+    PQ*S*--       Bool       "PrintBrachyByGroup"
+
+    PQ*S*--       Bool       "PrintIMRTSummary"
+
+    ---S---        ---       "PrintIrregReport"
+
+    PQ*S*--       Bool       "PrintMLC"
+
+    PQ*S*--       Bool       "PrintMLCIrreg"
+
+    PQ*S*--       Bool       "PrintPois"
+
+    PQ*S*--       Bool       "PrintRois"
+
+    PQ*S*--       Bool       "PrintSubbeams"
+
+    -----A-        ---       "ReLabelMaxDosePoint"
+
+    PQ-S---        ---       "RecomputeDensity"
+
+    ---S---        ---       "RecomputeHighResDensity"
+
+    -----A-        ---       "RecomputeIsocenterList"
+
+    -Q*S*--       Bool       "RecomputeSeedDoseContinuously"
+
+    PQ*S*--     ObjString    "RelativeDoseComputationStatus"
+
+    -Q*S*--     SubObject    "RelativeDoseNormPoint"
+
+    PQ-S---        ---       "RelativeDoseNormPointName"
+
+    PQ*S*--       Bool       "RelativeDoseNormValid"
+
+    PQ*S*--       Float      "RelativeDoseNormValue"
+
+    -Q*S*--     SubObject    "RelativeDoseReferenceField"
+
+    PQ-S---        ---       "RelativeDoseReferenceFieldName"
+
+    -Q*S*--     SubObject    "RelyOnList"
+
+    ---S---        ---       "RemoveCurrentPrescription"
+
+    ---S---        ---       "Report"
+
+    -Q*S*-E  EnumeratedList  "ReportType"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0  Summary and Text Report "Summary and Text Report"
+                    1  Summary Report Only "Summary Report Only"
+                    2        MLC Report "MLC Report"
+
+    -Q*S*--        Int       "RotateOMPRWindowId"
+
+    -Q-----        ---       "SSDChangeNode"
+
+    PQ*S*--       Float      "ScreenToPrinterZoomFactor"
+
+    ---S---        ---       "SeedDoseInvalid"
+
+    -Q-----        ---       "SeedDoseIsInGrid"
+
+    -Q*S*--       Bool       "SeedDoseValid"
+
+    -Q*S*--     SubObject    "SeedList"
+
+    ---S---        ---       "SetAllBeamMonitorUnits"
+
+    ---S---        ---       "SetAllBeamMonitorUnitsNoPresc"
+
+    ---S---        ---       "SetBeamMonitorUnits"
+
+    ---S---        ---       "SetCurrentBeamByWindowId"
+
+    -----A-        ---       "ShowBeamDoseDifference"
+
+    -----A-        ---       "ShowPatAirThreshold"
+
+    -----A-        ---       "ShowTrialDoseDifference"
+
+    -----A-        ---       "ShowTrialDoseSum"
+
+    -Q*S*--     SubObject    "SourceList"
+
+    PQ*S*--       Float      "SourceToFilmDistance"
+
+    -Q-----        ---       "StereoLocalizerInUseAndComputed"
+
+    -----A-        ---       "SumDoseGrids"
+
+    -Q*S---       Bool       "SuppressDVHComputation"
+
+    -Q*S*--       Bool       "SuppressDoseGridSumming"
+
+    -Q*S*--       Float      "TPBDoseToolPercentChange"
+
+    PQ*S*--        Int       "ToleranceTable"
+
+    -----A-        ---       "TransformFromRefPoint"
+
+    -----A-        ---       "TransformToRefPoint"
+
+    PQ*S*--       Bool       "TrialUsedForDoseDisplayOnly"
+
+    -----A-        ---       "UpdateCoordRefPoint"
+
+    -----A-        ---       "UpdateDoseDisplay"
+
+    -----A-        ---       "UpdateIsodoseNormalization"
+
+    PQ*S*--       Bool       "UseActualPatientForIrreg"
+
+    PQ*S*--       Bool       "UseTrialForTreatment"
+
+    -Q*S*--       Bool       "WarnAboutLasers"
+
+    -Q*S*--       Bool       "WarnAboutPadding"
+
+    -----A-        ---       "WarnExportMUApproximateBeams"
+
+    ---S---        ---       "WeightEqual"
+
+    ---S---        ---       "WeightProportional"
+
+    ---S---        ---       "WritePrescriptionToScanditronix"
+

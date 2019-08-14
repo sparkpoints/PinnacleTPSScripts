@@ -1,0 +1,39 @@
+TrialList .Last.BeamList.CreateChild = "";
+TrialList .Last .PrescriptionList .Current .MethodInt = "1";
+
+Echo=TrialList.Current.BeamList.Current.CPManager.CPManagerObject.ControlPointList.Current.Index;
+Store.StringAt.str=TrialList .Current .BeamList .Current .Name;
+Store.At.str.AppendString="_";
+Store.At.str.AppendString=TrialList.Current.BeamList.Current.CPManager.CPManagerObject.ControlPointList.Current.Index.String;
+TrialList.Last.BeamList.Last.Name=Store.At.str.String;
+
+Test.ExpectWarningMessage = "1";
+TrialList .Last .BeamList .Last .IsLeftRightIndependent = 1;
+TrialList .Last .BeamList .Last .IsTopBottomIndependent = 1;
+TrialList .Last .BeamList .Last .SetBeamType=TrialList .Current .BeamList .Current .BeamType;
+
+TrialList.Last.BeamList.Last.Modality=TrialList.Current.BeamList.Current.Modality ;
+TrialList.Last.BeamList.Last.MachineEnergyName=TrialList.Current.BeamList.Current.MachineEnergyName;
+TrialList.Last.BeamList.Last.DoseRate=TrialList.Current.BeamList.Current.DoseRate;
+TrialList.Last.BeamList.Last.Display2d =TrialList.Current.BeamList.Current.Display2d;
+TrialList.Last.BeamList.Last.Color =TrialList.Current.BeamList.Current.Color;
+TrialList.Last.BeamList.Last.Couch=TrialList.Current.BeamList.Current.Couch;
+TrialList.Last.BeamList.Last.Gantry=TrialList.Current.BeamList.Current.Gantry;
+TrialList.Last.BeamList.Last.Collimator=TrialList.Current .BeamList.Current.Collimator;
+TrialList.Last.BeamList.Last.LeftJawPosition=TrialList.Current.BeamList.Current.LeftJawPosition;
+TrialList.Last.BeamList.Last.RightJawPosition=TrialList.Current.BeamList.Current.RightJawPosition;
+TrialList.Last.BeamList.Last.TopJawPosition=TrialList.Current.BeamList.Current.TopJawPosition;
+TrialList.Last.BeamList.Last.BottomJawPosition=TrialList.Current.BeamList.Current.BottomJawPosition;
+TrialList.Last.BeamList.Last.Isocenter=TrialList.Current.BeamList.Current.Isocenter.Name;
+
+
+Echo=TrialList .Current .BeamList .Current .CPManager .ControlPointList .Current.MonitorUnits;
+
+TrialList.Current.BeamList.Current.CPManager.CPManagerObject.ControlPointList.Current.MLCLeafPositions.Save="/tmp/seg.sav";
+TrialList.Last.BeamList.Last.CPManager.CPManagerObject.ControlPointList.Last.MLCLeafPositions.Load="/tmp/seg.sav";
+TrialList.Last.BeamList.Last.CPManager.ControlPointList.Last.WeightAsPercent = "100";
+
+
+TrialList .Last .ComputeUncomputedBeams=1;
+TrialList .Last .SetBeamMonitorUnits .Last .Address =TrialList .Current .BeamList .Current .CPManager .ControlPointList .Current.MonitorUnits;
+

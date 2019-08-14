@@ -1,0 +1,12 @@
+//According to Last Modified TimeStamp to Find the file need backup
+Store.StringAt.BackupCommand = Store.StringAt.PyFile;
+Store.At.BackupCommand.AppendString = "-c ";
+Store.At.BackupCommand.AppendString = Store.FloatAt.AutoBackupIntrval;
+Store.At.BackupCommand.AppendString = " '";
+Store.At.BackupCommand.AppendString = BackupInstitutionList.Current.PatientLiteList.Current.Patient.ObjectVersion.LastModifiedTimeStamp;
+Store.At.MakeCommand.AppendString = "' > ";
+Store.At.MakeCommand.AppendString = Store.StringAt.TempFile;
+
+SpawnCommand = Store.StringAt.MakeCommand;
+
+BackupInstitutionList.Current.PatientLiteList.Current.Store.At.Backup.Load = Store.StringAt.TempFile;

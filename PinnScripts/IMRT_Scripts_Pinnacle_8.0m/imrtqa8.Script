@@ -1,0 +1,78 @@
+//TURN ALL DVH OFF
+PluginManager .PlanEvalPlugin .TrialList .#"*" .Selected = 0;
+
+//CREATE WATER PHANTOM
+WindowList .CTSim .PanelList .#"#2" .GotoPanel = "FunctionLayoutIcon2";
+ColorList .NextCurrent = RoiList .Last .Color;
+CreateNewROI = "Add ROI";
+RoiList .Last .Color = ColorList .Current .Name;
+RoiList .Current .Name = "phantom";
+WindowList .NewROISpreadsheet .Create = "ROISpreadsheetButton";
+RoiLayout .Index = 3;
+RoiList .#"phantom" .InvertDensityLoading = 1;
+RoiList .#"phantom" .OverrideDensity = 1;
+WindowList .NewROISpreadsheet .Unrealize = "Close ROI Spreadsheet";
+
+//SET BEAMS AND PRESCRIPTIONS FOR QA
+TrialList .#"*" .BeamList .#"*" .Display2d = "1";
+WindowList .NewBeamSpreadsheet .Create = "BeamSpreadsheetButton";
+TrialList .Current .BeamList .#"*" .Couch = "0";
+TrialList .Current .BeamList .#"*" .Gantry = "0";
+TrialList .Current .BeamList .#"#0" .SetSSD = "  95.5";
+TrialList .Current .BeamList .#"*" .Collimator = "0";
+TrialList .Current .PrescriptionList .#"*" .Method = "Set Monitor Units";
+TrialList .Current .PrescriptionList .#"*" .RequestedMonitorUnitsPerFraction = "0";
+TrialList .Current .PrescriptionList .#"*" .NumberOfFractions = "1";
+
+//SET VIEW
+PoiList .Current = "isocenter";
+PoiList .Current = "iso";
+ViewWindowList .CtSimOrthoTop .SetSliceToCurrentPoi = "Set Slice To Current POI";
+ViewWindowList .CtSimOrthoTop .Zoom = ".14";
+ViewWindowList .CtSimOrthoLowerLeft .SetSliceToCurrentPoi = "Set Slice To Current POI";
+ViewWindowList .CtSimOrthoLowerLeft .Zoom = ".14";
+ViewWindowList .CtSimOrthoLowerRight .SetSliceToCurrentPoi = "Set Slice To Current POI";
+ViewWindowList .CtSimOrthoLowerRight .Zoom = ".14";
+PoiList .Current .Display2d = "Label";
+RoiList .#"*" .Display2d = "Off";
+
+//SET DOSE CALC PARAMETERS
+WindowList .CTSim .PanelList .#"#4" .GotoPanel = "FunctionLayoutIcon4";
+TrialList .Current .DoseGrid .VoxelSize .X = ".2";
+TrialList .Current .DoseGrid .VoxelSize .Y = ".2";
+TrialList .Current .DoseGrid .VoxelSize .Z = ".2";
+TrialList .Current .DensityTopZPadding = "0";
+TrialList .Current .WarnAboutPadding = "0";
+TrialList .Current .DensityBottomZPadding = "0";
+TrialList .Current .WarnAboutPadding = "0";
+
+//MAKE A DIRECTORY NAMED THE PATIENT'S LAST NAME
+Store.FreeAt.MakeDirectory = "";
+Store.At.MakeDirectory = SimpleString{};
+Store.At.MakeDirectory.String = "mkdir /home/p3rtp/Mapcheck/";
+Store.At.MakeDirectory.AppendString = PlanInfo.LastName;
+SpawnCommandNoWait = Store.StringAt.MakeDirectory;
+Store.FreeAt.MakeDirectory = "";
+
+//SET PLANAR DOSE
+WindowList .PlanarBeamDose .Create = "Planar Dose...";
+TrialList .Current .ExportPlanarDoseAscii = 1;
+TrialList .Current .AddPlanarDose = "Add Plane";
+TrialList .Current .PlanarDoseList .Last .MakeCurrent = "Add Plane";
+TrialList .Current .PlanarDoseList .#"#0" .SetDataType = "Primary data";
+TrialList .Current .PlanarDoseList .#"#0" .SourceToPlaneDistance = "100";
+TrialList .Current .PlanarDoseList .#"#0" .SetDoseType = "Sample trial";
+WindowList .PlanarBeamDose .StateList .Current = 1;
+TrialList .Current .PlanarDoseList .#"#0" .VoxelSize = ".1";
+TrialList .Current .PlanarDoseList .#"#0" .XDimension = "299";
+TrialList .Current .PlanarDoseList .#"#0" .YDimension = "299";
+
+//EXPORT PLANAR DOSE TO THE CORRECT DIRECTORY
+Store.FreeAt.TargetDirectory = "";
+Store.At.TargetDirectory = SimpleString{};
+Store.At.TargetDirectory.String = "/home/p3rtp/Mapcheck/";
+Store.At.TargetDirectory.AppendString = PlanInfo.LastName;
+ExportFileList .Directory = Store.StringAt.TargetDirectory;
+Store.FreeAt.TargetDirectory = "";
+
+/* ¿ø */

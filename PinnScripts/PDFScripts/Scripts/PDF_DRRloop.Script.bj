@@ -1,0 +1,8 @@
+// -> PDF_DRR
+// export all BEV
+// P3 7.6c - 8.0m
+// Bj 02.08
+
+TrialList .Current .BeamList .Current .BeamWindowList .Children .RenderImageIfNecessary = 1;
+ViewWindowList .Current .Render = "Render                       r";
+Script.ExecuteNow = "/home/peter/bin/PDFScripts/Scripts/PY/pdf/PDF_Slice.Script.bj"; 

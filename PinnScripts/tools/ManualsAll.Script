@@ -1,0 +1,451 @@
+/**************************************************************
+*                                                             *
+*  **   ** ******   ****   *   *********  *******    ******   *
+*  **   **     *   ** **   *         **  *       *         *  *
+*  **   **    *   **  **   *       **    *       *  ********  *
+*  **   **   *   **   **   *     **      *       * *       *  *
+*  *******  *   **  ****   *   ********* *       * *********  *
+*   **** * ******     **   *                                  *
+*                                                             *
+**************************************************************/
+/*
+***************************************************************
+*** Name: ManualsAll.Script                                 ***
+***                                                         ***
+*** Purpose: Create a new submenu Manuals which contains the***
+***          manuals for planning & contouring              ***
+***                                                         ***
+*** Remarks:                                                ***
+***                                                         ***
+*** Goudry Bert 10-02-2011                                  ***
+***                                                         ***
+*** Adjustments:                                            ***
+***                                                         ***
+***************************************************************
+*/
+
+// Close the temporary window if it is already open. Else you wouldn't be able to close the window.
+
+Store.At.TempWindow.Unrealize = "Dismiss";
+Store.At.TempWindow = "Dismiss";
+
+// Create the temporary window.
+
+Store .FreeAt .TempWindow = "";
+
+Store.At.TempWindow = GeoForm {
+                   Name = "ManualsMenu";
+                   IsModal = 0;
+                 };
+///////////////////////////////////////////////////////////////////
+// Add Widgets to build all the required elements of the window: //
+///////////////////////////////////////////////////////////////////
+
+///////////////////////////////////
+// Create Toplevel in new window //
+///////////////////////////////////
+
+Store .At .TempWindow .WidgetList .GeoWidget = {
+      Name = "TopLevel";
+      WidgetClass = "Form";
+      Label = "Manuals Menu";
+      X = 1390;
+      Y = 710;
+      Width = 460;
+      Height = 450;
+    };
+
+//////////////////////////////////
+// Create Sublevels of Toplevel //
+//////////////////////////////////
+
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList .Last = {
+      Name = "InstructionArea";
+      ParentName = "TopLevel";
+      WidgetClass = "DrawingArea";
+      Width = 450;
+      Height = 20;
+      AttachRight = "FORM";
+      AttachLeft = "FORM";
+      AttachTop = "FORM";
+      AttachBottom = "--";
+    };
+  
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList .Last = {
+     Name = "ButtonArea";
+     ParentName = "TopLevel";
+     WidgetClass = "DrawingArea";
+     Width = 450;
+     Height = 45;
+     AttachRight = "FORM";
+     AttachLeft = "FORM";
+     AttachBottom = "FORM";   
+    };
+
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList .Last = {
+     Name = "ScrollArea";
+     ParentName = "TopLevel";
+     WidgetClass = "ScrolledWindow";
+     Width = 400;
+     Height = 400;
+     AttachRight = "FORM";
+     AttachLeft = "FORM";
+     AttachTop = "InstructionArea";
+     AttachBottom = "ButtonArea";   
+    };
+    
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList .Last = {
+     Name = "ScrollRegion";
+     ParentName = "ScrollArea";
+     WidgetClass = "DrawingArea";
+     Width = 400;
+     Height = 400;
+     AttachRight = "--";
+     AttachLeft = "--";
+     AttachTop = "--";
+     AttachBottom = "--";   
+    };
+    
+// Add a vertical separator
+
+Store.At.TempWindow.AddChild = "";
+Store.At.TempWindow.WidgetList.Last = {
+      WidgetClass = "VerticalSeparator";   
+      ParentName = "ScrollRegion";
+      Name = "Vertical_sep";
+      X = 225;
+      Y = 10;
+      Width = 5;
+      Height = 300;
+    };
+
+
+////////////////////////////////////////////////////////////////
+// Everything that needs to be linked to the Instruction Area //
+////////////////////////////////////////////////////////////////
+    
+// Add prompt label
+Store.At.TempWindow.AddChild = "";
+Store.At.TempWindow.WidgetList.Last = {
+      WidgetClass = "WarningLabel";
+      ParentName = "InstructionArea";
+      Name = "Prompt";
+      X = 15;
+      Y = 5;
+      AttachLeft = "FORM";
+      UseQueryForLabel = 1;
+      UseDefaultSize = 1;
+      QueryColorKey = "blue";
+      Label = "These are Contouring Manuals.";
+    };
+    
+// Add prompt label
+Store.At.TempWindow.AddChild = "";
+Store.At.TempWindow.WidgetList.Last = {
+      WidgetClass = "WarningLabel";
+      ParentName = "InstructionArea";
+      Name = "Prompt";
+      X = 245;
+      Y = 5;
+      AttachLeft = "FORM";
+      UseQueryForLabel = 1;
+      UseDefaultSize = 1;
+      QueryColorKey = "green";
+      Label = "These are Planning Manuals.";
+    };
+
+///////////////////////////////////////////////////////////
+// Everything that needs to be linked to the Button Area //
+///////////////////////////////////////////////////////////
+
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList.Last = {
+      WidgetClass = "PushButton";
+      ParentName = "ButtonArea";
+      Name = "DismissButton";
+      X = 5;
+      Y = 5;
+      AddAction = "";
+      ReplaceCurrentAction = "Store.At.TempWindow.Unrealize";
+      AddAction = "";
+      Label = "Dismiss";
+      AddAction = "";
+      ReplaceCurrentAction = "Store.FreeAt.TempWindow";
+    };
+
+
+
+
+/////////////////////////////////////////////////////////////////
+// Everything that needs to be linked to the ScrollRegion Area //
+// These are the actual buttons to start te hotscripts         //
+// Only The left side buttons (Contouring) (interval Y = 30)   //
+/////////////////////////////////////////////////////////////////
+
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList.Last = {
+      WidgetClass = "PushButton";
+      ParentName = "ScrollRegion";
+      Name = "Contouring MammaCarcinoom";
+      X = 5;
+      Y = 10;
+      Width = 220;
+      AddAction = "";
+      ReplaceCurrentAction = "Script.ExecuteNow = /usr/local/adacnew/PinnacleSiteData/Scripts/Handleidingen/Intek_MammaCarcinoom.Script";
+    };
+    
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList.Last = {
+      WidgetClass = "PushButton";
+      ParentName = "ScrollRegion";
+      Name = "Contouring Lungs";
+      X = 5;
+      Y = 40;
+      Width = 220;
+      AddAction = "";
+      ReplaceCurrentAction = "Script.ExecuteNow = /usr/local/adacnew/PinnacleSiteData/Scripts/Handleidingen/Intek_Longen.Script";
+    };
+
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList.Last = {
+      WidgetClass = "PushButton";
+      ParentName = "ScrollRegion";
+      Name = "Liver Irradiation";
+      X = 5;
+      Y = 70;
+      Width = 220;
+      AddAction = "";
+      ReplaceCurrentAction = "Script.ExecuteNow = /usr/local/adacnew/PinnacleSiteData/Scripts/Handleidingen/LeverBestralingen.Script";
+    };
+
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList.Last = {
+      WidgetClass = "PushButton";
+      ParentName = "ScrollRegion";
+      Name = "Contouring Rectum";
+      X = 5;
+      Y = 100;
+      Width = 220;
+      AddAction = "";
+      ReplaceCurrentAction = "Script.ExecuteNow = /usr/local/adacnew/PinnacleSiteData/Scripts/Handleidingen/Intek_Rectum.Script";
+    };
+
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList.Last = {
+      WidgetClass = "PushButton";
+      ParentName = "ScrollRegion";
+      Name = "Rectum Atlas OAR Procare";
+      X = 5;
+      Y = 130;
+      Width = 220;
+      AddAction = "";
+      ReplaceCurrentAction = "Script.ExecuteNow = /usr/local/adacnew/PinnacleSiteData/Scripts/Handleidingen/Intek_Rectum_Atlas_OAR_Procare.Script";
+    };
+  
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList.Last = {
+      WidgetClass = "PushButton";
+      ParentName = "ScrollRegion";
+      Name = "Contouring Cervix";
+      X = 5;
+      Y = 160;
+      Width = 220;
+      AddAction = "";
+      ReplaceCurrentAction = "Script.ExecuteNow = /usr/local/adacnew/PinnacleSiteData/Scripts/Handleidingen/Intek_Cervix.Script";
+    };
+    
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList.Last = {
+      WidgetClass = "PushButton";
+      ParentName = "ScrollRegion";
+      Name = "Info Nko Contouring";
+      X = 5;
+      Y = 190;
+      Width = 220;
+      AddAction = "";
+      ReplaceCurrentAction = "Script.ExecuteNow = /usr/local/adacnew/PinnacleSiteData/Scripts/Handleidingen/Uitleg_NKO.Script";
+    };
+
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList.Last = {
+      WidgetClass = "PushButton";
+      ParentName = "ScrollRegion";
+      Name = "Contouring NKO";
+      X = 5;
+      Y = 220;
+      Width = 220;
+      AddAction = "";
+      ReplaceCurrentAction = "Script.ExecuteNow = /usr/local/adacnew/PinnacleSiteData/Scripts/Handleidingen/Intek_NKO.Script";
+    };
+
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList.Last = {
+      WidgetClass = "PushButton";
+      ParentName = "ScrollRegion";
+      Name = "Contouring NKO Pos LN";
+      X = 5;
+      Y = 250;
+      Width = 220;
+      AddAction = "";
+      ReplaceCurrentAction = "Script.ExecuteNow = /usr/local/adacnew/PinnacleSiteData/Scripts/Handleidingen/Intek_NKO_Pos.Script";
+    };
+
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList.Last = {
+      WidgetClass = "PushButton";
+      ParentName = "ScrollRegion";
+      Name = "Anatomy Atlas CT&MR";
+      X = 5;
+      Y = 280;
+      Width = 220;
+      AddAction = "";
+      ReplaceCurrentAction = "Script.ExecuteNow = /usr/local/adacnew/PinnacleSiteData/Scripts/Handleidingen/Atlas_H&N.Script";
+    };
+
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList.Last = {
+      WidgetClass = "PushButton";
+      ParentName = "ScrollRegion";
+      Name = "Manual Screenshots";
+      X = 5;
+      Y = 310;
+      Width = 220;
+      AddAction = "";
+      ReplaceCurrentAction = "Script.ExecuteNow = /usr/local/adacnew/PinnacleSiteData/Scripts/Handleidingen/HandleidingScreenshots.Script";
+    };
+ 
+/////////////////////////////////////////////////////////////////
+// Everything that needs to be linked to the ScrollRegion Area //
+// These are the actual buttons to start te hotscripts         //
+// Only The right side buttons  (Planning) (interval Y = 30)   //
+/////////////////////////////////////////////////////////////////    
+    
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList.Last = {
+      WidgetClass = "PushButton";
+      ParentName = "ScrollRegion";
+      Name = "Outputfactors Elec SLi1_2";
+      X = 230;
+      Y = 10;
+      Width = 220;
+      AddAction = "";
+      ReplaceCurrentAction = "Script.ExecuteNow = /usr/local/adacnew/PinnacleSiteData/Scripts/Handleidingen/Electronen_OutputFactor.Script";
+    };
+
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList.Last = {
+      WidgetClass = "PushButton";
+      ParentName = "ScrollRegion";
+      Name = "Dose OAR";
+      X = 230;
+      Y = 40;
+      Width = 220;
+      AddAction = "";
+      ReplaceCurrentAction = "Script.ExecuteNow = /usr/local/adacnew/PinnacleSiteData/Scripts/Handleidingen/DosisSchema_OAR.Script";
+    };
+
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList.Last = {
+      WidgetClass = "PushButton";
+      ParentName = "ScrollRegion";
+      Name = "Liver Irradiation";
+      X = 230;
+      Y = 70;
+      Width = 220;
+      AddAction = "";
+      ReplaceCurrentAction = "Script.ExecuteNow = /usr/local/adacnew/PinnacleSiteData/Scripts/Handleidingen/LeverBestralingen.Script";
+    };
+
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList.Last = {
+      WidgetClass = "PushButton";
+      ParentName = "ScrollRegion";
+      Name = "Manual Planning";
+      X = 230;
+      Y = 100;
+      Width = 220;
+      AddAction = "";
+      ReplaceCurrentAction = "Script.ExecuteNow = /usr/local/adacnew/PinnacleSiteData/Scripts/Handleidingen/HandleidingPlanning.Script";
+    };
+
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList.Last = {
+      WidgetClass = "PushButton";
+      ParentName = "ScrollRegion";
+      Name = "Manual Scripting";
+      X = 230;
+      Y = 130;
+      Width = 220;
+      AddAction = "";
+      ReplaceCurrentAction = "Script.ExecuteNow = /usr/local/adacnew/PinnacleSiteData/Scripts/Handleidingen/HandleidingScripting.Script";
+    };
+    
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList.Last = {
+      WidgetClass = "PushButton";
+      ParentName = "ScrollRegion";
+      Name = "Manual Create Scripts";
+      X = 230;
+      Y = 160;
+      Width = 220;
+      AddAction = "";
+      ReplaceCurrentAction = "Script.ExecuteNow = /usr/local/adacnew/PinnacleSiteData/Scripts/Handleidingen/HandleidingScriptsMaken.Script";
+    };
+
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList.Last = {
+      WidgetClass = "PushButton";
+      ParentName = "ScrollRegion";
+      Name = "Manual Thin Client";
+      X = 230;
+      Y = 190;
+      Width = 220;
+      AddAction = "";
+      ReplaceCurrentAction = "Script.ExecuteNow = /usr/local/adacnew/PinnacleSiteData/Scripts/Handleidingen/HandleidingThinClient.Script";
+    };
+
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList.Last = {
+      WidgetClass = "PushButton";
+      ParentName = "ScrollRegion";
+      Name = "Manual Screenshots";
+      X = 230;
+      Y = 220;
+      Width = 220;
+      AddAction = "";
+      ReplaceCurrentAction = "Script.ExecuteNow = /usr/local/adacnew/PinnacleSiteData/Scripts/Handleidingen/HandleidingScreenshots.Script";
+    };
+
+Store .At .TempWindow .AddChild = "";
+Store .At .TempWindow .WidgetList.Last = {
+      WidgetClass = "PushButton";
+      ParentName = "ScrollRegion";
+      Name = "Setup IMRT Lung (NKI-way)";
+      X = 230;
+      Y = 250;
+      Width = 220;
+      AddAction = "";
+      ReplaceCurrentAction = "Script.ExecuteNow = /usr/local/adacnew/PinnacleSiteData/Scripts/Handleidingen/Opzet_IMRT_Long_NKI.Script";
+    };
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Optional way of grey out the script menu as long as this window is active //
+///////////////////////////////////////////////////////////////////////////////
+
+// WindowList .HotScript .WidgetList .Children .ConvertToReadOnly = "";
+
+// Store .At .TempWindow .WidgetList .DismissButton = {
+//    ReplaceCurrentAction = "WindowList.HotScript.WidgetList.Children.ConvertToReadWrite";
+//    AddAction = "";
+//    ReplaceCurrentAction = "Store.FreeAt.TempWindow";
+//    };
+
+// Create the Window:
+
+Store .At .TempWindow .Create = "";
+/* ò" */

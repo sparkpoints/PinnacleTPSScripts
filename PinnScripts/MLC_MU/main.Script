@@ -1,0 +1,43 @@
+///////////////////////////////////////////////////
+//Set bin  HomeDir=$HOME/bin/...../  //
+///////////////////////////////////////////////////
+
+Store.StringAt.HomeDir = GetEnv.HOME;
+Store.At.HomeDir.AppendString = "/bin/MLC_MU/";
+
+///////////////////////////////////////////////////
+//BeamLoop.Script get parameters from each beam  //
+///////////////////////////////////////////////////
+
+Store.StringAt.BeamLoop = Store.StringAt.HomeDir;
+Store.At.BeamLoop.AppendString = "BeamLoop.Script";
+
+///////////////////////////////////////////////////
+//SegmentLoop.Script get parameters from each Seg//
+///////////////////////////////////////////////////
+
+Store.StringAt.SegmentLoop = Store.StringAt.HomeDir;
+Store.At.SegmentLoop.AppendString = "SegmentLoop.Script";
+
+///////////////////////////////////////////////////
+//python file for Calculate MLC Area             //
+///////////////////////////////////////////////////
+
+Store.StringAt.PyCalcMLC = Store.StringAt.HomeDir;
+Store.At.PyCalcMLC.AppendString = "CalcMLCArea.py";
+
+///////////////////////////////////////////////////
+//Out File             //
+///////////////////////////////////////////////////
+
+Store.StringAt.OutFile = Store.StringAt.HomeDir;
+Store.At.OutFile.AppendString = "out/";
+Store.At.OutFile.AppendString = PlanInfo.MedicalRecordNumber;
+//Echo = Store.StringAt.OutFile;
+
+///////////////////////////////////////////////////
+//Main frame Begin                               //
+//Step1: Parsing Beam parameters///
+///////////////////////////////////////////////////
+
+TrialList.Current.BeamList.ChildrenEachCurrent.#"@".Script.ExecuteNow=Store.StringAt.BeamLoop;

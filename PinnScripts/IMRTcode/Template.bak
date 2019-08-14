@@ -1,0 +1,71 @@
+Lens_L	Max Dose	690	1
+Lens_L	Max EUD	600	1
+Lens_R	Max Dose	690	1
+Lens_R	Max EUD	600	1
+Brainstem_PRV	Max Dose	4500	1
+Brainstem_PRV	Max EUD	3600	1
+Opt.nerve_L_PRV	Max Dose	4500	1
+Opt.nerve_L_PRV	Max EUD	3600	1
+Opt.nerve_R_PRV	Max Dose	4500	1
+Opt.nerve_R_PRV	Max EUD	3600	1
+Opt.chiasm_PRV	Max Dose	4500	1
+Opt.chiasm_PRV	Max EUD	3600	1
+Parotid_L	Max DVH	3000	50	1
+Parotid_L	Max EUD	2200	1
+Parotid_R	Max DVH	3000	50	1
+Parotid_R	Max EUD	2200	1
+Temp.lobe_L	Max DVH	5000	50	1
+Temp.lobe_L	Max EUD	4000	1
+Temp.lobe_R	Max DVH	5000	50	1
+Temp.lobe_R	Max EUD	4000	1
+Temp.joint_L	Max DVH	5000	50	1
+Temp.joint_L	Max EUD	4000	1
+Temp.joint_R	Max DVH	5000	50	1
+Temp.joint_R	Max EUD	4000	1
+Mandible	Max DVH	5000	50	1
+Mandible	Max EUD	4000	1
+Larynx	Max DVH	4500	90	1
+Larynx	Max EUD	3600	1
+Trachea	Max DVH	4500	90	1
+Trachea	Max EUD	3600	1
+Esophagus	Max DVH	4500	50	1
+Esophagus	Max EUD	3600	1
+Cord_PRV	Max Dose	4400	1
+Cord_PRV	Max EUD	3000	1
+Cord	Max Dose	4300	1
+Cord	Max EUD	3000	1
+Lung_L	Max DVH	3000	20	1
+Lung_L	Max DVH	2000	30	1
+Lung_L	Max DVH	500	60	1
+Lung_L	Max EUD	600	1
+Lung_R	Max DVH	3000	20	1
+Lung_R	Max DVH	2000	30	1
+Lung_R	Max DVH	500	60	1
+Lung_R	Max EUD	600	1
+Heart	Max DVH	3000	46	1
+Heart	Max EUD	3500	1
+Stomach	Max DVH	4000	40	1
+Stomach	Max EUD	4000	1
+Liver	Max DVH	4000	50	1
+Liver	Max EUD	4000	1
+Kidney_L	Max DVH	1600	50	1
+Kidney_L	Max EUD	1750	1
+Kidney_R	Max DVH	1600	50	1
+Kidney_R	Max EUD	1750	1
+Bladder	Max DVH	4900	45	1
+Bladder	Max DVH	4000	85	1
+Bladder	Max EUD	4500	1
+Rectum	Max DVH	4900	45	1
+Rectum	Max DVH	4000	85	1
+Rectum	Max EUD	4800	1
+Small.intestine	Max Dose	5150	1
+Small.intestine	Max DVH	4950	5	1
+Small.intestine	Max DVH	4000	15	1
+Small.intestine	Max EUD	3500	1
+Bowel	Max DVH	4900	5	1
+Bowel	Max EUD	2500	1
+Femoral.head_L	Max DVH	4900	5	1
+Femoral.head_L	Max EUD	3500	1
+Femoral.head_R	Max DVH	4900	5	1
+Femoral.head_R	Max EUD	3500	1
+

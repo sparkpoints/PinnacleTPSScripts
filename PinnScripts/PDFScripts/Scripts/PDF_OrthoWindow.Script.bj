@@ -1,0 +1,33 @@
+// -> PDF_POI
+// 
+// P3 7.6c 
+// Bj 02.08
+
+PinnPreferences .UpdateDRRAutomatically = 0;
+
+WindowList .OrthoDRRs .Create = "Plan Eval DRRs...";
+PoiList .Current = TrialList.Current.BeamList.Current.Isocenter.Name ;
+WindowList .QABeamWindowLevel .StateList .Current = 1;
+TrialList .Current .QABeamList .# "*".Isocenter = 1;
+TrialList .Current .QABeamList .# "*".FilmImageList .Current .NormalDRRSpecs .CtToDensityTable = "Nur Knochen";
+TrialList .Current .QABeamList .# "*".FilmImageList .Current .NormalDRRSpecs .RayInterpolationMode .ShortName = "Smoothest";
+TrialList .Current .QABeamList .# "*".FilmImageList .Current .FastDRRSpecs .CtToDensityTable = "Nur Knochen";
+TrialList .Current .QABeamList .# "*".FilmImageList .Current .FastDRRSpecs .RayInterpolationMode .ShortName = "Smoothest";
+TrialList .Current .QABeamList .# "*".CPManager .LeftJawPosition = 0;
+TrialList .Current .QABeamList .# "*".CPManager .TopJawPosition = 0;
+
+RoiList .# "*".Display3d = "Off";
+RoiList .# "*" .OutlineBEVDRR = 0;
+PoiList .# "*".Display3d = "Off";
+PoiList .#"#0" .MakeCurrent = 1;
+
+// 3D Isodosen aus
+IsodoseControl .LineList .# "*".Display3dMode = "Off";
+
+PinnPreferences .UpdateDRRAutomatically = 1;
+
+// Open POI Window
+WindowList .NewPoiSpreadsheet .Create = "POIButton";
+PoiList .Current = TrialList.Current.BeamList.Current.Isocenter.Name ;
+
+Store.StringAt.Hint = "OrthoDRR";

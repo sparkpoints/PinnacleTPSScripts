@@ -1,0 +1,275 @@
+/**************************************************************
+*                                                             *
+*  **   ** ******   ****   *   *********  *******    ******   *
+*  **   **     *   ** **   *         **  *       *         *  *
+*  **   **    *   **  **   *       **    *       *  ********  *
+*  **   **   *   **   **   *     **      *       * *       *  *
+*  *******  *   **  ****   *   ********* *       * *********  *
+*   **** * ******     **   *                                  *
+*                                                             *
+**************************************************************/
+/*
+***************************************************************
+*** Name: DVHOutputToTxtEachRoiTestPartA.Script             ***
+***                                                         ***
+*** Purpose: Prepare/Make output for each Roi               ***
+***                                                         ***
+*** Remarks:                                                ***
+***                                                         ***
+*** Goudry Bert 13-07-2010                                  ***
+***                                                         ***
+*** Adjustments:                                            ***
+***       Product of Trials x Roi max = 200                 ***
+***       Goudry Bert 03-02-2011                            ***
+***       Value of Last cell in tabular DVH is stored       ***
+***       Goudry Bert 21-03-2011                            ***
+***       Split in two scriptfiles                          ***
+***       Goudry Bert 14-04-2011                            ***
+***                                                         ***
+***************************************************************
+*/
+
+Store.StringAt.new_line = "\n";
+// Use Counter
+Store.At.Counter.Add=1;
+IF.Store.At.Counter.Value.EqualTo.#"#1".THEN.Store.StringAt.CounterString = "1";
+IF.Store.At.Counter.Value.EqualTo.#"#2".THEN.Store.StringAt.CounterString = "2";
+IF.Store.At.Counter.Value.EqualTo.#"#3".THEN.Store.StringAt.CounterString = "3";
+IF.Store.At.Counter.Value.EqualTo.#"#4".THEN.Store.StringAt.CounterString = "4";
+IF.Store.At.Counter.Value.EqualTo.#"#5".THEN.Store.StringAt.CounterString = "5";
+IF.Store.At.Counter.Value.EqualTo.#"#6".THEN.Store.StringAt.CounterString = "6";
+IF.Store.At.Counter.Value.EqualTo.#"#7".THEN.Store.StringAt.CounterString = "7";
+IF.Store.At.Counter.Value.EqualTo.#"#8".THEN.Store.StringAt.CounterString = "8";
+IF.Store.At.Counter.Value.EqualTo.#"#9".THEN.Store.StringAt.CounterString = "9";
+IF.Store.At.Counter.Value.EqualTo.#"#10".THEN.Store.StringAt.CounterString = "10";
+IF.Store.At.Counter.Value.EqualTo.#"#11".THEN.Store.StringAt.CounterString = "11";
+IF.Store.At.Counter.Value.EqualTo.#"#12".THEN.Store.StringAt.CounterString = "12";
+IF.Store.At.Counter.Value.EqualTo.#"#13".THEN.Store.StringAt.CounterString = "13";
+IF.Store.At.Counter.Value.EqualTo.#"#14".THEN.Store.StringAt.CounterString = "14";
+IF.Store.At.Counter.Value.EqualTo.#"#15".THEN.Store.StringAt.CounterString = "15";
+IF.Store.At.Counter.Value.EqualTo.#"#16".THEN.Store.StringAt.CounterString = "16";
+IF.Store.At.Counter.Value.EqualTo.#"#17".THEN.Store.StringAt.CounterString = "17";
+IF.Store.At.Counter.Value.EqualTo.#"#18".THEN.Store.StringAt.CounterString = "18";
+IF.Store.At.Counter.Value.EqualTo.#"#19".THEN.Store.StringAt.CounterString = "19";
+IF.Store.At.Counter.Value.EqualTo.#"#20".THEN.Store.StringAt.CounterString = "20";
+IF.Store.At.Counter.Value.EqualTo.#"#21".THEN.Store.StringAt.CounterString = "21";
+IF.Store.At.Counter.Value.EqualTo.#"#22".THEN.Store.StringAt.CounterString = "22";
+IF.Store.At.Counter.Value.EqualTo.#"#23".THEN.Store.StringAt.CounterString = "23";
+IF.Store.At.Counter.Value.EqualTo.#"#24".THEN.Store.StringAt.CounterString = "24";
+IF.Store.At.Counter.Value.EqualTo.#"#25".THEN.Store.StringAt.CounterString = "25";
+IF.Store.At.Counter.Value.EqualTo.#"#26".THEN.Store.StringAt.CounterString = "26";
+IF.Store.At.Counter.Value.EqualTo.#"#27".THEN.Store.StringAt.CounterString = "27";
+IF.Store.At.Counter.Value.EqualTo.#"#28".THEN.Store.StringAt.CounterString = "28";
+IF.Store.At.Counter.Value.EqualTo.#"#29".THEN.Store.StringAt.CounterString = "29";
+IF.Store.At.Counter.Value.EqualTo.#"#30".THEN.Store.StringAt.CounterString = "30";
+IF.Store.At.Counter.Value.EqualTo.#"#31".THEN.Store.StringAt.CounterString = "31";
+IF.Store.At.Counter.Value.EqualTo.#"#32".THEN.Store.StringAt.CounterString = "32";
+IF.Store.At.Counter.Value.EqualTo.#"#33".THEN.Store.StringAt.CounterString = "33";
+IF.Store.At.Counter.Value.EqualTo.#"#34".THEN.Store.StringAt.CounterString = "34";
+IF.Store.At.Counter.Value.EqualTo.#"#35".THEN.Store.StringAt.CounterString = "35";
+IF.Store.At.Counter.Value.EqualTo.#"#36".THEN.Store.StringAt.CounterString = "36";
+IF.Store.At.Counter.Value.EqualTo.#"#37".THEN.Store.StringAt.CounterString = "37";
+IF.Store.At.Counter.Value.EqualTo.#"#38".THEN.Store.StringAt.CounterString = "38";
+IF.Store.At.Counter.Value.EqualTo.#"#39".THEN.Store.StringAt.CounterString = "39";
+IF.Store.At.Counter.Value.EqualTo.#"#40".THEN.Store.StringAt.CounterString = "40";
+IF.Store.At.Counter.Value.EqualTo.#"#41".THEN.Store.StringAt.CounterString = "41";
+IF.Store.At.Counter.Value.EqualTo.#"#42".THEN.Store.StringAt.CounterString = "42";
+IF.Store.At.Counter.Value.EqualTo.#"#43".THEN.Store.StringAt.CounterString = "43";
+IF.Store.At.Counter.Value.EqualTo.#"#44".THEN.Store.StringAt.CounterString = "44";
+IF.Store.At.Counter.Value.EqualTo.#"#45".THEN.Store.StringAt.CounterString = "45";
+IF.Store.At.Counter.Value.EqualTo.#"#46".THEN.Store.StringAt.CounterString = "46";
+IF.Store.At.Counter.Value.EqualTo.#"#47".THEN.Store.StringAt.CounterString = "47";
+IF.Store.At.Counter.Value.EqualTo.#"#48".THEN.Store.StringAt.CounterString = "48";
+IF.Store.At.Counter.Value.EqualTo.#"#49".THEN.Store.StringAt.CounterString = "49";
+IF.Store.At.Counter.Value.EqualTo.#"#50".THEN.Store.StringAt.CounterString = "50";
+IF.Store.At.Counter.Value.EqualTo.#"#51".THEN.Store.StringAt.CounterString = "51";
+IF.Store.At.Counter.Value.EqualTo.#"#52".THEN.Store.StringAt.CounterString = "52";
+IF.Store.At.Counter.Value.EqualTo.#"#53".THEN.Store.StringAt.CounterString = "53";
+IF.Store.At.Counter.Value.EqualTo.#"#54".THEN.Store.StringAt.CounterString = "54";
+IF.Store.At.Counter.Value.EqualTo.#"#55".THEN.Store.StringAt.CounterString = "55";
+IF.Store.At.Counter.Value.EqualTo.#"#56".THEN.Store.StringAt.CounterString = "56";
+IF.Store.At.Counter.Value.EqualTo.#"#57".THEN.Store.StringAt.CounterString = "57";
+IF.Store.At.Counter.Value.EqualTo.#"#58".THEN.Store.StringAt.CounterString = "58";
+IF.Store.At.Counter.Value.EqualTo.#"#59".THEN.Store.StringAt.CounterString = "59";
+IF.Store.At.Counter.Value.EqualTo.#"#60".THEN.Store.StringAt.CounterString = "60";
+IF.Store.At.Counter.Value.EqualTo.#"#61".THEN.Store.StringAt.CounterString = "61";
+IF.Store.At.Counter.Value.EqualTo.#"#62".THEN.Store.StringAt.CounterString = "62";
+IF.Store.At.Counter.Value.EqualTo.#"#63".THEN.Store.StringAt.CounterString = "63";
+IF.Store.At.Counter.Value.EqualTo.#"#64".THEN.Store.StringAt.CounterString = "64";
+IF.Store.At.Counter.Value.EqualTo.#"#65".THEN.Store.StringAt.CounterString = "65";
+IF.Store.At.Counter.Value.EqualTo.#"#66".THEN.Store.StringAt.CounterString = "66";
+IF.Store.At.Counter.Value.EqualTo.#"#67".THEN.Store.StringAt.CounterString = "67";
+IF.Store.At.Counter.Value.EqualTo.#"#68".THEN.Store.StringAt.CounterString = "68";
+IF.Store.At.Counter.Value.EqualTo.#"#69".THEN.Store.StringAt.CounterString = "69";
+IF.Store.At.Counter.Value.EqualTo.#"#70".THEN.Store.StringAt.CounterString = "70";
+IF.Store.At.Counter.Value.EqualTo.#"#71".THEN.Store.StringAt.CounterString = "71";
+IF.Store.At.Counter.Value.EqualTo.#"#72".THEN.Store.StringAt.CounterString = "72";
+IF.Store.At.Counter.Value.EqualTo.#"#73".THEN.Store.StringAt.CounterString = "73";
+IF.Store.At.Counter.Value.EqualTo.#"#74".THEN.Store.StringAt.CounterString = "74";
+IF.Store.At.Counter.Value.EqualTo.#"#75".THEN.Store.StringAt.CounterString = "75";
+IF.Store.At.Counter.Value.EqualTo.#"#76".THEN.Store.StringAt.CounterString = "76";
+IF.Store.At.Counter.Value.EqualTo.#"#77".THEN.Store.StringAt.CounterString = "77";
+IF.Store.At.Counter.Value.EqualTo.#"#78".THEN.Store.StringAt.CounterString = "78";
+IF.Store.At.Counter.Value.EqualTo.#"#79".THEN.Store.StringAt.CounterString = "79";
+IF.Store.At.Counter.Value.EqualTo.#"#80".THEN.Store.StringAt.CounterString = "80";
+IF.Store.At.Counter.Value.EqualTo.#"#81".THEN.Store.StringAt.CounterString = "81";
+IF.Store.At.Counter.Value.EqualTo.#"#82".THEN.Store.StringAt.CounterString = "82";
+IF.Store.At.Counter.Value.EqualTo.#"#83".THEN.Store.StringAt.CounterString = "83";
+IF.Store.At.Counter.Value.EqualTo.#"#84".THEN.Store.StringAt.CounterString = "84";
+IF.Store.At.Counter.Value.EqualTo.#"#85".THEN.Store.StringAt.CounterString = "85";
+IF.Store.At.Counter.Value.EqualTo.#"#86".THEN.Store.StringAt.CounterString = "86";
+IF.Store.At.Counter.Value.EqualTo.#"#87".THEN.Store.StringAt.CounterString = "87";
+IF.Store.At.Counter.Value.EqualTo.#"#88".THEN.Store.StringAt.CounterString = "88";
+IF.Store.At.Counter.Value.EqualTo.#"#89".THEN.Store.StringAt.CounterString = "89";
+IF.Store.At.Counter.Value.EqualTo.#"#90".THEN.Store.StringAt.CounterString = "90";
+IF.Store.At.Counter.Value.EqualTo.#"#91".THEN.Store.StringAt.CounterString = "91";
+IF.Store.At.Counter.Value.EqualTo.#"#92".THEN.Store.StringAt.CounterString = "92";
+IF.Store.At.Counter.Value.EqualTo.#"#93".THEN.Store.StringAt.CounterString = "93";
+IF.Store.At.Counter.Value.EqualTo.#"#94".THEN.Store.StringAt.CounterString = "94";
+IF.Store.At.Counter.Value.EqualTo.#"#95".THEN.Store.StringAt.CounterString = "95";
+IF.Store.At.Counter.Value.EqualTo.#"#96".THEN.Store.StringAt.CounterString = "96";
+IF.Store.At.Counter.Value.EqualTo.#"#97".THEN.Store.StringAt.CounterString = "97";
+IF.Store.At.Counter.Value.EqualTo.#"#98".THEN.Store.StringAt.CounterString = "98";
+IF.Store.At.Counter.Value.EqualTo.#"#99".THEN.Store.StringAt.CounterString = "99";
+IF.Store.At.Counter.Value.EqualTo.#"#100".THEN.Store.StringAt.CounterString = "100";
+IF.Store.At.Counter.Value.EqualTo.#"#101".THEN.Store.StringAt.CounterString = "101";
+IF.Store.At.Counter.Value.EqualTo.#"#102".THEN.Store.StringAt.CounterString = "102";
+IF.Store.At.Counter.Value.EqualTo.#"#103".THEN.Store.StringAt.CounterString = "103";
+IF.Store.At.Counter.Value.EqualTo.#"#104".THEN.Store.StringAt.CounterString = "104";
+IF.Store.At.Counter.Value.EqualTo.#"#105".THEN.Store.StringAt.CounterString = "105";
+IF.Store.At.Counter.Value.EqualTo.#"#106".THEN.Store.StringAt.CounterString = "106";
+IF.Store.At.Counter.Value.EqualTo.#"#107".THEN.Store.StringAt.CounterString = "107";
+IF.Store.At.Counter.Value.EqualTo.#"#108".THEN.Store.StringAt.CounterString = "108";
+IF.Store.At.Counter.Value.EqualTo.#"#109".THEN.Store.StringAt.CounterString = "109";
+IF.Store.At.Counter.Value.EqualTo.#"#110".THEN.Store.StringAt.CounterString = "110";
+IF.Store.At.Counter.Value.EqualTo.#"#111".THEN.Store.StringAt.CounterString = "111";
+IF.Store.At.Counter.Value.EqualTo.#"#112".THEN.Store.StringAt.CounterString = "112";
+IF.Store.At.Counter.Value.EqualTo.#"#113".THEN.Store.StringAt.CounterString = "113";
+IF.Store.At.Counter.Value.EqualTo.#"#114".THEN.Store.StringAt.CounterString = "114";
+IF.Store.At.Counter.Value.EqualTo.#"#115".THEN.Store.StringAt.CounterString = "115";
+IF.Store.At.Counter.Value.EqualTo.#"#116".THEN.Store.StringAt.CounterString = "116";
+IF.Store.At.Counter.Value.EqualTo.#"#117".THEN.Store.StringAt.CounterString = "117";
+IF.Store.At.Counter.Value.EqualTo.#"#118".THEN.Store.StringAt.CounterString = "118";
+IF.Store.At.Counter.Value.EqualTo.#"#119".THEN.Store.StringAt.CounterString = "119";
+IF.Store.At.Counter.Value.EqualTo.#"#120".THEN.Store.StringAt.CounterString = "120";
+IF.Store.At.Counter.Value.EqualTo.#"#121".THEN.Store.StringAt.CounterString = "121";
+IF.Store.At.Counter.Value.EqualTo.#"#122".THEN.Store.StringAt.CounterString = "122";
+IF.Store.At.Counter.Value.EqualTo.#"#123".THEN.Store.StringAt.CounterString = "123";
+IF.Store.At.Counter.Value.EqualTo.#"#124".THEN.Store.StringAt.CounterString = "124";
+IF.Store.At.Counter.Value.EqualTo.#"#125".THEN.Store.StringAt.CounterString = "125";
+IF.Store.At.Counter.Value.EqualTo.#"#126".THEN.Store.StringAt.CounterString = "126";
+IF.Store.At.Counter.Value.EqualTo.#"#127".THEN.Store.StringAt.CounterString = "127";
+IF.Store.At.Counter.Value.EqualTo.#"#128".THEN.Store.StringAt.CounterString = "128";
+IF.Store.At.Counter.Value.EqualTo.#"#129".THEN.Store.StringAt.CounterString = "129";
+IF.Store.At.Counter.Value.EqualTo.#"#130".THEN.Store.StringAt.CounterString = "130";
+IF.Store.At.Counter.Value.EqualTo.#"#131".THEN.Store.StringAt.CounterString = "131";
+IF.Store.At.Counter.Value.EqualTo.#"#132".THEN.Store.StringAt.CounterString = "132";
+IF.Store.At.Counter.Value.EqualTo.#"#133".THEN.Store.StringAt.CounterString = "133";
+IF.Store.At.Counter.Value.EqualTo.#"#134".THEN.Store.StringAt.CounterString = "134";
+IF.Store.At.Counter.Value.EqualTo.#"#135".THEN.Store.StringAt.CounterString = "135";
+IF.Store.At.Counter.Value.EqualTo.#"#136".THEN.Store.StringAt.CounterString = "136";
+IF.Store.At.Counter.Value.EqualTo.#"#137".THEN.Store.StringAt.CounterString = "137";
+IF.Store.At.Counter.Value.EqualTo.#"#138".THEN.Store.StringAt.CounterString = "138";
+IF.Store.At.Counter.Value.EqualTo.#"#139".THEN.Store.StringAt.CounterString = "139";
+IF.Store.At.Counter.Value.EqualTo.#"#140".THEN.Store.StringAt.CounterString = "140";
+IF.Store.At.Counter.Value.EqualTo.#"#141".THEN.Store.StringAt.CounterString = "141";
+IF.Store.At.Counter.Value.EqualTo.#"#142".THEN.Store.StringAt.CounterString = "142";
+IF.Store.At.Counter.Value.EqualTo.#"#143".THEN.Store.StringAt.CounterString = "143";
+IF.Store.At.Counter.Value.EqualTo.#"#144".THEN.Store.StringAt.CounterString = "144";
+IF.Store.At.Counter.Value.EqualTo.#"#145".THEN.Store.StringAt.CounterString = "145";
+IF.Store.At.Counter.Value.EqualTo.#"#146".THEN.Store.StringAt.CounterString = "146";
+IF.Store.At.Counter.Value.EqualTo.#"#147".THEN.Store.StringAt.CounterString = "147";
+IF.Store.At.Counter.Value.EqualTo.#"#148".THEN.Store.StringAt.CounterString = "148";
+IF.Store.At.Counter.Value.EqualTo.#"#149".THEN.Store.StringAt.CounterString = "149";
+IF.Store.At.Counter.Value.EqualTo.#"#150".THEN.Store.StringAt.CounterString = "150";
+IF.Store.At.Counter.Value.EqualTo.#"#151".THEN.Store.StringAt.CounterString = "151";
+IF.Store.At.Counter.Value.EqualTo.#"#152".THEN.Store.StringAt.CounterString = "152";
+IF.Store.At.Counter.Value.EqualTo.#"#153".THEN.Store.StringAt.CounterString = "153";
+IF.Store.At.Counter.Value.EqualTo.#"#154".THEN.Store.StringAt.CounterString = "154";
+IF.Store.At.Counter.Value.EqualTo.#"#155".THEN.Store.StringAt.CounterString = "155";
+IF.Store.At.Counter.Value.EqualTo.#"#156".THEN.Store.StringAt.CounterString = "156";
+IF.Store.At.Counter.Value.EqualTo.#"#157".THEN.Store.StringAt.CounterString = "157";
+IF.Store.At.Counter.Value.EqualTo.#"#158".THEN.Store.StringAt.CounterString = "158";
+IF.Store.At.Counter.Value.EqualTo.#"#159".THEN.Store.StringAt.CounterString = "159";
+IF.Store.At.Counter.Value.EqualTo.#"#160".THEN.Store.StringAt.CounterString = "160";
+IF.Store.At.Counter.Value.EqualTo.#"#161".THEN.Store.StringAt.CounterString = "161";
+IF.Store.At.Counter.Value.EqualTo.#"#162".THEN.Store.StringAt.CounterString = "162";
+IF.Store.At.Counter.Value.EqualTo.#"#163".THEN.Store.StringAt.CounterString = "163";
+IF.Store.At.Counter.Value.EqualTo.#"#164".THEN.Store.StringAt.CounterString = "164";
+IF.Store.At.Counter.Value.EqualTo.#"#165".THEN.Store.StringAt.CounterString = "165";
+IF.Store.At.Counter.Value.EqualTo.#"#166".THEN.Store.StringAt.CounterString = "166";
+IF.Store.At.Counter.Value.EqualTo.#"#167".THEN.Store.StringAt.CounterString = "167";
+IF.Store.At.Counter.Value.EqualTo.#"#168".THEN.Store.StringAt.CounterString = "168";
+IF.Store.At.Counter.Value.EqualTo.#"#169".THEN.Store.StringAt.CounterString = "169";
+IF.Store.At.Counter.Value.EqualTo.#"#170".THEN.Store.StringAt.CounterString = "170";
+IF.Store.At.Counter.Value.EqualTo.#"#171".THEN.Store.StringAt.CounterString = "171";
+IF.Store.At.Counter.Value.EqualTo.#"#172".THEN.Store.StringAt.CounterString = "172";
+IF.Store.At.Counter.Value.EqualTo.#"#173".THEN.Store.StringAt.CounterString = "173";
+IF.Store.At.Counter.Value.EqualTo.#"#174".THEN.Store.StringAt.CounterString = "174";
+IF.Store.At.Counter.Value.EqualTo.#"#175".THEN.Store.StringAt.CounterString = "175";
+IF.Store.At.Counter.Value.EqualTo.#"#176".THEN.Store.StringAt.CounterString = "176";
+IF.Store.At.Counter.Value.EqualTo.#"#177".THEN.Store.StringAt.CounterString = "177";
+IF.Store.At.Counter.Value.EqualTo.#"#178".THEN.Store.StringAt.CounterString = "178";
+IF.Store.At.Counter.Value.EqualTo.#"#179".THEN.Store.StringAt.CounterString = "179";
+IF.Store.At.Counter.Value.EqualTo.#"#180".THEN.Store.StringAt.CounterString = "180";
+IF.Store.At.Counter.Value.EqualTo.#"#181".THEN.Store.StringAt.CounterString = "181";
+IF.Store.At.Counter.Value.EqualTo.#"#182".THEN.Store.StringAt.CounterString = "182";
+IF.Store.At.Counter.Value.EqualTo.#"#183".THEN.Store.StringAt.CounterString = "183";
+IF.Store.At.Counter.Value.EqualTo.#"#184".THEN.Store.StringAt.CounterString = "184";
+IF.Store.At.Counter.Value.EqualTo.#"#185".THEN.Store.StringAt.CounterString = "185";
+IF.Store.At.Counter.Value.EqualTo.#"#186".THEN.Store.StringAt.CounterString = "186";
+IF.Store.At.Counter.Value.EqualTo.#"#187".THEN.Store.StringAt.CounterString = "187";
+IF.Store.At.Counter.Value.EqualTo.#"#188".THEN.Store.StringAt.CounterString = "188";
+IF.Store.At.Counter.Value.EqualTo.#"#189".THEN.Store.StringAt.CounterString = "189";
+IF.Store.At.Counter.Value.EqualTo.#"#190".THEN.Store.StringAt.CounterString = "190";
+IF.Store.At.Counter.Value.EqualTo.#"#191".THEN.Store.StringAt.CounterString = "191";
+IF.Store.At.Counter.Value.EqualTo.#"#192".THEN.Store.StringAt.CounterString = "192";
+IF.Store.At.Counter.Value.EqualTo.#"#193".THEN.Store.StringAt.CounterString = "193";
+IF.Store.At.Counter.Value.EqualTo.#"#194".THEN.Store.StringAt.CounterString = "194";
+IF.Store.At.Counter.Value.EqualTo.#"#195".THEN.Store.StringAt.CounterString = "195";
+IF.Store.At.Counter.Value.EqualTo.#"#196".THEN.Store.StringAt.CounterString = "196";
+IF.Store.At.Counter.Value.EqualTo.#"#197".THEN.Store.StringAt.CounterString = "197";
+IF.Store.At.Counter.Value.EqualTo.#"#198".THEN.Store.StringAt.CounterString = "198";
+IF.Store.At.Counter.Value.EqualTo.#"#199".THEN.Store.StringAt.CounterString = "199";
+IF.Store.At.Counter.Value.EqualTo.#"#200".THEN.Store.StringAt.CounterString = "200";
+// Prepare Filename for 1 roi output
+// Store.StringAt.Roi1FileName = PlanInfo.MedicalRecordNumber;
+
+// prepare output string
+
+Store.StringAt.output = "cat << EOF > /home/p3rtp/DVHtoTXT/";
+Store.At.output.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.output.AppendString = "dvhPartA";
+Store.At.output.AppendString = Store.FloatAt.CounterString; 
+Store.At.output.AppendString = ".tmp \n";
+
+//Add file to Merge commando
+
+Store.At.MergeFiles.AppendString = "/home/p3rtp/DVHtoTXT/";
+Store.At.MergeFiles.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.MergeFiles.AppendString = "dvhPartA";
+Store.At.MergeFiles.AppendString = Store.FloatAt.CounterString; 
+Store.At.MergeFiles.AppendString = ".tmp ";
+
+////////////////////////////////////////////////////////////////////////////////
+/////Store name of ROI and Trial and add to file////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////// 
+
+WindowList.DoseVolHistTabular.Create = "";
+
+Store.StringAt.RoiName = DVHList.Current.RegionOfInterestName;
+
+Store.At.output.AppendString = "Roi: ";
+Store.At.output.AppendString = DVHList.Current.RegionOfInterestName;
+Store.At.output.AppendString = Store.StringAt.new_line;
+Store.At.output.AppendString = "Trial: ";
+Store.At.output.AppendString = DVHList.Current.TrialName;
+Store.At.output.AppendString = Store.StringAt.new_line;
+
+// save file
+
+SpawnCommand = Store.StringAt.output;
+
+// Run part B of the script
+
+Script.ExecuteNow = "/usr/local/adacnew/PinnacleSiteData/Scripts/Fysica/DVHOutputToTxt/DVHOutputToTxtEachRoiTestPartB.Script";

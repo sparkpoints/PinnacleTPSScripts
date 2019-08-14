@@ -1,0 +1,585 @@
+//////////////////////////////////////////////////////////////////////////////
+//Param use in this script
+//////////////////////////////////////////////////////////////////////////////
+
+Store.StringAt.ComputeSpace = "IF.BackupInstitutionList.Current.PatientLiteList.Current.Store.FloatAt.Backup.EQUALTO.#1.THEN.Store.At.Space.Add = BackupInstitutionList.Current.PatientLiteList.Current.Patient.DirSize";
+
+//////////////////////////////////////////////////////////////////////////////
+//main window
+//////////////////////////////////////////////////////////////////////////////
+
+Store.At.DataHelper = GeoForm{
+Name = "DataHelperWin";
+IsModal = 1;
+ResetDependenciesWhenRealized=1; 
+};
+
+Store.At.DataHelper.WidgetList.GeoWidget = {
+WidgetClass = "DrawingArea";
+Name = "TopLevel";
+Label = "Pinnacle Patient Backup Helper";
+Width = 1280;
+Height = 800;
+ResetDependenciesWhenRealized=1; 
+};
+
+//////////////////////////////////////////////////////////////////////////////
+//Two Seprator
+//////////////////////////////////////////////////////////////////////////////
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "Sep1";
+ParentName = "TopLevel";
+WidgetClass = "Separator";
+X = 4;
+Y = 51;
+Width = 1272;
+Height = 21;
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "Sep2";
+ParentName = "TopLevel";
+WidgetClass = "Separator";
+X = 4;
+Y = 745;
+Width = 1272;
+Height = 21;
+};
+
+//////////////////////////////////////////////////////////////////////////////
+//Top Elements
+///////////////////////////////////////////////////////////////////////////////
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "RedoAllButton";
+ParentName = "TopLevel";
+WidgetClass = "ToggleButton";
+X = 12;
+Y = 14;
+Width = 20;
+Height = 20;
+ResetDependenciesWhenRealized = 1;
+//QueryValueKey = "BackupInstitutionList.Current.IncludeAllPatients";
+AddAction = "";
+ReplaceCurrentAction = "BackupInstitutionList.*.IncludeAllPatients";
+AddAction = "";
+ReplaceCurrentAction = "BackupInstitutionList.*.PatientLiteList.*.Store.FloatAt.Backup";
+AddAction = "";
+ReplaceCurrentAction = "Store.FloatAt.Space = 0";
+AddAction = "";
+ReplaceCurrentAction = "BackupInstitutionList.ChildrenEachCurrent.PatientLiteList.ChildrenEachCurrent.@.Store.At.ComputeSpace.Execute";
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "InstLabel";
+ParentName = "TopLevel";
+WidgetClass = "Label";
+X = 48;
+Y = 18;
+Width = 200;
+Height = 20;
+UseDefaultSize = 1;
+ResetDependenciesWhenRealized=1;
+Label = "Backup from Institution:";
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "InstMenu";
+ParentName = "TopLevel";
+WidgetClass = "OptionMenu";
+X = 200;
+Y = 10;
+Width = 380;
+Height = 20;
+ResetDependenciesWhenRealized=1;
+//UseDefaultSize = 1;
+//QueryValueKey = "BackupInstitution.Current";
+QueryListKey = "BackupInstitutionList.*.Description";
+AddAction = "";
+ReplaceCurrentAction = "BackupInstitutionList.CurrentByAttribute.Description";
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "FolderLabel";
+ParentName = "TopLevel";
+WidgetClass = "Label";
+X = 820;
+Y = 18;
+Width = 190;
+Height = 20;
+UseDefaultSize = 1;
+ResetDependenciesWhenRealized=1;
+Label = "Backup Data to Folder:";
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "FolderEdit";
+ParentName = "TopLevel";
+WidgetClass = "Text";
+X = 970;
+Y = 10;
+Width = 300;
+Height = 20;
+ResetDependenciesWhenRealized=1;
+QueryValueKey = "Store.StringAt.DataFolder";
+AddAction = "";
+ReplaceCurrentAction = "Store.StringAt.DataFolder";
+};
+
+//////////////////////////////////////////////////////////////////////////////
+//List Label
+///////////////////////////////////////////////////////////////////////////////
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "RedoCurButton";
+ParentName = "TopLevel";
+WidgetClass = "ToggleButton";
+X = 12;
+Y = 56;
+Width = 20;
+Height = 20;
+ResetDependenciesWhenRealized = 1;
+QueryValueKey = "BackupInstitutionList.Current.IncludeAllPatients";
+AddAction = "";
+ReplaceCurrentAction = "BackupInstitutionList.Current.IncludeAllPatients";
+AddAction = "";
+ReplaceCurrentAction = "BackupInstitutionList.Current.PatientLiteList.*.Store.FloatAt.Backup";
+AddAction = "";
+ReplaceCurrentAction = "Store.FloatAt.Space = 0";
+AddAction = "";
+ReplaceCurrentAction = "BackupInstitutionList.ChildrenEachCurrent.PatientLiteList.ChildrenEachCurrent.@.Store.At.ComputeSpace.Execute";
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "BackupLabel";
+ParentName = "TopLevel";
+WidgetClass = "Label";
+X = 48;
+Y = 60;
+Width = 90;
+Height = 20;
+Label = "Backup";
+ResetDependenciesWhenRealized=1;
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "LNLabel";
+ParentName = "TopLevel";
+WidgetClass = "Label";
+X = 150;
+Y = 60;
+Width = 90;
+Height = 20;
+UseDefaultSize = 1;
+Label = "Last Name";
+ResetDependenciesWhenRealized=1;
+DoubleClickKey = "DeferDisplayUpdate = 1";
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "FNLabel";
+ParentName = "TopLevel";
+WidgetClass = "Label";
+X = 360;
+Y = 60;
+Width = 110;
+Height = 20;
+Label = "First Name";
+ResetDependenciesWhenRealized=1;
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "MNLabel";
+ParentName = "TopLevel";
+WidgetClass = "Label";
+X = 535;
+Y = 60;
+Width = 110;
+Height = 20;
+Label = "Middle Name";
+ResetDependenciesWhenRealized=1;
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "MRNLabel";
+ParentName = "TopLevel";
+WidgetClass = "Label";
+X = 730;
+Y = 60;
+Width = 110;
+Height = 20;
+UseDefaultSize = 1;
+Label = "MRN";
+ResetDependenciesWhenRealized=1;
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "ROLabel";
+ParentName = "TopLevel";
+WidgetClass = "Label";
+X = 840;
+Y = 60;
+Width = 200;
+Height = 20;
+Label = "Radiation Oncologist";
+ResetDependenciesWhenRealized=1;
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "TimeStampLabel";
+ParentName = "TopLevel";
+WidgetClass = "Label";
+X = 1020;
+Y = 60;
+Width = 110;
+Height = 20;
+UseDefaultSize = 1;
+Label = "Last Modified";
+ResetDependenciesWhenRealized=1;
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "TimeStampLabel";
+ParentName = "TopLevel";
+WidgetClass = "Label";
+X = 1160;
+Y = 60;
+Width = 100;
+Height = 20;
+UseDefaultSize = 1;
+Label = "Space(M)";
+ResetDependenciesWhenRealized=1;
+};
+
+/////////////////////////////////////////////////////////////////////////////////
+//List Window
+/////////////////////////////////////////////////////////////////////////////////
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "PatientListScrolledWindow";
+ParentName = "TopLevel";
+WidgetClass = "ScrolledWindow";
+X = 12;
+Y = 85;
+Width = 1256;
+Height = 650;
+ResetDependenciesWhenRealized=1;
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "PatientListDrawingArea";
+ParentName = "PatientListScrolledWindow";
+WidgetClass = "DrawingArea";
+X = 10;
+Y = 10;
+Width = 865;
+Height = 20;
+QueryCountKey = "BackupInstitutionList.Current.PatientLiteList.Count";
+};
+
+//////////////////////////////////////////////////////////////////////////////
+//List Elements
+///////////////////////////////////////////////////////////////////////////////
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "ImportCheckBox";
+ParentName = "PatientListDrawingArea";
+WidgetClass = "ToggleButton";
+X = 10;
+Y = 8;
+Width = 20;
+Height = 20;
+ResetDependenciesWhenRealized = 1;
+MultiColumnOutput = 1;
+RowNumber = 0;
+QueryValueKey = "BackupInstitutionList.Current.PatientLiteList.#0.Store.FloatAt.Backup";
+AddAction = "";
+ReplaceCurrentAction = "BackupInstitutionList.Current.PatientLiteList.#0.Store.FloatAt.Backup";
+AddAction = "";
+ReplaceCurrentAction = "Store.FloatAt.Space = 0";
+AddAction = "";
+ReplaceCurrentAction = "BackupInstitutionList.ChildrenEachCurrent.PatientLiteList.ChildrenEachCurrent.@.Store.At.ComputeSpace.Execute";
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "PatientList";
+ParentName = "PatientListDrawingArea";
+WidgetClass = "Text";
+X = 50;
+Y = 4;
+Width = 240;
+Height = 20;
+ResetDependenciesWhenRealized = 1;
+MultiColumnOutput = 1;
+RowNumber = 0;
+QuerySensitiveKey = "0";
+QueryValueKey = "BackupInstitutionList.Current.PatientLiteList.#0.Patient.LastName";
+};
+
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "PatientList";
+ParentName = "PatientListDrawingArea";
+WidgetClass = "Text";
+X = 295;
+Y = 4;
+Width = 180;
+Height = 20;
+ResetDependenciesWhenRealized = 1;
+MultiColumnOutput = 1;
+RowNumber = 0;
+QuerySensitiveKey = "0";
+QueryValueKey = "BackupInstitutionList.Current.PatientLiteList.#0.Patient.FirstName";
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "PatientList";
+ParentName = "PatientListDrawingArea";
+WidgetClass = "Text";
+X = 480;
+Y = 4;
+Width = 180;
+Height = 20;
+ResetDependenciesWhenRealized = 1;
+MultiColumnOutput = 1;
+RowNumber = 0;
+QuerySensitiveKey = "0";
+QueryValueKey = "BackupInstitutionList.Current.PatientLiteList.#0.Patient.MiddleName";
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "PatientList";
+ParentName = "PatientListDrawingArea";
+WidgetClass = "Text";
+X = 665;
+Y = 4;
+Width = 150;
+Height = 20;
+ResetDependenciesWhenRealized = 1;
+MultiColumnOutput = 1;
+RowNumber = 0;
+QuerySensitiveKey = "0";
+QueryValueKey = "BackupInstitutionList.Current.PatientLiteList.#0.Patient.MedicalRecordNumber";
+};
+
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "PatientList";
+ParentName = "PatientListDrawingArea";
+WidgetClass = "Text";
+X = 820;
+Y = 4;
+Width = 150;
+Height = 20;
+ResetDependenciesWhenRealized = 1;
+MultiColumnOutput = 1;
+RowNumber = 0;
+QuerySensitiveKey = "0";
+QueryValueKey = "BackupInstitutionList.Current.PatientLiteList.#0.Patient.RadiationOncologist";
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "PatientList";
+ParentName = "PatientListDrawingArea";
+WidgetClass = "Text";
+X = 975;
+Y = 4;
+Width = 150;
+Height = 20;
+ResetDependenciesWhenRealized = 1;
+MultiColumnOutput = 1;
+RowNumber = 0;
+QuerySensitiveKey = "0";
+QueryValueKey = "BackupInstitutionList.Current.PatientLiteList.#0.Patient.ObjectVersion.LastModifiedTimeStamp";
+};
+
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "PatientList";
+ParentName = "PatientListDrawingArea";
+WidgetClass = "Text";
+X = 1130;
+Y = 4;
+Width = 90;
+Height = 20;
+ResetDependenciesWhenRealized = 1;
+MultiColumnOutput = 1;
+RowNumber = 0;
+QuerySensitiveKey = "0";
+QueryValueKey = "BackupInstitutionList.Current.PatientLiteList.#0.Patient.DirSize";
+};
+
+//////////////////////////////////////////////////////////////////////////////
+//Bottom Elements
+///////////////////////////////////////////////////////////////////////////////
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+name = "MoveToggle";
+ParentName = "TopLevel";
+WidgetClass = "ToggleButton";
+X = 4;
+Y = 760;
+Width = 20;
+Height = 20;
+ResetDependenciesWhenRealized=1;
+QueryValueKey = "Store.FloatAt.MovePatient";
+AddAction = "";
+ReplaceCurrentAction = "Store.FloatAt.MovePatient";
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+name = "delLabel";
+ParentName = "TopLevel";
+WidgetClass = "Label";
+X = 40;
+Y = 764;
+Width = 200;
+Height = 30;
+Label = "Move Backuped Patient to";
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+Name = "MoveInstMenu";
+ParentName = "TopLevel";
+WidgetClass = "OptionMenu";
+X = 210;
+Y = 756;
+Width = 260;
+Height = 20;
+ResetDependenciesWhenRealized=1;
+SetListCurrentUsingIndex = 1;
+QueryValueKey = "InstitutionList.Mark5.Index";
+QueryListKey = "InstitutionList.*.Description";
+AddAction = "";
+ReplaceCurrentAction = "InstitutionList.Mark5";
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+name = "IgnoreToggle";
+ParentName = "TopLevel";
+WidgetClass = "ToggleButton";
+X = 524;
+Y = 760;
+Width = 20;
+Height = 20;
+ResetDependenciesWhenRealized=1;
+QueryValueKey = "Store.FloatAt.IgnoreBackuped";
+AddAction = "";
+ReplaceCurrentAction = "Store.FloatAt.IgnoreBackuped";
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+name = "ignLabel";
+ParentName = "TopLevel";
+WidgetClass = "Label";
+X = 560;
+Y = 764;
+Width = 260;
+Height = 30;
+Label = "Ignore Backuped Patient";
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+name = "SpaceLabel";
+ParentName = "TopLevel";
+WidgetClass = "Label";
+X = 750;
+Y = 764;
+Width = 140;
+Height = 30;
+Label = "Total Space Needed";
+ResetDependenciesWhenRealized=1;
+};
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+name = "SpaceEdit";
+ParentName = "TopLevel";
+WidgetClass = "Text";
+X = 890;
+Y = 756;
+Width = 120;
+Height = 30;
+QuerySensitiveKey = "0";
+ResetDependenciesWhenRealized=1;
+QueryValueKey = "Store.FloatAt.Space";
+AddAction = "";
+ReplaceCurrentAction = "Store.FloatAt.Space";
+};
+
+
+//Button
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+name = "BackupButton";
+ParentName = "TopLevel";
+WidgetClass = "PushButton";
+X = 1058;
+Y = 760;
+Width = 120;
+Height = 30;
+Label = "Start Backup";
+Font = "Bold";
+ResetDependenciesWhenRealized=1;
+AddAction = "";
+ReplaceCurrentAction = "Store.At.DataHelper.Unrealize";
+AddAction = "";
+ReplaceCurrentAction = "Store.FloatAt.NeedBackup = 1";
+};
+
+
+Store.At.DataHelper.AddChild = "";
+Store.At.DataHelper.WidgetList.Last = {
+name = "QuitButton";
+ParentName = "TopLevel";
+WidgetClass = "PushButton";
+X = 1188;
+Y = 760;
+Width = 80;
+Height = 30;
+Label = "Dismiss";
+ResetDependenciesWhenRealized=1;
+AddAction = "";
+ReplaceCurrentAction = "Store.At.DataHelper.Unrealize";
+};
+
+///////////////////////////////////////////////////////////////////////////////
+
+Store.At.DataHelper.Create = "";
+Store.FreeAt.DataHelper = "";
+
+Store.FreeAt.ComputeSpace = "";
+/* Sœ */

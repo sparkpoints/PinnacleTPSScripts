@@ -1,0 +1,9 @@
+Store.FreeAt.Command = "";
+Store.At.Command = SimpleString {};
+Store.At.Command.AppendString = Store.At.DVHdataBaseCMD.String;
+Store.At.Command.AppendString = DVHList.Current.TrialName;
+Store.At.Command.AppendString = "-";
+Store.At.Command.AppendString = DVHList.Current.RegionOfInterestName;
+Store.At.Command.AppendString = ".dvh";
+Store.At.Command.Execute = "";
+Store.FreeAt.Command = "";

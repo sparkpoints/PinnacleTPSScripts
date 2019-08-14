@@ -1,0 +1,6 @@
+
+// ====  COMMAND BEGIN:  Config 
+Store.StringAt.WorkHome = "/home/peter/AutoPlan58721554/";
+PlanInfo.Save = "/home/peter/AutoPlan58721554/planInfo.dat";
+// ====  COMMAND END:  Config 
+

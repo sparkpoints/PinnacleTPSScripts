@@ -1,0 +1,18 @@
+//*************************************
+// Author Berdondini Andrea           *
+// e-mail andrea.berdondini@libero.it *
+// Azienda U.S.L. Ravenna (Italy)     *
+//*************************************
+
+
+Store.FloatAt.numero = 0;
+//Insert the correct directory path where you have saved the files.
+//Example: my diretory path where I have saved the file is /home/berdondini/script/dvh 
+//SpawnCommand = "cd /home/berdondini/script/dvh ;rm roi1;rm roi2;rm roi3;rm roi4;rm roi5; rm roi6;rm roi7;rm roi8 ; rm roi9";
+//DVHList.ChildrenEachCurrent.#"@".Script.ExecuteNow="/home/berdondini/script/dvh/roi.Script" ;
+//SpawnCommand = "cd /home/berdondini/script/dvh ;rm a;xterm -e ./xdvh; xterm";
+
+SpawnCommand = "cd /home/......... ;rm roi1;rm roi2;rm roi3;rm roi4;rm roi5; rm roi6;rm roi7;rm roi8 ; rm roi9";
+DVHList.ChildrenEachCurrent.#"@".Script.ExecuteNow="/home/......../roi.Script" ;
+SpawnCommand = "cd /home/........ ;xterm -e ./xdvh; xterm";
+

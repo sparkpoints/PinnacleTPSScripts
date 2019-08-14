@@ -1,0 +1,59 @@
+
+Key:  P=Persistent Q=Query S=Set A=Action E=EnumeratedList
+
+          Query/Set Access types: 
+
+              '-' = Not Direct Access 
+              '*' = Direct Access
+              '?' = Indeterminate
+              '=' = Old Style if/then/else structure
+
+    pq*s*ae       Type       Class Messages
+    -------  --------------  --------------------------------------------------
+
+                 <None>
+
+    pq*s*ae       Type       Instance Messages
+    -------  --------------  --------------------------------------------------
+    -Q*S*--       Bool       "CenterLock"
+
+    PQ*S*--     ObjString    "Color"
+
+    ---S---        ---       "CopyBB"
+
+    -----A-        ---       "Display"
+
+    -Q-S---        ---       "DisplayXOrigin"
+
+    -Q-S---        ---       "DisplayYOrigin"
+
+    -Q-S---        ---       "DisplayZOrigin"
+
+    -Q*S*--       Bool       "DoNotUpdate"
+
+    PQ*S*--     SubObject    "Origin"
+
+    ---S---        ---       "SetToVolume"
+
+    PQ*S*--     SubObject    "Size"
+
+    -----A-        ---       "SlabCenter"
+
+    PQ*S*--       Bool       "SlabMode"
+
+    -----A-        ---       "SlabNormal"
+
+    PQ*S---       Float      "SlabThickness"
+
+    -Q-S---        ---       "XOrigin"
+
+    -Q-S---        ---       "XSize"
+
+    -Q-S---        ---       "YOrigin"
+
+    -Q-S---        ---       "YSize"
+
+    -Q-S---        ---       "ZOrigin"
+
+    -Q-S---        ---       "ZSize"
+

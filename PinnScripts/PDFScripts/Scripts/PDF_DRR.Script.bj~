@@ -1,0 +1,16 @@
+// -> PDF_HotScriptList
+// export all BEV
+// P3 7.6c - 8.0m
+// Bj 02.08
+
+WaitMessage = "create BEV PS";
+
+// DRR on
+TrialList. Current. BeamList. #"#0". MakeCurrent = "";
+TrialList. Current. BeamList. ChildrenEachCurrent.#"@".Script.ExecuteNow = "/home/peter/bin/PDFScripts/Scripts/PDF_DRRloop.Script.bj";
+WaitMessageOff = "";
+
+// open POI Window
+Script.ExecuteNow = "/home/peter/bin/PDFScripts/Scripts/PDF_POIWindow.Script.bj";
+
+WaitMessageOff = "";

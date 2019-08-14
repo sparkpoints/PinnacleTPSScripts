@@ -1,0 +1,8 @@
+// Start of PDF output
+// opens a new Script Window
+// P3 7.6c - 8.0m
+// Bj 02.08
+
+HotScriptList.DestroyAllChildren = "";
+HotScriptList.LoadNoCheckSum = "/usr/local/adacnew/PinnacleSiteData/Scripts/PY/pdf/PDF_HotScriptList.bj";
+Script.ExecuteNow = "/usr/local/adacnew/PinnacleSiteData/Scripts/PY/pdf/PDF_SliceWindow.Script.bj";

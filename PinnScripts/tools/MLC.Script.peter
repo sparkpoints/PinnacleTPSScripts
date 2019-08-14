@@ -1,0 +1,6 @@
+Echo = GetEnv.HOME;
+
+Echo = TrialList.Current.BeamList.Current.CPManager.ControlPointList.Last.MonitorUnits;
+Echo = TrialList.Current.BeamList.Current.CPManager.ControlPointList.Last.Weight;
+Echo = TrialList.Current.BeamList.Current.CPManager.ControlPointList.Last.MLCLeafPositions.RawData.NumberOfPoints;
+TrialList.Current.BeamList.Current.CPManager.ControlPointList.Save = "/home/peter/MLC_last2.dat";

@@ -1,0 +1,406 @@
+
+Key:  P=Persistent Q=Query S=Set A=Action E=EnumeratedList
+
+          Query/Set Access types: 
+
+              '-' = Not Direct Access 
+              '*' = Direct Access
+              '?' = Indeterminate
+              '=' = Old Style if/then/else structure
+
+    pq*s*ae       Type       Class Messages
+    -------  --------------  --------------------------------------------------
+    -Q*S*--    StringList    "AlternateInterpModeList"
+
+    -Q*S*--     ObjString    "CurrentAndSharedMarkerColor"
+
+    -Q*S*--        Int       "DisplayCurrentWindowBorder"
+
+    -Q*S---       Bool       "GlobalDisplayThickSlice"
+
+    -Q*S*--    StringList    "InterpModeList"
+
+    -Q*S*--     ObjString    "MarkerColor"
+
+    -Q*S*--        Int       "MarkerLength"
+
+    -Q*S*--        Int       "MarkerThickness"
+
+    PQ*S*--       Float      "PanStepSize"
+
+    PQ*S*--       Float      "RotationStepSize"
+
+    PQ*S*--       Float      "ScaleStepSize"
+
+    -Q*S*--     ObjString    "SharedZMarkerColor"
+
+    PQ*S*--       Float      "ShiftStepSize"
+
+    ---S=--        ---       "X"
+
+    ---S=--        ---       "Y"
+
+    ---S=--        ---       "Z"
+
+
+    pq*s*ae       Type       Instance Messages
+    -------  --------------  --------------------------------------------------
+    -Q=----        ---       ""
+
+    -Q-S---        ---       "2DMeasureGridOn"
+
+    -Q-S---        ---       "2dVolume"
+
+    ---S---        ---       "AdjustCineFrameCountAndIncrement"
+
+    -Q*S*--       Float      "Alpha"
+
+    -----A-        ---       "AlwaysRegenerateFrames"
+
+    -Q-S---        ---       "BEV"
+
+    -Q-S---        ---       "BEVSegmentIndex"
+
+    -Q*S*--        Int       "BEVTextOffsetX"
+
+    -Q*S*--        Int       "BEVTextOffsetY"
+
+    -Q-S---        ---       "BRV"
+
+    -Q-----        ---       "BRVBottomTopLabel"
+
+    -Q-----        ---       "BRVFrontBackLabel"
+
+    -Q-----        ---       "BRVLeftRightLabel"
+
+    -Q-S---        ---       "BRVOrientation"
+
+    -Q-----        ---       "BRVOrientationList"
+
+    -Q-S---        ---       "Beam"
+
+    -Q-----        ---       "CanvasWidget"
+
+    -Q-----        ---       "Center"
+
+    -----A-        ---       "ChangeBackgroundColor"
+
+    -Q-S---        ---       "Cine3DRenderType"
+
+    -Q-----        ---       "Cine3DRenderTypeList"
+
+    -Q*S*--       Float      "CineActualFramesPerSecond"
+
+    ---S---        ---       "CineEndImage"
+
+    PQ*S*--        Int       "CineFrameCount"
+
+    -Q*S---       Bool       "CineGate"
+
+    PQ*S*--        Int       "CineIncrement"
+
+    PQ-S---        ---       "CineMode"
+
+    -Q-----        ---       "CineModeList"
+
+    PQ*S---        Int       "CineOnOff"
+
+    PQ*S*--       Float      "CineRequestedFramesPerSecond"
+
+    PQ*S*--        Int       "CineStartImage"
+
+    -Q*S*--       Bool       "CineTemporaryPause"
+
+    -Q*S*--       Bool       "CineVolumes"
+
+    -----A-        ---       "Clear3DImage"
+
+    -----A-        ---       "ClearAnnotation"
+
+    -----A-        ---       "ClearRenderedImage"
+
+    ---S---        ---       "Copy2dView"
+
+    ---S---        ---       "Copy3dView"
+
+    ---S---        ---       "CopyBevView"
+
+    ---S---        ---       "CopyMultipleBevView"
+
+    -Q-S---        ---       "DRRValid"
+
+    -Q-S---        ---       "Display2dSlicePosition"
+
+    -Q-S---        ---       "Display3dSlicePosition"
+
+    -Q-----        ---       "DisplayBEVSegment"
+
+    -Q-S---        ---       "DisplayThickSlice"
+
+    ---S---        ---       "Enter2dMode"
+
+    ---S---        ---       "Enter3dMode"
+
+    ---S---        ---       "FlipVolumeSliceX"
+
+    ---S---        ---       "FlipVolumeSliceY"
+
+    PQ-S---        ---       "FusionDisplay"
+
+    -Q-----        ---       "FusionDisplayIs"
+
+    -Q-S---        ---       "FusionDisplayMode"
+
+    -Q-----        ---       "FusionDisplayModeList"
+
+    -Q-----        ---       "FusionDisplayModeListShort"
+
+    -Q-----        ---       "HasActiveImage"
+
+    -Q-S---        ---       "HasAssociatedTrial"
+
+    -Q*S*--       Bool       "HasCurrentBorderDisplayed"
+
+    -Q-----        ---       "HasImageData"
+
+    ---S---        ---       "ImageType"
+
+    -Q*S*--       Bool       "InSynchImageGroup"
+
+    -Q-S---        ---       "Inactive"
+
+    ---S---        ---       "InactiveIfAcqsim"
+
+    ---S---        ---       "InactiveIfCtSim"
+
+    ---S---        ---       "InactiveIfFusion"
+
+    ---S---        ---       "IncrementCineFrameRate"
+
+    ---S---        ---       "IncrementMultipleSegmentIndex"
+
+    ---S---        ---       "IncrementSegmentIndex"
+
+    PQ*S*-E  EnumeratedList  "InterpMode"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0           Nearest "Nearest Neighbor Interpolation"
+                    1            Linear "Linear Interpolation"
+
+    -Q-----        ---       "Is3d"
+
+    -Q-----        ---       "IsAcqsimWindow"
+
+    -Q-----        ---       "IsCoronal"
+
+    -Q-----        ---       "IsCtSimWindow"
+
+    -Q-----        ---       "IsFusionWindow"
+
+    -Q-----        ---       "IsOblique"
+
+    -Q-----        ---       "IsSagittal"
+
+    -Q*S*--       Bool       "IsSelectedWindow"
+
+    -Q-----        ---       "IsTransverse"
+
+    -----A-        ---       "LoadWindowLevelPreset"
+
+    -----A-        ---       "MagicWindowOff"
+
+    ---S---        ---       "MakeCoronal"
+
+    ---S---        ---       "MakeCurrentIfVisible"
+
+    ---S---        ---       "MakeSagittal"
+
+    ---S---        ---       "MakeTransverse"
+
+    ---S---        ---       "MakeTrialValid"
+
+    ---S---        ---       "MakeVolumeMatchTrial"
+
+    ---S---        ---       "Mirror2DDisplayY"
+
+    -----A-        ---       "MoveFocusToVolumeCenter"
+
+    ---S---        ---       "MultipleBEVSegmentIndex"
+
+    PQ*S*--      String      "Name"
+
+    ---S---        ---       "NextImage"
+
+    -Q-----        ---       "NumberOfSlices"
+
+    PQ-S---        ---       "Orientation"
+
+    -Q-----        ---       "OrientationList"
+
+    -Q-----        ---       "OrientationListNoOblique"
+
+    -Q*S*--       Bool       "OrientationLocked"
+
+    -Q*S*--      String      "OrientationString"
+
+    ---S---        ---       "PanDown"
+
+    ---S---        ---       "PanLeft"
+
+    ---S---        ---       "PanRight"
+
+    PQ-S---        ---       "PanToFraction"
+
+    ---S---        ---       "PanUp"
+
+    PQ*S*--        Int       "PixelsPerSquare"
+
+    -Q-S---        ---       "PixelsPerSquarePct"
+
+    ---S---        ---       "PreviousImage"
+
+    -Q*S*--       Bool       "PromptScaleWhenPrint"
+
+    -Q-S---        ---       "REV"
+
+    ---S---        ---       "RemoveCurrentTrial"
+
+    -----A-        ---       "RemoveSecondaryVolume"
+
+    -----A-        ---       "Render"
+
+    -----A-        ---       "RenderGradientRadius"
+
+    -----A-        ---       "RenderGradientThreshold"
+
+    -----A-        ---       "RenderIfNecessary"
+
+    -----A-        ---       "RenderLowerThreshold"
+
+    -----A-        ---       "RenderStepSize"
+
+    -----A-        ---       "RenderUpperThreshold"
+
+    ---S---        ---       "RenderWhen"
+
+    ---S---        ---       "Reset2dView"
+
+    -----A-        ---       "ResetFrameIndex"
+
+    ---S---        ---       "ResetFrom2d"
+
+    -----A-        ---       "ResetFusionDisplay"
+
+    ---S---        ---       "ResetFusionWindow"
+
+    ---S---        ---       "RotateCCW"
+
+    ---S---        ---       "RotateCW"
+
+    ---S---        ---       "ScaleZoom"
+
+    -Q-S---        ---       "SecondaryVolumeList"
+
+    -Q*S*--       Bool       "SelectToolIndividually"
+
+    -----A-        ---       "SetDRR"
+
+    ---S---        ---       "SetNextTrial"
+
+    ---S---        ---       "SetNextVolume"
+
+    ---S---        ---       "SetSecondaryVolume"
+
+    -----A-        ---       "SetSliceToCurrentPoi"
+
+    -----A-        ---       "SetSliceToIsocenter"
+
+    -----A-        ---       "SetToCurrentVolumeWinLevLut"
+
+    -----A-        ---       "SetToVolumeWinLevLut"
+
+    ---S---        ---       "SetTrial"
+
+    ---S---        ---       "SetVolume"
+
+    ---S---        ---       "ShiftDown"
+
+    ---S---        ---       "ShiftLeft"
+
+    ---S---        ---       "ShiftRight"
+
+    ---S---        ---       "ShiftUp"
+
+    -Q*S*--       Bool       "ShowFilmAnnotations"
+
+    -Q*S*--       Bool       "ShowFullDescription"
+
+    -Q-S---        ---       "SliceNumber"
+
+    ---S---        ---       "SlicePosition"
+
+    -Q*S*--        Int       "SynchImageIndex"
+
+    -Q*S---        Int       "SynchImageOffset"
+
+    -Q*S*--     SubObject    "SynchronizedImageList"
+
+    -----A-        ---       "Toggle2dSlicePosition"
+
+    -----A-        ---       "Toggle2dSlicePositionByWindowSetId"
+
+    ---S---        ---       "Tool2d"
+
+    ---S---        ---       "Tool3d"
+
+    -Q-S---        ---       "TransparentDisplay"
+
+    -Q-S---        ---       "Trial"
+
+    -Q-S---        ---       "TrialLocked"
+
+    ---S---        ---       "TrialNonBEV"
+
+    ---S---        ---       "TurnOff2dSlicePositionByWindowSetId"
+
+    ---S---        ---       "TurnOn2dSlicePositionByWindowSetId"
+
+    -Q-S---        ---       "Type"
+
+    -----A-        ---       "UpdateCurrentWinLev"
+
+    ---S---        ---       "UpdateCurrentWindow"
+
+    ---S---        ---       "UpdateVolumeName"
+
+    -Q*S---       Bool       "UseLinearCtLut"
+
+    -Q*S*--       Bool       "UseTextOffsetX"
+
+    -Q*S*--       Bool       "UseTextOffsetY"
+
+    -Q-S---        ---       "UserSliceNumber"
+
+    -Q*S*--       Bool       "ViewModeLocked"
+
+    ---S---        ---       "Viewpoint"
+
+    -Q*S*--     SubObject    "VolumeDisplayList"
+
+    -Q*S*--       Bool       "VolumeLocked"
+
+    -----A-        ---       "WinLevToVolume"
+
+    -Q*S*--        Int       "WindowId"
+
+    -Q-S---        ---       "WindowSetId"
+
+    -Q-----        ---       "XWindowId"
+
+    PQ-S---        ---       "Zoom"
+
+    ---S---        ---       "ZoomToVolumeCell"
+
+    ---S---        ---       "ZoomToWindow"
+

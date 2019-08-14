@@ -1,0 +1,40 @@
+// Hints to the Functions
+//
+// P3 7.6c - 8.0m
+// 04.08 Bj
+
+// Variables
+Store.StringAt.HintSlice = "Slices";
+Store.StringAt.HintDRR = "DRR";
+Store.StringAt.HintPOI = "POI";
+Store.StringAt.HintOrthoDRR = "OrthoDRR";
+Store.StringAt.HintDVH = "DVH";
+Store.StringAt.HintPlan = "Plan";
+
+
+IF.Store.StringAt.Hint.STRINGEQUALTO.Store.StringAt.HintSlice.THEN.
+WarningMessage = "Search fist and last Slice whitch should be printed. Use Pan and Zomm if nessesary. Dont close the viewing Window! Then goto PDF Sliches from to";
+
+IF.Store.StringAt.Hint.STRINGEQUALTO.Store.StringAt.HintDRR.THEN.
+WarningMessage = "Change ROI settings if nessesary. Then goto PDF DRR";
+
+IF.Store.StringAt.Hint.STRINGEQUALTO.Store.StringAt.HintPOI.THEN.
+WarningMessage = "use shift h to hide Menues. Zoom and Pan slices if nessesary. Then goto PDF DRR";
+
+IF.Store.StringAt.Hint.STRINGEQUALTO.Store.StringAt.HintOrthoDRR.THEN.
+WarningMessage = "First POI is Isocenter. Use Zoom if nessesary. Select next POI or DVH Window appear. Then goto Ortho PDF DRR";
+
+IF.Store.StringAt.Hint.STRINGEQUALTO.Store.StringAt.HintDVH.THEN.
+WarningMessage = "Select Trial and ROI. Then goto PDF DVH";
+
+IF.Store.StringAt.Hint.STRINGEQUALTO.Store.StringAt.HintPlan.THEN.
+WarningMessage = "Nothing to do, goto PDF Plan";
+
+
+// Remove Variables
+Store.RemoveAt.HintSlice = "";
+Store.RemoveAt.HintDRR = "";
+Store.RemoveAt.HintPOI = "";
+Store.RemoveAt.HintOrthoDRR = "";
+Store.RemoveAt.HintDVH = "";
+Store.RemoveAt.HintPlan = "";

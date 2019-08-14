@@ -1,0 +1,25 @@
+////////////////////////////////////////////////////////
+//make backup filename(basename) - delete special char
+////////////////////////////////////////////////////////
+
+//Make OS Command and Execute
+Store.StringAt.MakeCommand = Store.StringAt.PyFile;
+Store.At.MakeCommand.AppendString = "-t '";
+
+//Make filename from MRN,Lastname, Firstname and Middlename
+Store.At.MakeCommand.AppendString = BackupInstitutionList.Current.PatientLiteList.Current.Patient.MedicalRecordNumber;
+Store.At.MakeCommand.AppendString = "_";
+Store.At.MakeCommand.AppendString = BackupInstitutionList.Current.PatientLiteList.Current.Patient.LastName;
+Store.At.MakeCommand.AppendString = BackupInstitutionList.Current.PatientLiteList.Current.Patient.FirstName;
+Store.At.MakeCommand.AppendString = "_";
+Store.At.MakeCommand.AppendString = BackupInstitutionList.Current.PatientLiteList.Current.Patient.MiddleName;
+Store.At.MakeCommand.AppendString = "_";
+Store.At.MakeCommand.AppendString = BackupInstitutionList.Current.PatientLiteList.Current.Patient.ObjectVersion.LastModifiedTimeStamp;
+Store.At.MakeCommand.AppendString = "'> ";
+Store.At.MakeCommand.AppendString = Store.StringAt.TempFile;
+
+SpawnCommand = Store.StringAt.MakeCommand;
+
+//Load to Backup File PathName
+Store.At.BackupFile.Load = Store.StringAt.TempFile;
+//WarningMessage = Store.StringAt.BackupFile;

@@ -1,0 +1,30 @@
+WaitMessage = " Start JPEG output";
+
+
+// Print rectangle by mouse
+ColorPrinterControl .WindowDumpSelectionMethod .LongName = "Define rectangular area using cursor.";
+ColorPrinterControl .UpdateScaleMethod = "Define rectangular area using cursor.";
+ColorPrinterControl .PrintToFile = 1;
+ColorPrinterControl .PrintToFileFileList .File = "/var/tmp/Bild.ps";
+
+// no questions
+Test.ExpectAskYesNo = 0;
+Test.ExpectedAskYesNoReply = 1;
+
+// Print in File
+ColorPrinterControl .ValidateSelectedPrinter = "Proceed";
+ResolveDependencies = "Proceed";
+SleepSeconds = "1";
+ProceedPrintWindow  = "Proceed";
+
+// build command for buildJPEG
+Store .StringAt .Befehl = "buildJPEG.sh "; 
+Store .At .Befehl .AppendString = " /var/tmp/Bild.ps ";
+Store .At .Befehl .AppendString = PlanInfo .MedicalRecordNumber ;
+
+SpawnCommand = Store .StringAt .Befehl;
+// Loesche Befehlsstring
+Store.RemoveAt .Befehl = "";
+
+
+WaitMessageOff = "";

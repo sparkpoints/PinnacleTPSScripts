@@ -1,0 +1,43 @@
+// PDF_HotScript
+// Script Window
+// P3 7.6c - 8.0m
+// Bj 02.08
+HotScript ={
+  ScriptName = "need Help?";
+  ScriptFile = "/usr/local/adacnew/PinnacleSiteData/Scripts/PY/pdf/PDF_Hints.Script.bj";
+};
+HotScript ={
+  ScriptName = "PDF slices from to";
+  ScriptFile = "/usr/local/adacnew/PinnacleSiteData/Scripts/PY/pdf/PDF_Slices.Script.bj";
+};
+HotScript ={
+  ScriptName = "PDF DRR";
+  ScriptFile = "/usr/local/adacnew/PinnacleSiteData/Scripts/PY/pdf/PDF_DRR.Script.bj";
+};
+HotScript ={
+  ScriptName = "PDF POI (P3 7.6)";
+  ScriptFile = "/usr/local/adacnew/PinnacleSiteData/Scripts/PY/pdf/PDF_POI.Script.bj";
+};
+HotScript ={
+  ScriptName = "PDF POI (P3 8.0)";
+  ScriptFile = "/usr/local/adacnew/PinnacleSiteData/Scripts/PY/pdf/PDF_POI.Script.8.bj";
+};
+HotScript ={
+  ScriptName = "PDF Ortho DRR (P3 7.6)";
+  ScriptFile = "/usr/local/adacnew/PinnacleSiteData/Scripts/PY/pdf/PDF_OrthoDRR.Script.bj";
+};
+HotScript ={
+  ScriptName = "PDF Ortho DRR (P3 8.0)";
+  ScriptFile = "/usr/local/adacnew/PinnacleSiteData/Scripts/PY/pdf/PDF_OrthoDRR.Script.8.bj";
+};
+HotScript ={
+  ScriptName = "PDF DVH";
+  ScriptFile = "/usr/local/adacnew/PinnacleSiteData/Scripts/PY/pdf/PDF_DVH.Script.bj";
+};
+HotScript ={  ScriptName = "PDF Plan and finish";
+  ScriptFile = "/usr/local/adacnew/PinnacleSiteData/Scripts/PY/pdf/PDF_Plan.Script.bj";
+};
+HotScript ={
+  ScriptName = "Back";
+  ScriptFile = "/usr/local/adacnew/PinnacleSiteData/Scripts/PY/pdf/HotScriptStart.Script.bj";
+};

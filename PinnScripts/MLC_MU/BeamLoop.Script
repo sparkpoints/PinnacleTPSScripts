@@ -1,0 +1,3 @@
+Echo = TrialList .Current .BeamList .Current .Name;
+TrialList.Current.BeamList.Current.CPManager.CPManagerObject.ControlPointList.ChildrenEachCurrent.#"@".Script.ExecuteNow=Store.StringAt.SegmentLoop;
+

@@ -1,0 +1,32 @@
+//Free temp stored variables
+Store.FreeAt.TempIMRT = "";
+
+//Set Target Pinnacle Scripts Name:"CurrentIMRTStepTwo.Script.p3rtp"
+Store.At.TempIMRT = SimpleString {};
+Store.At.TempIMRT.AppendString = Store.At.TempSysDir.String;
+Store.At.TempIMRT.AppendString = "CurrentIMRTStepTwo.Script.p3rtp";
+
+// save plan data first
+SavePlan = "Save Plan";
+
+//Step2:run "IMRTStepTwo.perl" to Create Target PinnaScripts
+Store.FreeAt.TempCommand = ""; 
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = "xterm -e perl ";
+Store.At.TempCommand.AppendString = Store.At.TempHomeDir.String;
+Store.At.TempCommand.AppendString = "IMRTStepTwo.pl ";
+Store.At.TempCommand.AppendString = "-l \"";
+Store.At.TempCommand.AppendString = Store.At.TempPlanPath.String;
+Store.At.TempCommand.AppendString = "\"";
+//execute this perl scripts
+SpawnCommand = Store.At.TempCommand.String;
+//Free
+Store.FreeAt.TempCommand = ""; 
+
+//2 of Step2:run the target PinnScripts:"CurrentIMRTStepTwo.Script.p3rtp"
+ExecuteNow = Store.At.TempIMRT.String;
+
+//Free All variables
+Store.FreeAt.TempIMRT = "";
+
+/* v */

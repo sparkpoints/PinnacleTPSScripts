@@ -1,0 +1,21 @@
+//Save Current Institution to InstitutionBackup
+BackupInstitutionList.Current.Save = Store.StringAt.BackupInstitutionFile;
+
+InstitutionBackup.RemoveAllObjects = "";
+InstitutionBackup.Load = Store.StringAt.BackupInstitutionFile;
+
+//Clear all Patients & MountPoint
+InstitutionBackup.PatientLiteList.RemoveAllObjects = "";
+
+//Add a Empty Patient
+InstitutionBackup.PatientLiteList.CreateChildMakeCurrent = "";
+
+//Set Backup Patient
+InstitutionBackup.PatientLiteList.Current.PatientID = BackupInstitutionList.Current. PatientLiteList.Current.PatientID;
+InstitutionBackup.PatientLiteList.Current.PatientPath = BackupInstitutionList.Current. PatientLiteList.Current.PatientPath;
+InstitutionBackup.PatientLiteList.Current.MountPoint = BackupInstitutionList.Current. PatientLiteList.Current.MountPoint;
+InstitutionBackup.PatientLiteList.Current.FormattedDescription = BackupInstitutionList.Current. PatientLiteList.Current.FormattedDescription;
+InstitutionBackup.PatientLiteList.Current.DirSize = BackupInstitutionList.Current. PatientLiteList.Current.DirSize;
+
+//Save back to Institution File
+InstitutionBackup.Save = Store.StringAt.BackupInstitutionFile;

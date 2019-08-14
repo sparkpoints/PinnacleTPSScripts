@@ -1,0 +1,9 @@
+Store.StringAt.MakeCommand = Store.StringAt.PyFile;
+Store.At.MakeCommand.AppendString = "-l '";
+Store.At.MakeCommand.AppendString = Store.StringAt.DataFolder;
+Store.At.MakeCommand.AppendString = "/";
+Store.At.MakeCommand.AppendString = Store.StringAt.BackupFile;
+Store.At.MakeCommand.AppendString = "' >> ";
+Store.At.MakeCommand.AppendString = Store.StringAt.LogFile;
+
+SpawnCommand = Store.StringAt.MakeCommand;

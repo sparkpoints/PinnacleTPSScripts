@@ -1,0 +1,45 @@
+//Find Home dir
+Store.StringAt.WorkDir = GetEnv.HOME;
+Store.At.WorkDir.AppendString = '/';
+Store.At.WorkDir.AppendString = "inout";
+
+//Prescription
+WindowList .CTSim .PanelList .#"#4" .GotoPanel = "FunctionLayoutIcon4";
+ViewWindowList .#"*" .CineOnOff = "0";
+WindowList .TrialPrescription .Create = "Edit Prescriptions...";
+WindowList .PrescriptionEditor .Create = "Edit...";
+TrialList .Current .AddPrescription = "Add";
+TrialList.Current.PrescriptionList.Last.MakdeCurrent = "";
+TrialList .Current .PrescriptionList .Current .Name = "Prescription_99";
+WindowList .PrescriptionEditor .Create = "Edit...";
+TrialList .Current .PrescriptionList .Current .MethodInt = "1";
+//WindowList .PrescriptionEditor .Unrealize = "Dismiss";
+
+//Load Prescription
+Store.FreeAt.TempCommand = "";
+Store.StringAt.TempCommand = Store.At.WorkDir.String;
+Store.At.TempCommand.AppendString = "/Prescription.output";
+TrialList.Current.PrescriptionList.Current.Load = Store.At.TempCommand.string;
+Store.FreeAt.TempCommand = "";
+
+//Load beam data
+IF .PinnPreferences .ComputeUncomputedBeams .THEN .TrialList .Current .ComputeUncomputedBeams = "Add New Beam";
+Store.StringAt.TempCommand = Store.At.WorkDir.String;
+Store.At.TempCommand.AppendString = "/beamuf.output";
+TrialList.Current.BeamList.Load = Store.At.TempCommand.string;
+Store.FreeAt.TempCommand = "";
+
+
+//delete All create files for next new patient
+Store.StringAt.TempCommand = "rm ";
+Store.At.TempCommand.AppendString = Store.At.WorkDir.String;
+Store.At.TempCommand.AppendString = "/*.*";
+SpawnCommand = Store.At.TempCommand.string;
+Store.FreeAt.TempCommand = "";
+
+//show message for Ends
+WarningMessage="Beam Import Finished!"
+
+// clear varianble
+Store.FreeAt.TempCommand = "";
+Store.FreeAt.WorkDir = "";

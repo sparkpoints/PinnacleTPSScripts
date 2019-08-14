@@ -1,0 +1,9 @@
+//Find Institution of InsitutionList and Make Current
+InstitutionList.CurrentByAttribute.Description = BackupInstitutionList.Current.Description;
+InstitutionList.Current.LoadCurrentPatientFromDB = "";
+
+//Find Patient of Current Institution and Make Current
+InstitutionList.Current.PatientLiteList.CurrentByAttribute.PatientID = BackupInstitutionList.Current.PatientLiteList.Current.PatientID;
+
+//Transfer Patient to Specified Institution
+TransferPatient = "";

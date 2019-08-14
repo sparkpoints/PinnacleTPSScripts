@@ -1,0 +1,51 @@
+//In Home Dir create Temp dir
+Store.StringAt.WorkDir = GetEnv.HOME;
+Store.At.WorkDir.AppendString = '/';
+Store.At.WorkDir.AppendString = "inout";
+
+//define varianble
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString{};
+Store.At.TempCommand.AppendString = "mkdir ";
+Store.At.TempCommand.AppendString = Store.At.WorkDir.String;
+SpawnCommand = Store.At.TempCommand.string;
+Store.FreeAt.TempCommand = "";
+
+//prapareng plan for export
+WindowList .CTSim .PanelList .#"#4" .GotoPanel = "FunctionLayoutIcon4";
+ViewWindowList .#"*" .CineOnOff = "0";
+WindowList .TrialPrescription .Create = "Edit Prescriptions...";
+WindowList .PrescriptionEditor .Create = "Edit...";
+TrialList .Current .PrescriptionList .#"#0" .Name = "Prescription_99";
+TrialList .Current .PrescriptionList .Current .MethodInt = "1";
+TrialList .Current .PrescriptionList .Current .NumberOfFractions = "1";
+//WindowList .PrescriptionEditor .Unrealize = "Dismiss";
+
+//save Prescription
+Store.FreeAt.TempCommand = "";
+Store.StringAt.TempCommand = Store.At.WorkDir.String;
+Store.At.TempCommand.AppendString = "/Prescription.output";
+TrialList.Current.PrescriptionList.Current.Save = Store.At.TempCommand.string;
+Store.FreeAt.TempCommand = "";
+
+//save beam data
+Store.StringAt.TempCommand = Store.At.WorkDir.String;
+Store.At.TempCommand.AppendString = "/beamuf.output";
+TrialList.Current.BeamList.Save = Store.At.TempCommand.string;
+Store.FreeAt.TempCommand = "";
+
+//delete unuse files;
+Store.StringAt.TempCommand = "rm ";
+Store.At.TempCommand.AppendString = Store.At.WorkDir.String;
+Store.At.TempCommand.AppendString = "/beamuf.output.binary.*";
+SpawnCommand = Store.At.TempCommand.string;
+Store.FreeAt.TempCommand = "";
+
+//show message for Ends
+Store.StringAt.TempCommand = "export beam to dir: ";
+Store.At.TempCommand.AppendString = Store.At.WorkDir.String;
+WarningMessage=Store.At.TempCommand.string;
+
+// clear varianble
+Store.FreeAt.TempCommand = "";
+Store.FreeAt.WorkDir = "";

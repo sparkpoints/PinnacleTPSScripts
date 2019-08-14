@@ -1,0 +1,30 @@
+//Make Backup Filename
+Script.ExecuteNow = Store.StringAt.MakeFilenameScript;
+
+//Make File List
+Script.ExecuteNow = Store.StringAt.FindFileScript;
+
+//Generate Institution for Backup
+Script.ExecuteNow = Store.StringAt.GenBackupInstitutionScript;
+
+//Build Backup Command
+Store.StringAt.BackupCommand = Store.StringAt.PyFile;
+Store.At.BackupCommand.AppendString = "-b ";
+Store.At.BackupCommand.AppendString = Store.StringAt.DataFolder;
+Store.At.BackupCommand.AppendString = "/";
+Store.At.BackupCommand.AppendString = Store.StringAt.BackupFile;
+Store.At.BackupCommand.AppendString = " ";
+Store.At.BackupCommand.AppendString = BackupInstitutionList.Current.PatientLiteList.Current.PatientPath;
+
+//WarningMessage = Store.StringAt.BackupCommand;
+//Check If Ignore Backuped Patient
+IF.Store.FloatAt.IgnoreBackuped.EQUALTO.#"#1".THEN.Store.FloatAt.NeedBackup = 0;
+IF.Store.FloatAt.FileExist.EQUALTO.#"#0".THEN.Store.FloatAt.NeedBackup = 1;
+
+
+//Start Backup
+IF.Store.FloatAt.NeedBackup.EQUALTO.#"#1".THEN.SpawnCommand = Store.StringAt.BackupCommand;
+
+
+//Write to Log
+IF.Store.FloatAt.NeedBackup.EQUALTO.#"#1".THEN.Script.ExecuteNow = Store.StringAt.WriteLogFileScript;

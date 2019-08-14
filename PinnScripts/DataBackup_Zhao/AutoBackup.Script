@@ -1,0 +1,10 @@
+Store.FloatAt.NeedBackup = 1;
+
+Store.StringAt.FindForBackupScript = Store.StringAt.HomeFolder;
+Store.At.FindForBackupScript.AppendString = "/FindForBackup.Script";
+
+//Iterate all Patients and make Check
+BackupInstitutionList.ChildrenEachCurrent.PatientLiteList.ChildrenEachCurrent.#"@".Script.ExecuteNow = Store.StringAt.FindForBackupScript;
+
+
+Store.FreeAt.FindForBackupScript = "";

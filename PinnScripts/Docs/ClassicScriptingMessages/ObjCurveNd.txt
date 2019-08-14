@@ -1,0 +1,101 @@
+
+Key:  P=Persistent Q=Query S=Set A=Action E=EnumeratedList
+
+          Query/Set Access types: 
+
+              '-' = Not Direct Access 
+              '*' = Direct Access
+              '?' = Indeterminate
+              '=' = Old Style if/then/else structure
+
+    pq*s*ae       Type       Class Messages
+    -------  --------------  --------------------------------------------------
+    -Q*S*--       Bool       "PointsBinaryIOSupported"
+
+
+    pq*s*ae       Type       Instance Messages
+    -------  --------------  --------------------------------------------------
+    -Q=----        ---       "*"
+
+    ---S---        ---       "AddPoint"
+
+    ---S---        ---       "CopyToPointList"
+
+    ---S---        ---       "CopyXToArray"
+
+    ---S---        ---       "CopyYToArray"
+
+    ---S---        ---       "CopyZToArray"
+
+    ---S---        ---       "DeleteAllPoints"
+
+    ---S---        ---       "DeleteLastPoint"
+
+    ---S---        ---       "DeleteRow"
+
+    ---S---        ---       "InsertRowAfter"
+
+    ---S---        ---       "InsertRowBefore"
+
+    -Q-S---        ---       "LastValue"
+
+    ---S---        ---       "LoadPointList"
+
+    -Q*----        Int       "NumColumns"
+
+    -Q*----        Int       "NumRows"
+
+    PQ*S---        Int       "NumberOfDimensions"
+
+    PQ*S---        Int       "NumberOfPoints"
+
+    ---S---        ---       "Offset"
+
+    ---S---        ---       "OffsetX"
+
+    ---S---        ---       "OffsetXY"
+
+    ---S---        ---       "OffsetY"
+
+    ---S---        ---       "OffsetZ"
+
+    -Q-S---        ---       "PointsAsBlob"
+
+    -Q-S---        ---       "PointsBinaryIO"
+
+    P--S---        ---       "PointsDone"
+
+    PQ-S---        ---       "PointsFirst"
+
+    PQ-S---        ---       "PointsNext"
+
+    -Q-----        ---       "PointsNumColsPerLine"
+
+    ---S---        ---       "ReadFromFile"
+
+    ---S---        ---       "Scale"
+
+    ---S---        ---       "ScaleX"
+
+    ---S---        ---       "ScaleY"
+
+    ---S---        ---       "ScaleZ"
+
+    ---S---        ---       "SortByDimension"
+
+    ---S---        ---       "SortByX"
+
+    ---S---        ---       "SortByY"
+
+    ---S---        ---       "SortByZ"
+
+    -Q-S---        ---       "Value"
+
+    ---S---        ---       "WriteToFile"
+
+    -Q-S---        ---       "X"
+
+    -Q-S---        ---       "Y"
+
+    -Q-S---        ---       "Z"
+

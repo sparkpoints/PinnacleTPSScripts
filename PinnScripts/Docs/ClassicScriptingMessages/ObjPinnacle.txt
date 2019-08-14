@@ -1,0 +1,1045 @@
+
+Key:  P=Persistent Q=Query S=Set A=Action E=EnumeratedList
+
+          Query/Set Access types: 
+
+              '-' = Not Direct Access 
+              '*' = Direct Access
+              '?' = Indeterminate
+              '=' = Old Style if/then/else structure
+
+    pq*s*ae       Type       Class Messages
+    -------  --------------  --------------------------------------------------
+    -Q*S*--        Int       "AskYesNoDefault"
+
+    -Q*S*--     ObjString    "AskYesNoPrompt"
+
+    pq*s*ae       Type       Instance Messages
+    -------  --------------  --------------------------------------------------
+    -Q*S*--     ObjString    "AAPMFilePrefix"
+
+    -Q*S*--     SubObject    "AAPMOutputFileList"
+
+    -Q*S*-E  EnumeratedList  "AcQSimBeamsPanelLayout"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0             Setup "Setup"
+                    1          Geometry "Geometry"
+                    2         Modifiers "Modifiers"
+
+    -Q*S*-E  EnumeratedList  "AcQSimBeamsViewLayout"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0            Single "Single"
+                    1        Orthogonal "Orthogonal"
+                    2           4-slice "4-slice"
+                    3      9-sliceOrtho "9-sliceOrtho"
+                    4           9-slice "9-slice"
+                    5          LargeDRR "LargeDRR"
+                    6          LargeBEV "LargeBEV"
+                    7  LargeBEVSmallREV "LargeBEVSmallREV"
+                    8     SingleWithDVH "SingleWithDVH"
+                    9    BigOrthoWith3D "BigOrthoWith3D"
+
+    -Q*S*--     SubObject    "AcQSimPrefs"
+
+    -Q*S*-E  EnumeratedList  "AcQSimViewLayout"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0            Single "Single"
+                    1        Orthogonal "Orthogonal"
+                    2           4-slice "4-slice"
+                    3      9-sliceOrtho "9-sliceOrtho"
+                    4           9-slice "9-slice"
+                    5          LargeDRR "LargeDRR"
+                    6          LargeBEV "LargeBEV"
+                    7  LargeBEVSmallREV "LargeBEVSmallREV"
+                    8     SingleWithDVH "SingleWithDVH"
+                    9    BigOrthoWith3D "BigOrthoWith3D"
+
+    -----A-        ---       "AddBolus"
+
+    -----A-        ---       "AddCoronalCutplane"
+
+    -----A-        ---       "AddFilmBBToDisplayList"
+
+    -----A-        ---       "AddSagittalCutplane"
+
+    -Q*S---       Bool       "AddSourcesAtCentroids"
+
+    -----A-        ---       "AddTransverseCutplane"
+
+    -----A-        ---       "AddVolumeBBToDisplayList"
+
+    -Q-----        ---       "AllBolusConfirmInvalidation"
+
+    -Q-----        ---       "AllBolusConfirmInvalidationWhenCouchPosChanges"
+
+    -Q-----        ---       "AllTrialConfirmDoseChange"
+
+    -Q*S*--       Bool       "AlternateMode"
+
+    ---S---        ---       "AmbientLightComponent"
+
+    -Q-S---        ---       "ApertureBlockLayout"
+
+    -Q*----     ObjString    "AppLabel"
+
+    -Q*----     ObjString    "AppLongName"
+
+    -Q*----     ObjString    "AppRevision"
+
+    -Q*----     ObjString    "AppShortName"
+
+    -Q*----     ObjString    "AppVersion"
+
+    -Q*----     ObjString    "AppVersionAndRevision"
+
+    -Q-----        ---       "AskGeneralQuestion"
+
+    -Q-----        ---       "AskYesNo"
+
+    -Q*S*-E  EnumeratedList  "AutoFusionLayout"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0            Images "Images"
+                    1            Points "Points"
+
+    -----A-        ---       "AutoplaceCurrentPoi"
+
+    -----A-        ---       "AutoplaceLaserCenter"
+
+    -Q*S*-E  EnumeratedList  "BeamLayout"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0           Machine "Machine"
+                    1       Orientation "Orientation"
+                    2       Collimation "Collimation"
+                    3         Modifiers "Modifiers"
+                    4     Visualization "Visualization"
+                    5              Dose "Dose"
+
+    -Q*S*--       Bool       "BeamLoadingError"
+
+    -----A-        ---       "BeamMacroExecute"
+
+    -Q*S*--     SubObject    "BeamMacroFileList"
+
+    -Q*S*--     ObjString    "BinArchitectureDirectory"
+
+    -Q*S*-E  EnumeratedList  "BlockLayout"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0          Aperture "Aperture"
+                    1      Supplemental "Supplemental"
+
+    -Q*S*--     SubObject    "BolusList"
+
+    -Q*S*--     SubObject    "BrachyDB"
+
+    -----A-        ---       "BrachyMacroExecute"
+
+    -Q*S*--     SubObject    "BrachyMacroFileList"
+
+    -Q-----        ---       "BrachyVersionMatches"
+
+    -Q-----        ---       "CTSimLaserAutoplaceSensitivity"
+
+    -----A-        ---       "CancelBeamModifierEditing"
+
+    -----A-        ---       "CancelRoiEditing"
+
+    -----A-        ---       "CauseMemoryFailure"
+
+    -Q-S---        ---       "ChangeShiftDirectionWidgets"
+
+    -----A-        ---       "CheckDecubitusRightOrLeft"
+
+    ---S---        ---       "CheckForFileErrors"
+
+    -----A-        ---       "CheckMatchedMRNumber"
+
+    -----A-        ---       "CheckMatchedPatientName"
+
+    -----A-        ---       "CheckMatchedPatientPosition"
+
+    -----A-        ---       "CheckMatchedPixelValue"
+
+    -----A-        ---       "CheckMatchedScanAcquisition"
+
+    -----A-        ---       "CheckMatchedVisOnly"
+
+    -----A-        ---       "CheckOKToConcat"
+
+    -----A-        ---       "CheckSliceOverlap"
+
+    -Q-----        ---       "CheckUserName"
+
+    -----A-        ---       "ClearDiskFullHappened"
+
+    -Q*S*--       Bool       "CloseMLCLeavesForElekta"
+
+    -Q*S*--     SubObject    "ColorList"
+
+    -Q*S*--     SubObject    "ColorPrint"
+
+    -Q*S*--     SubObject    "ColorPrinterControl"
+
+    -----A-        ---       "ComputeAllRoiStats"
+
+    -Q-----        ---       "ComputedProfileHierarchy"
+
+    -----A-        ---       "ConcatVolumeList"
+
+    -----A-        ---       "ConfirmLockPlan"
+
+    -Q-----        ---       "ConfirmOutputPlan"
+
+    -Q-----        ---       "ConfirmPoiReposition"
+
+    -Q-----        ---       "ConfirmReportPrint"
+
+    -Q-----        ---       "ConfirmTrialColorPrint"
+
+    -Q-----        ---       "ConfirmTrialPrint"
+
+    -Q-S---        ---       "ControlPanel"
+
+    -----A-        ---       "CopyCurrentRoi"
+
+    -----A-        ---       "CopyCurrentTrial"
+
+    ---S---        ---       "CreateMenuless2dViewingWindowInParent"
+
+    ---S---        ---       "CreateMenulessViewingWindowInParent"
+
+    -----A-        ---       "CreateNewBeam"
+
+    -----A-        ---       "CreateNewPOI"
+
+    -----A-        ---       "CreateNewROI"
+
+    ---S---        ---       "CreateViewingWindowInParent"
+
+    -Q*S*--     SubObject    "CreateWindowConfig"
+
+    PQ*S*-E  EnumeratedList  "CtSimBeamLayout"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0             Setup "Setup"
+                    1          Geometry "Geometry"
+                    2         Modifiers "Modifiers"
+
+    PQ*S*-E  EnumeratedList  "CtSimLayout"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0            Single "Single"
+                    1        Orthogonal "Orthogonal"
+                    2           4-slice "4-slice"
+                    3      9-sliceOrtho "9-sliceOrtho"
+                    4           9-slice "9-slice"
+                    5          LargeDRR "LargeDRR"
+                    6          LargeBEV "LargeBEV"
+                    7  LargeBEVSmallREV "LargeBEVSmallREV"
+                    8     SingleWithDVH "SingleWithDVH"
+                    9    BigOrthoWith3D "BigOrthoWith3D"
+
+    -Q*S*-E  EnumeratedList  "CtSimSetupLayout"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0     Couch Removal "Couch Removal"
+                    1      Localization "Localization"
+
+    -Q*S*--       Bool       "CtToDensityModified"
+
+    -Q*S*--     SubObject    "CtToDensityTableList"
+
+    -Q*S---        Int       "CurrentVolumeUsedForMBS"
+
+    -Q*S*--     SubObject    "CutplaneList"
+
+    -Q-S---        ---       "CutplaneMode"
+
+    -Q-----        ---       "CutplaneModeList"
+
+    -Q*S*--     SubObject    "DCRPresetsList"
+
+    -Q*S*--     SubObject    "DICOM"
+
+    PQ*S*--     ObjString    "DRRCtToDensityTableName"
+
+    -Q*S*--     SubObject    "DRRWindowLevelList"
+
+    PQ*S*--     SubObject    "DVHGroup"
+
+    -Q*S*--     SubObject    "DVHList"
+
+    -Q*S*--     SubObject    "DVHPlotStyle"
+
+    -Q*S*--     SubObject    "DeadObjectList"
+
+    -Q*S*--       Bool       "DecubitusRightOrLeft"
+
+    -Q*S*--     SubObject    "DefaultReport"
+
+    PQ*S*--     SubObject    "Deform"
+
+    ---S---        ---       "DeleteVolumeSlice"
+
+    -Q*S*--     SubObject    "DeletedSliceVolume"
+
+    -Q*S*--      VoidPtr     "DeletedSliceVolumeObject"
+
+    -----A-        ---       "DestroyCurrentROI"
+
+    -----A-        ---       "DestroyInterfaceObjects"
+
+    -Q*S*--     SubObject    "DigitizerControl"
+
+    -----A-        ---       "DirtyQuit"
+
+    -Q-S---        ---       "DiskHighWaterMark"
+
+    -Q*S---       Bool       "DisplayCTImage"
+
+    -Q*S*--       Bool       "DisplayCurrentFilmBB"
+
+    -Q*S*--       Bool       "DisplayCurrentVolumeBB"
+
+    -Q*S*--       Bool       "DisplayFusionSixWindowLayout"
+
+    -Q*S*--     SubObject    "DisplayKey"
+
+    -Q*S*--     SubObject    "DisplayList"
+
+    -Q*S*--       Bool       "DisplayLocalNTCPList"
+
+    -Q-----        ---       "DistanceBetweenPoints"
+
+    -----A-        ---       "DoCurrentFilmBBDisplay"
+
+    -----A-        ---       "DoCurrentVolumeBBDisplay"
+
+    -Q-----        ---       "DoseDisplayFormat"
+
+    -Q-----        ---       "DoseDistributionsExist"
+
+    -Q-----        ---       "DoseUnitsToUserScalar"
+
+    -Q-----        ---       "DoseValueUnits"
+
+    -Q-S---        ---       "DrawMLC"
+
+    -Q*S*--       Bool       "DumpProfiles"
+
+    -----A-        ---       "DumpWindowForReport"
+
+    -Q*S*--     SubObject    "DyeKom"
+
+    -Q-----        ---       "ElectronVersionMatches"
+
+    -----A-        ---       "EndRecoverOn"
+
+    -----A-        ---       "ExportDICOMRT"
+
+    -Q*S*--     SubObject    "ExportFileList"
+
+    PQ*S*-E  EnumeratedList  "ExportOption"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0             Laser "Laser"
+                    1      Block Cutter "Block Cutter"
+                    2       Compensator "Compensator"
+                    3               MLC "MLC"
+                    4             R & V "R & V"
+                    5              RTOG "RTOG"
+                    6          DICOM RT "DICOM RT"
+                    7       DICOM Image "DICOM Image"
+
+    -----A-        ---       "ExportRoi"
+
+    -Q*S*-E  EnumeratedList  "FdmDvhLayout"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0  Dose volume histogram "Dose volume histogram"
+                    1  Biological response "Biological response"
+
+    -Q*S*-E  EnumeratedList  "FdmTrialRoiSelectLayout"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0            Trials "Trials"
+                    1              ROIs "ROIs"
+
+    -Q*S*--     SubObject    "FieldHelp"
+
+    -Q-S---        ---       "FusionDisplayMode3D"
+
+    -Q-----        ---       "FusionDisplayModeList3D"
+
+    -Q*S*--       Bool       "FusionMode"
+
+    -Q*S*--     SubObject    "FusionVolumeList"
+
+    -Q-----        ---       "FusionVolumeNames"
+
+    -Q-----        ---       "HasAnyValidBrachySources"
+
+    -Q-----        ---       "HasAnyValidMachinesAndEnergies"
+
+    -Q*S*--     SubObject    "HotScriptList"
+
+    -Q*S*--     SubObject    "ImageColorList"
+
+    -----A-        ---       "ImageConcatModeMakeVolumeCurrent"
+
+    -Q*S*-E  EnumeratedList  "ImageEditorLayout"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0       Multi-slice "Multi-slice"
+                    1            Single "Single"
+
+    -Q*S*--       Bool       "ImageEditorMode"
+
+    -Q*S*--       Bool       "ImageSetConcatMode"
+
+    -----A-        ---       "ImportRoi"
+
+    -Q*S*--     SubObject    "ImportedProfile"
+
+    -Q*S*-E  EnumeratedList  "ImrtLayout"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0         SingleBEV "SingleBEV"
+                    1      MultipleBEVs "MultipleBEVs"
+                    2           MLCCine "MLCCine"
+
+    -Q*S*-E  EnumeratedList  "ImrtTemplateLayout"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0      Optimization "Optimization"
+                    1        Conversion "Conversion"
+
+    ---S---        ---       "InfoMessage"
+
+    -----A-        ---       "InitializePlan"
+
+    -----A-        ---       "InitializeRoiExpand"
+
+    -----A-        ---       "InitializeVolume"
+
+    -Q*S*--     ObjString    "InstitutionDirectory"
+
+    -Q-----        ---       "InvalidateStereoLocalizerTrialDoseAndBolusVolume"
+
+    -Q-----        ---       "InvalidateTrialDoseAndBolusVolume"
+
+    -Q-----        ---       "InvalidateTrialDoseAndBolusWhenCouchPosChanges"
+
+    -Q*S*-E  EnumeratedList  "IrregLayout"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0            Points "Points"
+                    1   Aperture Blocks "Aperture Blocks"
+                    2  Supplemental Blocks "Supplemental Blocks"
+
+    -Q*S*--       Bool       "IrregMode"
+
+    -Q*S*--       Bool       "Is2d"
+
+    -Q*S*--       Bool       "IsAcQLoc"
+
+    -Q*S*--       Bool       "IsCTSim"
+
+    -Q*----       Bool       "IsCopyToPhantom"
+
+    -Q-----        ---       "IsDICOMExport"
+
+    -Q*----       Bool       "IsOkForAcQsim3"
+
+    -Q*----       Bool       "IsOkForAutoFusion"
+
+    -Q*----       Bool       "IsOkForBrachy"
+
+    -Q*----       Bool       "IsOkForBrachyTG43"
+
+    -Q*----       Bool       "IsOkForCArm"
+
+    -Q-----        ---       "IsOkForClinicalUse"
+
+    -Q*----       Bool       "IsOkForConformalArc"
+
+    -Q*----       Bool       "IsOkForDICOMPrint"
+
+    -Q*----       Bool       "IsOkForDICOMRT"
+
+    -Q*----       Bool       "IsOkForDynamicWedge"
+
+    -Q*----       Bool       "IsOkForElectron"
+
+    -Q*S*--       Bool       "IsOkForFusion"
+
+    -Q*----       Bool       "IsOkForIMRT"
+
+    -Q*S*--       Bool       "IsOkForMBS"
+
+    -Q*----       Bool       "IsOkForMLCSegments"
+
+    -Q*----       Bool       "IsOkForOpenRTPExport"
+
+    -Q*----       Bool       "IsOkForPhoton"
+
+    -Q*----       Bool       "IsOkForStereo"
+
+    -Q*----       Bool       "IsOkToPrintPlans"
+
+    -Q*----       Bool       "IsOkToSavePlans"
+
+    -Q*S*--       Bool       "IsPhysicianReview"
+
+    -Q*----       Bool       "IsPhysicsMode"
+
+    -Q*----       Bool       "IsProductionVersion"
+
+    -Q*S*--       Bool       "IsProstatePrePlan"
+
+    -Q*S---       Bool       "IsResearchMode"
+
+    -Q*S*--     SubObject    "IsodoseControl"
+
+    -Q*S*--      VoidPtr     "IsotopeList"
+
+    -Q*S*--     SubObject    "KeyDependencyList"
+
+    -Q-----        ---       "LaserLocalizerTrialConfirmDoseChange"
+
+    -Q*S*--     SubObject    "LastLoadedRoiList"
+
+    -Q*S*--       Bool       "LimitRadiusOnAutoplace"
+
+    -----A-        ---       "LoadAndValidateProgramRevision"
+
+    -----A-        ---       "LoadBolus"
+
+    -----A-        ---       "LoadBolusROI"
+
+    ---S---        ---       "LoadColorFile"
+
+    -----A-        ---       "LoadDCRPresetsPresets"
+
+    ---S---        ---       "LoadDCRPresetsSystemPresets"
+
+    ---S---        ---       "LoadDRRWinLevSystemPresets"
+
+    -----A-        ---       "LoadDRRWindowLevelPresets"
+
+    -----A-        ---       "LoadDoseVolHist"
+
+    -----A-        ---       "LoadGridLinearParameters"
+
+    -----A-        ---       "LoadIsodoses"
+
+    -----A-        ---       "LoadLaserLocalizer"
+
+    -----A-        ---       "LoadPatientSetup"
+
+    -----A-        ---       "LoadPhysicsDoseEngineParameters"
+
+    -----A-        ---       "LoadPinnPreferences"
+
+    -----A-        ---       "LoadPluginData"
+
+    -----A-        ---       "LoadPointLinearParameters"
+
+    -----A-        ---       "LoadPointsOfInterest"
+
+    -----A-        ---       "LoadRegionsOfInterest"
+
+    -----A-        ---       "LoadRoiManager"
+
+    -----A-        ---       "LoadStereoLocalizers"
+
+    -----A-        ---       "LoadSyntegraPrefs"
+
+    ---S---        ---       "LoadSystemPresetsWithOverwrite"
+
+    -----A-        ---       "LoadTrials"
+
+    -----A-        ---       "LoadVolumeDisplayList"
+
+    -----A-        ---       "LoadWindowLevelPresets"
+
+    -Q*S*--     SubObject    "LocalNTCPList"
+
+    -----A-        ---       "LockLocalNTCPList"
+
+    -----A-        ---       "LockPlan"
+
+    -Q*S*--     SubObject    "MACTControl"
+
+    -Q-----        ---       "MBSFilteredVolume"
+
+    -Q-----        ---       "MBSVolume"
+
+    -Q*S*--        Int       "MBSVolumeZDim"
+
+    -Q*S*--       Float      "MBSVolumeZVoxelSize"
+
+    -Q*S*--     SubObject    "MCData"
+
+    -Q*S*--     SubObject    "MLCCine"
+
+    PQ*S*--        Int       "MLCTransArrayStartX"
+
+    PQ*S*--        Int       "MLCTransArrayStartY"
+
+    PQ*S*--        Int       "MLCTransArrayStopX"
+
+    PQ*S*--        Int       "MLCTransArrayStopY"
+
+    -Q*S*--      VoidPtr     "MLCTypeList"
+
+    -Q*S*--     SubObject    "MachineDB"
+
+    -Q*S*--      VoidPtr     "MachineList"
+
+    -Q*S*--      VoidPtr     "MachineTypeList"
+
+    -----A-        ---       "MakeAllVolumesRenderable"
+
+    -Q*S*--       Bool       "MakeProstatePrePlanPhantom"
+
+    -Q*S*--       Bool       "MakeWaterPhantom"
+
+    -Q*S*-E  EnumeratedList  "ManualFusionLayout"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0  Other Image Sets "Other Image Sets"
+                    1        Transforms "Transforms"
+
+    -Q*S*--       Bool       "MatchedMRNumber"
+
+    -Q*S*--       Bool       "MatchedPatientName"
+
+    -Q*S*--       Bool       "MatchedPatientPosition"
+
+    -Q*S*--       Bool       "MatchedPixelValue"
+
+    -Q*S*--       Bool       "MatchedScanAcquisition"
+
+    -----A-        ---       "MultipleROIplaceLaserCenter"
+
+    -----A-        ---       "MultipleROIplacePOI"
+
+    -Q*S*--     SubObject    "NetReviewControl"
+
+    ---S---        ---       "NonModalInfoMessage"
+
+    ---S---        ---       "NonModalWarningMessage"
+
+    PQ*S*--       Bool       "OKForSyntegraInPinnacle"
+
+    -Q*S*--       Bool       "OKToConcat"
+
+    -Q*S*--     SubObject    "ObjectBrowser"
+
+    -----A-        ---       "OnlyRenderCurrentVolume"
+
+    -----A-        ---       "OpenOrthoDRRSWindow"
+
+    -Q*S*--     ObjString    "OpenRTPFilePrefix"
+
+    -Q*S*--     SubObject    "OpenRTPOutputFileList"
+
+    -------        ---       "OptStateDescription"
+
+    -Q*S*--       Bool       "OutputMLCTransArray"
+
+    -Q-----        ---       "PatientDirectory"
+
+    -Q*S*--     SubObject    "PatientSetup"
+
+    -Q-----        ---       "PhotonOFVersionMatches"
+
+    -Q*S*--     SubObject    "PhotonPhysicsControl"
+
+    -Q-----        ---       "PhotonVersionMatches"
+
+    -Q*S*--     SubObject    "PhysicsLock"
+
+    -Q-S---        ---       "PinnPreferences"
+
+    -Q-----        ---       "PlanFilesExist"
+
+    -Q*S*--     SubObject    "PlanInfo"
+
+    -Q*S*--       Bool       "PlanLoadingInProgress"
+
+    -Q-----        ---       "PlanName"
+
+    -Q*S*--     SubObject    "PlanningPrefs"
+
+    -----A-        ---       "PlaySystemScript"
+
+    -Q*S*--     ObjString    "PluginDirectory"
+
+    -Q*S*--     SubObject    "PluginManager"
+
+    PQ*S*--     SubObject    "PluginModules"
+
+    PQ*S*-E  EnumeratedList  "PoiAutoplaceMode"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0               Box "Box"
+                    1            Sphere "Sphere"
+                    2          Centroid "Centroid"
+
+    -Q*S*--     SubObject    "PoiDiameterList"
+
+    -Q*S*--     SubObject    "PoiList"
+
+    -Q*S*--       Bool       "PreferenceOnlyMode"
+
+    -----A-        ---       "PrintDoseProfilePlot"
+
+    -----A-        ---       "PrintDoseProfilePlots"
+
+    -----A-        ---       "PrintOutputFactorReportFromPhysicsMode"
+
+    -----A-        ---       "PrintOutputFactorReportFromPlanning"
+
+    -----A-        ---       "PrintPhotonModelReport"
+
+    -----A-        ---       "PrintPhysicsProfileReport"
+
+    -----A-        ---       "PrintWindowDumpReport"
+
+    -----A-        ---       "PrintWindowToFilm"
+
+    -Q*S*--     SubObject    "PrinterControl"
+
+    -----A-        ---       "ProceedPrintWindow"
+
+    -Q*S*--       Bool       "ProstatePrePlanDisplayTools"
+
+    -Q*S*-E  EnumeratedList  "ProstatePrePlanLayout"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0       Multi-slice "Multi-slice"
+                    1            Single "Single"
+                    2        Orthogonal "Orthogonal"
+                    3              Dual "Dual"
+
+    -Q*----     ObjString    "PublicScriptDirectory"
+
+    -Q*S*--     SubObject    "PublishedBeamSpectrumList"
+
+    -Q*S*-E  EnumeratedList  "QAToolsLayout"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0       Compare DVH "Compare DVH"
+                    1   Dose Difference "Dose Difference"
+                    2     Dose At Depth "Dose At Depth"
+                    3         Sum Doses "Sum Doses"
+
+    -----A-        ---       "Quit"
+
+    -----A-        ---       "QuitWithSave"
+
+    -Q*S*--       Bool       "ROIDataIsPickerAcQsim"
+
+    PQ*S*-E  EnumeratedList  "RVDestination"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0             Local "Local"
+                    1            Remote "Remote"
+
+    PQ*S*--     ObjString    "RVExportName"
+
+    -Q*S*--       Bool       "RVExportOfSegmentsOk"
+
+    PQ*S*-E  EnumeratedList  "RVFormat"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0             IMPAC "IMPAC"
+                    1            LANTIS "LANTIS"
+                    2             VARIS "VARIS"
+                    3        MITSUBISHI "MITSUBISHI"
+                    4         PRIMEVIEW "PRIMEVIEW"
+                    5            IMFAST "IMFAST"
+                    6           TOSHIBA "TOSHIBA"
+
+    PQ*S*--     ObjString    "RVRemoteDirectory"
+
+    PQ*S*--     ObjString    "RVRemoteHost"
+
+    PQ*S*--     ObjString    "RVRemoteLogin"
+
+    PQ*S*--     ObjString    "RVRemotePassword"
+
+    -----A-        ---       "RVSaveFTPDefaults"
+
+    -Q*S*--       Bool       "ReadOnly"
+
+    PQ*S*--       Bool       "RecommendReadOnly"
+
+    -----A-        ---       "RecomputeRoiStatsIfDensity"
+
+    -Q*S*--       Bool       "RecoverOn"
+
+    -Q*S*--       Bool       "RecoveryMode"
+
+    ---S---        ---       "Remove2DCurrentBeam"
+
+    ---S---        ---       "RemoveBevAndRevCurrentBeam"
+
+    ---S---        ---       "RemoveBevCurrentBeam"
+
+    -----A-        ---       "RemoveDoseDistributions"
+
+    ---S---        ---       "RemoveRevCurrentBeam"
+
+    PQ*S*--     ObjString    "ReportComment"
+
+    -Q*S*--       Bool       "ReportCurrentPhotonModel"
+
+    -Q*S*--     SubObject    "ReportRevision"
+
+    -----A-        ---       "ResetCtSimSetupDisplay"
+
+    -----A-        ---       "ResetDefaultMCPoiPosition"
+
+    -----A-        ---       "ResetDefaultPoiPosition"
+
+    ---S---        ---       "ResetImagesForVolumeChange"
+
+    ---S---        ---       "RestoreVolumeSlice"
+
+    -Q*S*--     SubObject    "RoiExpandControl"
+
+    -Q*S*--     ObjString    "RoiExportFile"
+
+    -Q*S*--     SubObject    "RoiImportFileList"
+
+    -Q*S*-E  EnumeratedList  "RoiLayout"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0     Visualization "Visualization"
+                    1        Parameters "Parameters"
+                    2        Statistics "Statistics"
+                    3           Density "Density"
+
+    -Q*S*--     SubObject    "RoiList"
+
+    -Q*S*--     SubObject    "RoiManager"
+
+    -Q*S*--     SubObject    "RoiMultipleControl"
+
+    -Q*S*--     SubObject    "RoiTemplateLib"
+
+    PQ*S*--     SubObject    "Root"
+
+    -----A-        ---       "RotateAboutY"
+
+    -Q*S*--       Bool       "SaveAutoFilesOnAbnormalExit"
+
+    -----A-        ---       "SaveDCRPresetsPresets"
+
+    -----A-        ---       "SaveDRRWindowLevelPresets"
+
+    -----A-        ---       "SaveDefaultIsodoseLines"
+
+    -----A-        ---       "SaveLocalNTCPList"
+
+    -----A-        ---       "SavePinnPreferences"
+
+    -----A-        ---       "SavePlan"
+
+    -----A-        ---       "SavePlanInfo"
+
+    -----A-        ---       "SavePoiDiameterList"
+
+    -----A-        ---       "SaveReportRevision"
+
+    -----A-        ---       "SaveSyntegraPrefs"
+
+    -----A-        ---       "SaveSyntheticHeader"
+
+    ---S---        ---       "SaveVolumeBeingEdited"
+
+    -----A-        ---       "SaveWindowLevelPresets"
+
+    -Q*S---       Bool       "SelectCurrentFromList"
+
+    -Q*S---       Bool       "SetPhysicsModeAtStartup"
+
+    -----A-        ---       "SetResearchMode"
+
+    ---S---        ---       "SetUpFileErrorDependency"
+
+    -----A-        ---       "SetUpInterfaceObjects"
+
+    -----A-        ---       "SetUpPhysicsControl"
+
+    ---S---        ---       "SetVersionToTest"
+
+    -----A-        ---       "SetVolumeBeingEdited"
+
+    ---S---        ---       "Setup2DCurrentBeam"
+
+    ---S---        ---       "SetupBevAndRevCurrentBeam"
+
+    ---S---        ---       "SetupBevCurrentBeam"
+
+    ---S---        ---       "SetupRevCurrentBeam"
+
+    -----A-        ---       "SetupViewWindowConfig"
+
+    -Q*S*--       Bool       "ShowScatterArray"
+
+    -Q*S*--     ObjString    "SiteDirectory"
+
+    -----A-        ---       "StartAcQSim"
+
+    -----A-        ---       "StartCTSim"
+
+    -----A-        ---       "StartCTSimReadOnly"
+
+    -----A-        ---       "StartFusionMode"
+
+    -----A-        ---       "StartIMRT"
+
+    -----A-        ---       "StartOnLineManual"
+
+    -----A-        ---       "StartPhysicsMode"
+
+    -----A-        ---       "StartPinnacle2d"
+
+    -Q*S*--     ObjString    "StaticDirectory"
+
+    -Q*S*--     SubObject    "StereoFrameList"
+
+    -Q-----        ---       "StereoLocalizerTrialConfirmDoseChange"
+
+    -Q-----        ---       "StereoVersionMatches"
+
+    -Q*S*--     SubObject    "Store"
+
+    -Q*S*-E  EnumeratedList  "SyntegraPanel"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0            Manual "Manual"
+                    1              Auto "Auto"
+                    2               ROI "ROI"
+
+    -Q*S*--     SubObject    "SyntegraPrefs"
+
+    -Q*S*-E  EnumeratedList  "SyntegraView"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0      FusionSingle "FusionSingle"
+                    1        FusionDual "FusionDual"
+                    2       FusionOrtho "FusionOrtho"
+                    3   FusionOrthoNo3D "FusionOrthoNo3D"
+                    4       FusionMulti "FusionMulti"
+                    5    BigOrthoWith3D "BigOrthoWith3D"
+                    6       9SliceOrtho "9SliceOrtho"
+
+    -Q*S*--     SubObject    "SystemNTCPList"
+
+    -Q*----     ObjString    "SystemScriptDirectory"
+
+    -Q*S*--      VoidPtr     "TempReport"
+
+    -Q*S*--     SubObject    "TestTimeDifference"
+
+    ---S---        ---       "ToggleHighlightColor"
+
+    -Q*S---       Bool       "TransmitMLCLeaves"
+
+    -Q*S*--       Bool       "TrialDoseInvalidWhileFiling"
+
+    -Q*S*--     SubObject    "TrialList"
+
+    -Q*S*--     SubObject    "TrialPoiReport"
+
+    -----A-        ---       "UnloadAndReloadPlan"
+
+    -----A-        ---       "UpdatePhantomPlanPosition"
+
+    -Q*S*--       Bool       "UseGyForDoseDisplay"
+
+    -Q-----        ---       "ValidateFileListSave"
+
+    -Q*S*--     SubObject    "ViewWindowConfigList"
+
+    -Q*S*--     SubObject    "ViewWindowList"
+
+    -Q*S*--     SubObject    "VolumeBeingEdited"
+
+    -Q*S*--      VoidPtr     "VolumeBeingEditedObject"
+
+    -Q*S*--     SubObject    "VolumeDisplayList"
+
+    -Q*S*-E  EnumeratedList  "VolumeEditorLayout"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0       Multi-slice "Multi-slice"
+                    1            Single "Single"
+                    2        Orthogonal "Orthogonal"
+
+    -Q*S*--       Bool       "VolumeEditorMode"
+
+    -Q*S*--     SubObject    "VolumeList"
+
+    -Q*S*--     SubObject    "VolumeOptimizer"
+
+    ---S---        ---       "WaitMessage"
+
+    -Q-----        ---       "WaitMessageIsOn"
+
+    -----A-        ---       "WaitMessageOff"
+
+    ---S---        ---       "WarnAboutComputedProfiles"
+
+    -Q*S*--       Bool       "WarnAboutNTCP"
+
+    ---S---        ---       "WarningMessage"
+
+    -Q*S*--     SubObject    "WindowLevelList"
+
+    -Q*S*--     SubObject    "WindowList"
+
+    -----A-        ---       "WriteAAPMOutput"
+
+    -----A-        ---       "WriteOpenRTPOutput"
+
+    -Q*S*--     ObjString    "WriteVolumePath"
+
+    -Q*S*--     ObjString    "WriteVolumePrefix"
+

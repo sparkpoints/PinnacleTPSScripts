@@ -1,0 +1,76 @@
+//*************************************
+// Author Berdondini Andrea           *
+// e-mail andrea.berdondini@libero.it *
+// Azienda U.S.L. Ravenna (Italy)     *
+//*************************************
+
+DVHList.Current.AutoComputeBinSize=0;
+Store.At.numero.Add = 1;
+
+DVHList.Current.BinSizeP=10.0;
+
+//Insert the correct directory path where you have saved the files.
+//Example: my diretory path where I have saved the file is /home/berdondini/script/dvh 
+//Store.StringAt.roiname="/home/berdondini/script/dvh/roi1";
+
+
+
+IF.Store.At.numero.Value.EQUALTO.#"1".THEN = {
+Store.FreeAt.roiname="";
+Store.StringAt.roiname="/home/............../roi1";
+DVHList.Current.Data.Save=Store.StringAt.roiname;
+};
+
+IF.Store.At.numero.Value.EQUALTO.#"2".THEN = {
+Store.FreeAt.roiname="";
+Store.StringAt.roiname="/home/.........../roi2";
+DVHList.Current.Data.Save=Store.StringAt.roiname;
+};
+
+IF.Store.At.numero.Value.EQUALTO.#"3".THEN = {
+Store.FreeAt.roiname="";
+Store.StringAt.roiname="/home/............../roi3";
+DVHList.Current.Data.Save=Store.StringAt.roiname;
+};
+
+IF.Store.At.numero.Value.EQUALTO.#"4".THEN = {
+Store.FreeAt.roiname="";
+Store.StringAt.roiname="/home/............../roi4";
+DVHList.Current.Data.Save=Store.StringAt.roiname;
+};
+
+IF.Store.At.numero.Value.EQUALTO.#"5".THEN = {
+Store.FreeAt.roiname="";
+Store.StringAt.roiname="/home/............../roi5";
+DVHList.Current.Data.Save=Store.StringAt.roiname;
+};
+
+IF.Store.At.numero.Value.EQUALTO.#"6".THEN = {
+Store.FreeAt.roiname="";
+Store.StringAt.roiname="/home/.............../roi6";
+DVHList.Current.Data.Save=Store.StringAt.roiname;
+};
+
+IF.Store.At.numero.Value.EQUALTO.#"7".THEN = {
+Store.FreeAt.roiname="";
+Store.StringAt.roiname="/home/................../roi7";
+DVHList.Current.Data.Save=Store.StringAt.roiname;
+};
+
+IF.Store.At.numero.Value.EQUALTO.#"8".THEN = {
+Store.FreeAt.roiname="";
+Store.StringAt.roiname="/home/................../roi8";
+DVHList.Current.Data.Save=Store.StringAt.roiname;
+};
+
+IF.Store.At.numero.Value.EQUALTO.#"9".THEN = {
+Store.FreeAt.roiname="";
+Store.StringAt.roiname="/home/................../roi9";
+DVHList.Current.Data.Save=Store.StringAt.roiname;
+};
+
+IF.Store.At.numero.Value.EQUALTO.#"10".THEN = {
+Store.FreeAt.roiname="";
+Store.StringAt.roiname="/home/................./roi10";
+DVHList.Current.Data.Save=Store.StringAt.roiname;
+};

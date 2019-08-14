@@ -1,0 +1,12 @@
+// -> PDF_HotScriptList
+// Start POI export call PDF_POIloop to export all POI
+// P3 7.6c
+// Bj 02.08
+
+
+PoiList .#"#0" .MakeCurrent = 1;
+ViewWindowList .# "*".SetSliceToCurrentPoi = "Set Slice To Current POI";
+PoiList. ChildrenEachCurrent.#"@".Script.ExecuteNow = "/usr/local/adacnew/PinnacleSiteData/Scripts/PY/pdf/PDF_POIloop.Script.bj";
+
+// Open Window for Ortho DRR
+Script.ExecuteNow = "/usr/local/adacnew/PinnacleSiteData/Scripts/PY/pdf/PDF_OrthoWindow.Script.bj";

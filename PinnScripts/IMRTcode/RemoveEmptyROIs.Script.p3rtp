@@ -1,0 +1,468 @@
+SavePlan = "Save Plan";
+
+//Store Display Status of each Trial
+Store.FreeAt.DisplayStatTr1 = "";
+Store.FreeAt.DisplayStatTr2 = "";
+Store.FloatAt.DisplayStatTr1 = PluginManager .PlanEvalPlugin .TrialList .#"#0" .Selected;
+Store.FloatAt.DisplayStatTr2 = PluginManager .PlanEvalPlugin .TrialList .#"#1" .Selected;
+
+//Don' display any of het trails on the dvh (faster) 
+PluginManager .PlanEvalPlugin .TrialList .#"*" .Selected = 0;
+
+// Deleting Roi's If there is no curve present
+RoiList .#"#39" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#39" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#38" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#38" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#37" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#37" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#36" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#36" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#35" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#35" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#34" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#34" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#33" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#33" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#32" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#32" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#31" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#31" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#30" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#30" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#29" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#29" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#28" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#28" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#27" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#27" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#26" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#26" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#25" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#25" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#24" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#24" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#23" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#23" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#22" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#22" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#21" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#21" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#20" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#20" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#19" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#19" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#18" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#18" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#17" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#17" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#16" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#16" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#15" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#15" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#14" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#14" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#13" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#13" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#12" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#12" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#11" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#11" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#10" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#10" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#9" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#9" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#8" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#8" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+
+};
+
+RoiList .#"#7" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#7" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+
+};
+
+RoiList .#"#6" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#6" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+
+};
+
+RoiList .#"#5" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#5" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+
+};
+
+RoiList .#"#4" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#4" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+
+};
+
+RoiList .#"#3" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#3" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#2" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#2" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#1" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#1" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#0" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#0" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+// Show the same Trails on the dvh as when starting the script.
+PluginManager .PlanEvalPlugin .TrialList .#"#0" .Selected = Store.FloatAt.DisplayStatTr1;
+PluginManager .PlanEvalPlugin .TrialList .#"#1" .Selected = Store.FloatAt.DisplayStatTr2;
+//Clear store
+Store.FreeAt.DisplayStatTr1 = "";
+Store.FreeAt.DisplayStatTr2 = "";
+
+
+
+
+/* Ë */

@@ -1,0 +1,27 @@
+// -> PDF_DRR
+// opens a Window for POI export
+// P3 7.6c - 8.0m
+// Bj 02.08
+
+
+WaitMessage = " open output Window";
+WaitMessage = " Press shift h";
+// trans sag front Window
+CreateWindowConfig .Rows = "2";
+CreateWindowConfig .Cols = "2";
+CreateWindowConfig .Width = "498";
+CreateWindowConfig .Height = "308";
+CreateWindowConfig .XPosition = "-1";
+CreateWindowConfig .YPosition = "128";
+CreateWindowConfig .WindowType .Index = 4;
+CreateWindowConfig .Realize = "Create Window";
+ViewWindowList .# "*".Zoom = "0.30";
+ViewWindowList .Current .Enter3dMode = "Enter 3D Mode";
+ViewWindowList .Current .BEV = "None";
+ViewWindowList .Current .ImageType = "DRR -- High Quality";
+ViewWindowList .Current .Render = "Render";
+TrialList .Current .BeamList .# "*".Display2d = 0;
+TrialList .Current .BeamList .# "*".Display3d = 0;
+WaitMessageOff = "";
+
+Store.StringAt.Hint = "POI";

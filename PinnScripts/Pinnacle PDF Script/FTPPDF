@@ -1,0 +1,7 @@
+#!/bin/sh
+# FTPs all PDF files to a server
+
+UserName=pdf
+Password=pdf
+
+echo "open 10.0.0.1\n user $UserName $Password\n bin\n prompt off\n lcd /home/p3rtp\n mput *.pdf\n bye\n" | ftp -nvi

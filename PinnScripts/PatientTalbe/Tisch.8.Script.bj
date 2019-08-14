@@ -1,0 +1,164 @@
+// Einsetzen eines Tisches 
+// Idee Peter Mohr 
+// Bj 02.08
+// P8
+
+
+WaitMessage = "Setze Punkt Tisch Mitte";
+IF.PoiList.#"!ContainsObject".TischMitte.THEN.CreateNewPOI = "Add Point Of Interest";
+IF.PoiList.#"!ContainsObject".TischMitte.THEN.PoiList .Last .Color = "grey";
+IF.PoiList.#"!ContainsObject".TischMitte.THEN.PoiList .Last .XCoord = TrialList .Current .LaserLocalizer .LaserCenter .XCoord;
+IF.PoiList.#"!ContainsObject".TischMitte.THEN.PoiList .Last .ZCoord = TrialList .Current .LaserLocalizer .LaserCenter .ZCoord;
+IF.PoiList.#"!ContainsObject".TischMitte.THEN.PoiList .Last .YCoord = TrialList .Current .CouchRemovalYCoordinate ;
+IF.PoiList.#"!ContainsObject".TischMitte.THEN.PoiList .Last .Name = "TischMitte";
+
+WaitMessage = "Loesche alten Tisch";
+IF.RoiList.ContainsObject.Tisch.THEN.RoiList .Tisch .MakeCurrent = 1;
+IF.RoiList.ContainsObject.Tisch.THEN.CancelRoiEditing = "Delete Selected ROI   (Tisch)";
+IF.RoiList.ContainsObject.Tisch.THEN.RoiList .Tisch .Destroy = "Delete Selected ROI   (Tisch)";
+
+IF.RoiList.ContainsObject.TischSpace.THEN.RoiList .TischSpace .MakeCurrent = 1;
+IF.RoiList.ContainsObject.TischSpace.THEN.CancelRoiEditing = "Delete Selected ROI   (TischSpace)";
+IF.RoiList.ContainsObject.TischSpace.THEN.RoiList .TischSpace .Destroy = "Delete Selected ROI   (TischSpace)";
+
+WaitMessage = "Bestimme Tisch Mitte";
+// Bilde Befehlsstring Tisch Mitte x
+Store .StringAt .Befehl = "echo ";
+Store .At .Befehl .AppendString = PoiList .TischMitte .XCoord;
+Store .At .Befehl .AppendString = " > /home/p3rtp/Export/tmp/Tisch.csv";
+SpawnCommand = Store .StringAt .Befehl;
+// Loesche Befehlsstring
+Store.RemoveAt .Befehl = "";
+
+// Bilde Befehlsstring Tisch Mitte y
+Store .StringAt .Befehl = "echo "; 
+Store .At .Befehl .AppendString = PoiList .TischMitte .YCoord;
+Store .At .Befehl .AppendString = " >> /home/p3rtp/Export/tmp/Tisch.csv";
+SpawnCommand = Store .StringAt .Befehl;
+// Loesche Befehlsstring
+Store.RemoveAt .Befehl = "";
+
+// Bilde Befehlsstring Tisch Mitte z
+Store .StringAt .Befehl = "echo ";
+Store .At .Befehl .AppendString = PoiList .TischMitte .ZCoord;
+Store .At .Befehl .AppendString = " >> /home/p3rtp/Export/tmp/Tisch.csv";
+SpawnCommand = Store .StringAt .Befehl;
+// Loesche Befehlsstring
+Store.RemoveAt .Befehl = "";
+
+// Setze Punkt in Bildmitte
+CreateNewPOI = "Add Point Of Interest";
+
+// Bilde Befehlsstring Bild Mitte x
+Store .StringAt .Befehl = "echo "; 
+Store .At .Befehl .AppendString = PoiList .Last .XCoord;
+Store .At .Befehl .AppendString = " >> /home/p3rtp/Export/tmp/Tisch.csv";
+SpawnCommand = Store .StringAt .Befehl;
+// Loesche Befehlsstring
+Store.RemoveAt .Befehl = "";
+
+// Bilde Befehlsstring Bild Mitte y
+Store .StringAt .Befehl = "echo ";
+Store .At .Befehl .AppendString = PoiList .Last .YCoord;
+Store .At .Befehl .AppendString = " >> /home/p3rtp/Export/tmp/Tisch.csv";
+SpawnCommand = Store .StringAt .Befehl;
+// Loesche Befehlsstring
+Store.RemoveAt .Befehl = "";
+
+// Loesche Punkt Bild Bitte
+PoiList .Last .Destroy = "Delete Selected POI   (POI_1)";
+
+
+WaitMessage = "Berechne ROI";
+// bilde ROI Tisch
+SpawnCommand = "awk -f /home/p3rtp/Export/buildTisch.awk /home/p3rtp/Export/tmp/Tisch.csv > /home/p3rtp/Export/tmp/Tisch.roi";
+
+// bilde ROI Tischspace
+SpawnCommand = "awk -f /home/p3rtp/Export/buildTischSpace.awk /home/p3rtp/Export/tmp/Tisch.csv > /home/p3rtp/Export/tmp/TischSpace.roi";
+
+
+
+WaitMessage = "Importiere Tisch";
+// Importiere TischSpace
+RoiImportFileList .File = "/home/p3rtp/Export/tmp/TischSpace.roi";
+ImportRoi = "OK";
+
+// Kopiere TischSpace in erste und letzte Schicht
+RoiList .Last .MakeCurrent = 1;
+ViewWindowList .Current .UserSliceNumber = "1";
+RoiList .Current .CopyCurvesOnLastSliceToSlice = ViewWindowList .Current .Address;
+ViewWindowList .Current .UserSliceNumber = ViewWindowList .Current .NumberOfSlices ;
+RoiList .Current .CopyCurvesOnLastSliceToSlice = ViewWindowList .Current .Address;
+
+// Interpoliere TischSpace
+RoiList .Current .InterpolateContours = "Interpolate between all contours of TischSpace";
+RoiList .Current .Display2d = "Off";
+ViewWindowList .Current .SetSliceToCurrentPoi = "Set Slice To Current POI";
+
+// Importiere Tisch
+RoiImportFileList .File = "/home/p3rtp/Export/tmp/Tisch.roi";
+ImportRoi = "OK";
+
+//Kopiere Tisch in erste und letzte Schicht
+RoiList .Last .MakeCurrent = 1;
+ViewWindowList .Current .UserSliceNumber = "1";
+RoiList .Current .CopyCurvesOnLastSliceToSlice = ViewWindowList .Current .Address;
+ViewWindowList .Current .UserSliceNumber = ViewWindowList .Current .NumberOfSlices ;
+RoiList .Current .CopyCurvesOnLastSliceToSlice = ViewWindowList .Current .Address;
+
+// Interpoliere Tisch
+RoiList .Current .InterpolateContours = "Interpolate between all contours of Tisch";
+ViewWindowList .Current .SetSliceToCurrentPoi = "Set Slice To Current POI";
+
+// Subtrahiere den Tisch vom Space
+CreateNewROI = "Add Region Of Interest";
+RoiList .Last .Name = "TischSpace";
+RoiList .Last .Color = "grey";
+RoiList .Last .Display2d = "Off";
+RoiList .Last .Density = "0.1";
+
+
+RoiList .#"*" .ResetRoiExpandState = "Clear All";
+
+RoiList .TischTempSpace.RoiExpandState = "Source";
+RoiExpandControl .CheckTargetRoi = RoiList .TischTempSpace.Address;
+
+RoiList .Tisch .RoiExpandState = "Avoid Interior";
+RoiExpandControl .CheckTargetRoi = RoiList .Tisch.Address;
+
+RoiExpandControl .TargetRoi = "TischSpace";
+RoiExpandControl .CreateNewTarget = "0";
+
+RoiExpandControl .Expand = "1";
+RoiExpandControl .DoExpand = "Expand";
+
+RoiList .TischTempSpace .Destroy = "Delete Selected ROI   (TischTempSpace)";
+
+RoiList .#"*" .ResetRoiExpandState = "Clear All";
+RoiExpandControl .TargetRoi = "---";
+RoiExpandControl .CreateNewTarget = "0";
+
+
+WaitMessage = "Reduziere Punkte in der ROI";
+// Reduziere Punktanzahl
+RoiList .Tisch .ReduceArea = "Reduce Current ROI by Area...";
+RoiList .TischSpace .ReduceArea = "Reduce Current ROI by Area...";
+WaitMessageOff = "";
+
+// Ueberschrreibe CT Werte
+RoiList .TischSpace .OverrideDensity = 1 ;
+RoiList .Tisch .OverrideDensity = 1 ;
+
+// Schwellwert fuer Luft herabsetzen Dischdichte = 4x0.12=0.48
+TrialList .Children .OutsidePatientAirThreshold = "0.4";
+
+WaitMessage = "Setze Rechengrenze";
+// CouchRemovalYCoordinate verschieben Tischdicke 1.75 cm 
+Store .FloatAt .NewCouchRemoval = PoiList .TischMitte .YCoord ;
+Store .At .NewCouchRemoval .Subtract = 2.0 ;
+WaitMessageOff = "";
+TrialList .Current .CouchRemovalYCoordinate = Store .FloatAt .NewCouchRemoval ;
+Store .RemoveAt .NewCouchRemoval ;
+
+
+

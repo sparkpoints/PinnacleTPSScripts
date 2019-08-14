@@ -1,0 +1,118 @@
+Store.FreeAt.BeamCount="";
+Store.FreeAt.NumCols="";
+Store.FreeAt.NumRows="";
+Store.FreeAt.EmptyWins=""; 
+Store.FreeAt.Height="";
+Store.FreeAt.Width="";
+
+//Scripts called
+Store.StringAt.WindowLoopScript = "/usr/local/adacnew/PinnacleSiteData/Scripts/PlanPrinting_Scripts/4-2016_Current/DRR_WinLoop.Script.p3rtp";
+
+
+Store.FloatAt.BeamCount=TrialList.Current.BeamList.Count;
+Store.FloatAt.Height=256;
+Store.FloatAt.Width=256;
+
+//1 Beam by default
+Store.FloatAt.NumRows=1;
+Store.FloatAt.NumCols=1;
+
+//2 Beam
+IF.Store.FloatAt.BeamCount.GREATERTHAN.#"1".THEN.Store.FloatAt.NumCols=2;
+
+//3 Beams
+IF.Store.FloatAt.BeamCount.GREATERTHAN.#"2".THEN.Store.FloatAt.NumCols=3;
+
+//4Beams
+IF.Store.FloatAt.BeamCount.GREATERTHAN.#"3".THEN.Store.FloatAt.NumRows=2;
+IF.Store.FloatAt.BeamCount.GREATERTHAN.#"3".THEN.Store.FloatAt.NumCols=2;
+
+//5-6 Beams
+IF.Store.FloatAt.BeamCount.GREATERTHAN.#"4".THEN.Store.FloatAt.NumCols=3;
+
+//7-9
+IF.Store.FloatAt.BeamCount.GREATERTHAN.#"6".THEN.Store.FloatAt.NumRows=3;
+
+//10-12
+IF.Store.FloatAt.BeamCount.GREATERTHAN.#"9".THEN.Store.FloatAt.NumCols=4;
+
+//13-15
+IF.Store.FloatAt.BeamCount.GREATERTHAN.#"12".THEN.Store.FloatAt.NumCols=5;
+
+//16-18
+IF.Store.FloatAt.BeamCount.GREATERTHAN.#"15".THEN.Store.FloatAt.NumCols=6;
+
+//19-21
+IF.Store.FloatAt.BeamCount.GREATERTHAN.#"18".THEN.Store.FloatAt.NumCols=7;
+
+//22-24
+IF.Store.FloatAt.BeamCount.GREATERTHAN.#"21".THEN.Store.FloatAt.NumCols=8;
+
+//25-28 Adjust Columns and size
+IF.Store.FloatAt.BeamCount.GREATERTHAN.#"24".THEN.Store.FloatAt.NumCols=7;
+IF.Store.FloatAt.BeamCount.GREATERTHAN.#"24".THEN.Store.FloatAt.NumRows=4;
+IF.Store.FloatAt.BeamCount.GREATERTHAN.#"24".THEN.Store.FloatAt.Height=215;
+IF.Store.FloatAt.BeamCount.GREATERTHAN.#"24".THEN.Store.FloatAt.Width=215;
+
+//30-32 
+IF.Store.FloatAt.BeamCount.GREATERTHAN.#"28".THEN.Store.FloatAt.NumCols=8;
+IF.Store.FloatAt.BeamCount.GREATERTHAN.#"28".THEN.Store.FloatAt.NumRows=4;
+
+
+
+//Specify number of columns and rows in new window
+CreateWindowConfig.Cols = Store.FloatAt.NumCols;
+CreateWindowConfig.Rows = Store.FloatAt.NumRows;
+CreateWindowConfig.Height = Store.FloatAt.Height;
+CreateWindowConfig.Width = Store.FloatAt.Width;
+CreateWindowConfig.YPosition = "0";
+CreateWindowConfig.XPosition = "0";
+
+//Determine how many empty windows will be generated
+Store.FloatAt.EmptyWins = Store.FloatAt.NumCols;
+Store.At.EmptyWins.Multiply = Store.FloatAt.NumRows;
+Store.At.EmptyWins.Subtract = Store.FloatAt.BeamCount;
+
+//Create Windows
+WindowList.CreateViewWindow.Unrealize = "Create Window";
+CreateWindowConfig.Realize = "Create Window";
+ViewWindowList .#"*".CineOnOff = "0";
+TrialList .#"*" .BeamList .#"*" .ClipMLCDisplay = "1";
+
+
+
+//Add some image(s) for empty "subwindows"
+//These can be anything, but just filling useless windows
+IF.Store.FloatAt.EmptyWins.GREATERTHAN.#"0".THEN = {
+	ViewWindowList.Current.ImageType = "Skin -- Fast";
+	ViewWindowList.Current.Render = "Render                       r";
+	ViewWindowList.MakePreviousCurrent="";
+	};	
+
+IF.Store.FloatAt.EmptyWins.GREATERTHAN.#"1".THEN = {
+	ViewWindowList .Current .Viewpoint = "Inferior-Superior";
+	ViewWindowList.MakePreviousCurrent="";
+};
+
+
+IF.Store.FloatAt.EmptyWins.GREATERTHAN.#"2".THEN = {
+	ViewWindowList.Current.ImageType = "Bone -- Fast";
+	ViewWindowList.Current.Render = "Render                       r";
+	ViewWindowList.MakePreviousCurrent="";
+	};
+
+//Call another script to display a BEV for each beam
+TrialList.Current.BeamList.ChildrenEachCurrent.#"@".Script.ExecuteNow = Store.StringAt.WindowLoopScript;
+
+
+
+
+
+
+Store.FreeAt.Test="";
+Store.FreeAt.BeamCount="";
+Store.FreeAt.NumCols="";
+Store.FreeAt.NumRows="";
+Store.FreeAt.EmptyWins="";
+Store.FreeAt.Height="";
+Store.FreeAt.Width="";

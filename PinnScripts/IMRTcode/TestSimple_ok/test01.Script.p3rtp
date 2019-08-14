@@ -1,0 +1,68 @@
+// save plan data first
+SavePlan = "Save Plan";
+
+//Free temp stored variables
+Store.FreeAt.HomeDir = "";  
+Store.FreeAt.BinDir  = "";
+Store.FreeAt.SysTempDir = "";
+//--Set Main dir contain all scripts
+Store.At.HomeDir = SimpleString {};
+Store.At.HomeDir.AppendString = "/usr/local/adacnew/PinnacleSiteData/Scripts/IMRTcode/";
+//--Set Perl Scripts dir
+Store.At.BinDir = SimpleString {};
+Store.At.BinDir.AppendString = Store.At.HomeDir.String;
+Store.At.BinDir.AppendString = "bin/";
+//--Set Temp dir
+Store.At.SysTempDir = SimpleString {};
+Store.At.SysTempDir.AppendString = Store.At.HomeDir.String;
+Store.At.SysTempDir.AppendString = "Temp/";
+
+//Get CurrentPatient's {MedRecNum, patientname, planname,path....}
+Store.FreeAt.PlanID = "";
+Store.FreeAt.PatientName = "";
+Store.FreeAt.MRN = "";
+Store.FreeAt.PlanPath = "";
+Store.At.MRN = SimpleString {};
+Store.At.MRN.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.PatientName = SimpleString {};
+Store.At.PatientName.AppendString = PlanInfo.PatientName;
+Store.At.PlanID = SimpleString {};
+Store.At.PlanID.AppendString = PlanInfo.PlanName;
+Store.At.PlanPath = SimpleString {};
+Store.At.PlanPath.AppendString = PlanInfo.PlanPath;
+
+//Step1:run "test.perl" to Create Target PinnaScripts 
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = "xterm -e perl ";
+Store.At.TempCommand.AppendString = Store.At.BinDir.String;
+Store.At.TempCommand.AppendString = "IMRT.pl ";
+Store.At.TempCommand.AppendString = " -m \"";
+Store.At.TempCommand.AppendString = Store.At.MRN.String;
+Store.At.TempCommand.AppendString = "\"";
+Store.At.TempCommand.AppendString = " -n \"";
+Store.At.TempCommand.AppendString = Store.At.PatientName.String;
+Store.At.TempCommand.AppendString = "\"";
+Store.At.TempCommand.AppendString = " -l \"";
+Store.At.TempCommand.AppendString = Store.At.PlanPath.String;
+Store.At.TempCommand.AppendString = "\"";
+//execute this perl scripts
+SpawnCommand = Store.At.TempCommand.String;
+//Free
+Store.FreeAt.TempCommand = ""; 
+
+// save plan data first
+SavePlan = "Save Plan";
+
+//Free All variables
+Store.FreeAt.PlanID = "";
+Store.FreeAt.PatientName = "";
+Store.FreeAt.MRN = "";
+Store.FreeAt.PlanPath = "";
+
+Store.FreeAt.HomeDir = "";
+Store.FreeAt.BinDir  = "";
+Store.FreeAt.SysTempDir = "";
+
+Store.FreeAt.TempCommand = ""; 
+/* v */

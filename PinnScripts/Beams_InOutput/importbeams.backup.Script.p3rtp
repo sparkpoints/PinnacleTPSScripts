@@ -1,0 +1,2 @@
+IF .PinnPreferences .ComputeUncomputedBeams .THEN .TrialList .Current .ComputeUncomputedBeams = "Add New Beam";
+TrialList.Current.BeamList.Load="/home/p3rtp/inout/beamuf.out";

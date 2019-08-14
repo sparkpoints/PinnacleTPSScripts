@@ -1,0 +1,34 @@
+Store.FreeAt.MRN = "";
+Store.At.MRN = SimpleString {};
+Store.At.MRN.AppendString = "999999";
+IF.PlanInfo.MedicalRecordNumber.ISNULL.THEN={      //little confuze me!!!!
+Store.At.MRN = SimpleString {};
+Store.At.MRN.AppendString = PlanInfo.MedicalRecordNumber;
+};
+
+Store.FreeAt.StepOnePerlCreateScripts = "";
+Store.At.StepOnePerlCreateScripts = SimpleString {};
+Store.At.StepOnePerlCreateScripts.AppendString = Store.At.SysTempDir.String;
+Store.At.StepOnePerlCreateScripts.AppendString = Store.At.MRN.String;
+Store.At.StepOnePerlCreateScripts.AppendString = "AnalyzingPlanData";
+Store.At.StepOnePerlCreateScripts.AppendString = ".Script.p3rtp";
+
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = "xterm -e perl ";
+Store.At.TempCommand.AppendString = Store.At.BinDir.String;
+Store.At.TempCommand.AppendString = "AnalyzingPlanData.pl ";
+Store.At.TempCommand.AppendString = " -m \"";
+Store.At.TempCommand.AppendString = Store.At.MRN.String;
+Store.At.TempCommand.AppendString = "\"";
+Store.At.TempCommand.AppendString = " -n \"";
+Store.At.TempCommand.AppendString = PlanInfo.PatientID;
+Store.At.TempCommand.AppendString = "\"";
+Store.At.TempCommand.AppendString = " -t \"";
+Store.At.TempCommand.AppendString = Store.At.StepOnePerlCreateScripts.String;
+Store.At.TempCommand.AppendString = "\"";
+Store.At.TempCommand.AppendString = " -l \"";
+Store.At.TempCommand.AppendString = PlanInfo.PlanPath;
+Store.At.TempCommand.AppendString = "\"";
+SpawnCommand = Store.At.TempCommand.String;//execute this perl scripts
+Store.FreeAt.TempCommand = "";           //Free Command content

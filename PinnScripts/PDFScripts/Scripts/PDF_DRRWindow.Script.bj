@@ -1,0 +1,23 @@
+// -> PDF_Slices
+// change Window to 3D for DRR output
+// P3 7.6c - 8.0m
+// Bj 02.08
+
+ViewWindowList. Current. Enter3dMode = "Enter 3D Mode";
+ViewWindowList .Current .BEV = "Current";
+
+RoiList .#"*".Display3d = "Off";
+RoiList .#"*".OutlineBEVDRR = 0;
+
+// POI Display Off
+PoiList .# "*".Display3d = "Off";
+
+
+IsodoseControl .LineList .#"*".Display3dMode = "Off";
+
+ViewWindowList .Current .DRRValid = 1;
+TrialList .Current .BeamList .# "*".BeamWindowList .Children .RenderImageIfNecessary = 1;
+TrialList .Current .BeamList .Current .BeamWindowList .Children .RenderImageIfNecessary = 1;
+ViewWindowList .Current .Render = "Render                       r";
+
+Store.StringAt.Hint = "DRR";

@@ -1,0 +1,52 @@
+// Dosisprofile from Punkt DPstart to DPstop
+// Tested P3 7.6c
+// 10.07 Bj
+
+// Open Window
+CreateWindowConfig .Rows = "1";
+CreateWindowConfig .Cols = "1";
+CreateWindowConfig .Width = "1000";
+CreateWindowConfig .Height = "600";
+CreateWindowConfig .XPosition = "-1";
+CreateWindowConfig .YPosition = "-1";
+CreateWindowConfig .WindowType .Index = 1;
+WindowList .CreateViewWindow .Unrealize = "Create Window";
+CreateWindowConfig .Realize = "Create Window";
+
+// prepare printing
+ColorPrinterControl .WindowDumpSelectionMethod .LongName = "Specify a window by the ID number.";
+ColorPrinterControl .WindowDumpWindowId = ViewWindowList. Current. WindowId;
+ColorPrinterControl .WindowDumpScaleMethod .LongName = "Resize image to fill page.";
+ColorPrinterControl .PrinterList .Current = 1;
+ColorPrinterControl .PrinterName = 1;
+
+// Add Point DPstart and DPstop if not present
+IF.PoiList.#"!ContainsObject".DPstart.THEN.CreateNewPOI = "Add Point Of Interest";
+IF.PoiList.#"!ContainsObject".DPstart.THEN.PoiList .Last.Display2d = "Label";
+IF.PoiList.#"!ContainsObject".DPstart.THEN.PoiList .Last.Diameter = "1";
+IF.PoiList.#"!ContainsObject".DPstart.THEN.PoiList .Last.Color = "yellowgreen";
+IF.PoiList.#"!ContainsObject".DPstart.THEN.PoiList .Last.Name = "DPstart";
+
+IF.PoiList.#"!ContainsObject".DPstop.THEN.CreateNewPOI = "Add Point Of Interest";
+IF.PoiList.#"!ContainsObject".DPstop.THEN.PoiList .Last.Display2d = "Label";
+IF.PoiList.#"!ContainsObject".DPstop.THEN.PoiList .Last.Diameter = "1";
+IF.PoiList.#"!ContainsObject".DPstop.THEN.PoiList .Last.Color = "yellowgreen";
+IF.PoiList.#"!ContainsObject".DPstop.THEN.PoiList .Last.Name = "DPstop";
+
+// Open POI Spreadsheet aktivate Tool Point placement
+WindowList .NewPoiSpreadsheet .Create = "POIButton";
+ControlPanel .Icon .IsoMoveWithinImage .MakeCurrent = "PlacePOI2D";
+
+// Open Window Profile 
+WindowList .ProfileWindow .Create = "ProfileButton";
+Profile .Title = "Dosisprofile from DPstart to DPstop";
+PoiList .Mark0 = "DPstart";
+PoiList .Mark1 = "DPstop";
+Profile .IsFirstOrder = 1;
+Profile .UseBinWidth = 1;
+Profile .BinWidth = "0.1";
+VolumeList .Mark0 = "Dose -- Trial_1";
+// Profile .DoIt = "Create Profile";
+
+// Dump Profile to /PrimaryPatientData/NewPatients
+DumpProfiles = 1 ;

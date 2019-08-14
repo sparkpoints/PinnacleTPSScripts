@@ -1,0 +1,873 @@
+
+Key:  P=Persistent Q=Query S=Set A=Action E=EnumeratedList
+
+          Query/Set Access types: 
+
+              '-' = Not Direct Access 
+              '*' = Direct Access
+              '?' = Indeterminate
+              '=' = Old Style if/then/else structure
+
+    pq*s*ae       Type       Class Messages
+    -------  --------------  --------------------------------------------------
+    -Q*S*--       Float      "BevFieldWidth"
+
+    -Q*S*--       Float      "BevParallelDistance"
+
+    PQ*S*-E  EnumeratedList  "BlockCutterFormat"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0  Huestis CompuCutter "Huestis CompuCutter"
+                    1     ParScientific "ParScientific"
+                    2               HEK "HEK"
+
+    -Q*S*--       Bool       "CompuCutterEnabled"
+
+    -Q*S*--       Bool       "HEKEnabled"
+
+    -Q*S*-E  EnumeratedList  "LaserXDirectionList"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0               --- "---"
+                    1              LEFT "LEFT"
+                    2             RIGHT "RIGHT"
+
+    -Q*S*-E  EnumeratedList  "LaserYDirectionList"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0               --- "---"
+                    1                UP "UP"
+                    2              DOWN "DOWN"
+
+    -Q*S*-E  EnumeratedList  "LaserZDirectionList"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0               --- "---"
+                    1                IN "IN"
+                    2               OUT "OUT"
+
+    -Q*S*--     SubObject    "ModifierOutput"
+
+    -Q*S*--       Bool       "ParScientificEnabled"
+
+    -Q*S*--       Bool       "PreventRedundantMUErrorMessages"
+
+    -Q*S*--       Bool       "VisOnlyHeteroDoseOK"
+
+    -Q*S*--       Bool       "WriteDoseCliffBinary"
+
+
+    pq*s*ae       Type       Instance Messages
+    -------  --------------  --------------------------------------------------
+    -Q*S*--     SubObject    "ActualLocalizer"
+
+    PQ-S---        ---       "ActualLocalizerName"
+
+    ---S---        ---       "AddBevWindowId"
+
+    ---S---        ---       "AddBrvWindowId"
+
+    ---S---        ---       "AddModifier"
+
+    ---S---        ---       "AddModifierIfNone"
+
+    ---S---        ---       "AddRevWindowId"
+
+    -Q-----        ---       "AllCPsHaveRoundedMUs"
+
+    -Q-----        ---       "AllowPushLeavesToJawPositions"
+
+    -----A-        ---       "AnyRelyOnBolusModificationCallback"
+
+    -Q-----        ---       "ApertureDesc"
+
+    -Q-----        ---       "ApertureType"
+
+    -Q-----        ---       "ArcAngle"
+
+    -Q-----        ---       "AreBeamMUsAvailable"
+
+    PQ-S---        ---       "AutoSurround"
+
+    ---S---        ---       "AutoSurroundBlocks"
+
+    -Q-S---        ---       "AutoSurroundMargin"
+
+    PQ-----        ---       "AvgSSD"
+
+    PQ*S*--       Float      "AvgTar"
+
+    -Q*----        Int       "BeamID"
+
+    -Q-----        ---       "BeamIsDynamic"
+
+    -Q-----        ---       "BeamToWorld"
+
+    -Q-----        ---       "BeamTrialDescription"
+
+    PQ*S*-E  EnumeratedList  "BeamType"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0            Static "Static"
+                    1               Arc "Arc"
+                    2  Step & Shoot MLC "Step & Shoot MLC"
+                    3    Sliding Window "Sliding Window"
+                    4     Conformal Arc "Conformal Arc"
+                    5   Motorized Wedge "Motorized Wedge"
+
+    -Q-----        ---       "BeamTypeList"
+
+    -Q*S*--     SubObject    "BeamWindowList"
+
+    ---S---        ---       "BeginMessageBatch"
+
+    PQ*S*--       Bool       "BevIsParallel"
+
+    PQ-S---        ---       "BevRotationAngle"
+
+    ---S---        ---       "BevWindowName"
+
+    PQ-S---        ---       "BlockAndTrayFactor"
+
+    -Q-S*--       Float      "BlockAndTrayFactorIfValid"
+
+    -Q-----        ---       "BlockAndTrayLabel"
+
+    -Q*S*--     SubObject    "BlockContourList"
+
+    -----A-        ---       "BlockCutterOutput"
+
+    PQ*S*--     ObjString    "BlockExportName"
+
+    -Q-----        ---       "BlockFactorHasMeaning"
+
+    -Q-S---        ---       "BlockInfo"
+
+    PQ*S*--       Float      "BlockJawOverlap"
+
+    -Q-----        ---       "BlockTrayNumberHasMeaning"
+
+    PQ*S*--       Float      "BlockingMaskCutoffArea"
+
+    PQ*S*--       Float      "BlockingMaskPixelSize"
+
+    -----A-        ---       "Bolus"
+
+    PQ*S*--       Float      "BottomAutoSurroundMargin"
+
+    -Q--=--        ---       "BottomJawMax"
+
+    -Q--=--        ---       "BottomJawMin"
+
+    -Q*S*--     SubObject    "BottomJawPosition"
+
+    -Q*S*--     SubObject    "CArmAngle"
+
+    -Q-----        ---       "CArmString"
+
+    PQ*S*--     SubObject    "CPManager"
+
+    -Q*S*--     SubObject    "CPManagerObject"
+
+    -----A-        ---       "CenterInField"
+
+    ---S---        ---       "CenterPatient"
+
+    -Q-----        ---       "ChangeShiftDirectionOn"
+
+    -Q*S*--       Bool       "CheckArcValid"
+
+    -Q-----        ---       "CheckDose"
+
+    -Q-----        ---       "CheckDoseAndCurrentCP"
+
+    -Q-----        ---       "CheckDoseAndRemoveAllCPs"
+
+    -Q-----        ---       "CheckDoseAndRemoveAllCPsWhenSetMachine"
+
+    -Q-----        ---       "CheckDoseIfBolus"
+
+    -Q-----        ---       "CheckDoseIfCompensator"
+
+    -Q-----        ---       "CheckDoseIfWedge"
+
+    -Q-----        ---       "CheckDoseWhenRounding"
+
+    -Q-----        ---       "CheckMLC"
+
+    -Q-----        ---       "CheckValidForDoseComp"
+
+    -Q*S---     SubObject    "CircularCollimator"
+
+    PQ-S---        ---       "CircularFieldDiameter"
+
+    PQ*S*--       Bool       "ClipMLCDisplay"
+
+    -Q*S*--     SubObject    "Collimator"
+
+    -Q-----        ---       "CollimatorCanBeArc"
+
+    -Q-----        ---       "CollimatorLabel"
+
+    -Q*S*--     SubObject    "CollimatorStop"
+
+    -Q-----        ---       "CollimatorType"
+
+    -Q-S---        ---       "Color"
+
+    -Q-----        ---       "ColorPixel"
+
+    PQ*S*--     SubObject    "Compensator"
+
+    -Q-----        ---       "CompensatorAttenuationCoef"
+
+    -Q-S---        ---       "CompensatorInfo"
+
+    PQ*S*--       Float      "CompensatorScaleFactor"
+
+    PQ*S*--     ObjString    "ComputationVersion"
+
+    -Q-----        ---       "ComputeButtonLabel"
+
+    -Q-----        ---       "ConfirmUnlockWeights"
+
+    -Q-----        ---       "ConfirmUnlockWeightsAndCheckDose"
+
+    -Q*S*--      VoidPtr     "ContainerObject"
+
+    ---S---        ---       "CopyAndOppose"
+
+    -Q*S*--      VoidPtr     "CopySource"
+
+    -Q*S*--     SubObject    "Couch"
+
+    -Q-----        ---       "CouchCanBeArc"
+
+    -Q*S*--     SubObject    "CouchStop"
+
+    -----A-        ---       "CreateModifierOutput"
+
+    -------        ---       "CutoutFactor"
+
+    -Q*S*--       Float      "CutoutMaterialTransmissionFactor"
+
+    PQ*S*--       Float      "DegreesBetweenSubbeamsForDoseCalc"
+
+    -Q*S*--     SubObject    "DesiredLocalizer"
+
+    PQ-S---        ---       "DesiredLocalizerName"
+
+    PQ*S*--       Bool       "Display2d"
+
+    PQ*S*--       Bool       "Display3d"
+
+    -Q-----        ---       "DisplayControlPointWeights"
+
+    PQ*S*-E  EnumeratedList  "DisplayLaserMotion"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0             Table "Table"
+                    1             Laser "Laser"
+                    2           Patient "Patient"
+
+    PQ*S*--     SubObject    "DisplayList"
+
+    PQ*S*--       Bool       "DisplayMAXLeafMotion"
+
+    -Q*S*--     SubObject    "DoAutoSurround"
+
+    -Q*S*--     SubObject    "DoAutoSurroundMLC"
+
+    -Q*S*--       Bool       "DoNotRecreateBEV"
+
+    PQ*S*--     SubObject    "DoseEngine"
+
+    -Q*S*--       Bool       "DoseInvalidWhileFiling"
+
+    PQ*S*--       Float      "DosePerMuAtPrescriptionPoint"
+
+    -Q-S---        ---       "DoseStatus"
+
+    -Q-S---        ---       "DoseStatusMessage"
+
+    PQ-S---        ---       "DoseVarVolume"
+
+    PQ-S---        ---       "DoseVolume"
+
+    PQ*S*--       Bool       "DynamicBlocks"
+
+    -Q-----        ---       "DynamicWedgeData"
+
+    -Q*S---     SubObject    "ElectronApplicator"
+
+    PQ-S---        ---       "ElectronApplicatorName"
+
+    -Q-----        ---       "ElectronDoseNormalization"
+
+    ---S---        ---       "EndMessageBatch"
+
+    -Q-----        ---       "EnergyList"
+
+    -Q-----        ---       "EquivalentSquare"
+
+    PQ*S*--       Float      "ExtendArcPastTarget"
+
+    PQ*S*--       Float      "ExtendBlockPlanePastTarget"
+
+    PQ*S*--       Float      "ExtendPastTarget"
+
+    PQ-S---        ---       "FieldID"
+
+    PQ*S*--     SubObject    "FilmImageList"
+
+    -Q-----        ---       "FluenceFilterArray"
+
+    -----A-        ---       "ForceRedisplay"
+
+    -Q*S*--     SubObject    "Gantry"
+
+    -Q-----        ---       "GantryCanBeArc"
+
+    -Q-----        ---       "GantryIsArc"
+
+    -Q*S*--     SubObject    "GantryIsCCW"
+
+    -Q-----        ---       "GantryLockedCheckDose"
+
+    -Q-----        ---       "GantryRange"
+
+    -Q*S*--     SubObject    "GantryStop"
+
+    -Q-----        ---       "GeometryDependency"
+
+    -Q-----        ---       "HasLockedWeights"
+
+    -Q-----        ---       "HasModifiers"
+
+    -Q-----        ---       "HasRelyOnObject"
+
+    -Q*S*--     SubObject    "IECCoords"
+
+    PQ*S*-E  EnumeratedList  "IMRTDirection"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0             Couch "Couch"
+                    1            Gantry "Gantry"
+                    2    Couch + Gantry "Couch + Gantry"
+
+    PQ*S*-E  EnumeratedList  "IMRTFilter"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0       Compensator "Compensator"
+                    1  Step & Shoot MLC "Step & Shoot MLC"
+                    2       Dynamic MLC "Dynamic MLC"
+
+    -Q-----        ---       "IMRTParameterList"
+
+    PQ-S---        ---       "IMRTParameterType"
+
+    PQ*S*-E  EnumeratedList  "IMRTWedge"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0        Hard Wedge "Hard Wedge"
+                    1     Dynamic Wedge "Dynamic Wedge"
+
+    -----A-        ---       "IncDRRVolume"
+
+    ---S---        ---       "IncrementCArm"
+
+    ---S---        ---       "IncrementCollimator"
+
+    ---S---        ---       "IncrementCouch"
+
+    ---S---        ---       "IncrementGantry"
+
+    ---S---        ---       "IncrementGantryStop"
+
+    -Q-----        ---       "IndJawsCheckDose"
+
+    -----A-        ---       "InitializeTPBForTool"
+
+    -----A-        ---       "InstallMachineVersion"
+
+    -Q*S*--     SubObject    "InternalCollimator"
+
+    -Q*S*--     SubObject    "InternalCollimatorStop"
+
+    -Q*S*--     SubObject    "InternalCouch"
+
+    -Q*S*--     SubObject    "InternalCouchStop"
+
+    -Q*S*--     SubObject    "InternalGantry"
+
+    -Q*S*--     SubObject    "InternalGantryStop"
+
+    -----A-        ---       "InvalidateAverageMonitorUnitDepthParameters"
+
+    -----A-        ---       "InvalidateCPManagerDose"
+
+    ---S---        ---       "InvalidateDose"
+
+    ---S---        ---       "InvalidateElectronDose"
+
+    ---S---        ---       "InvalidatePhotonDose"
+
+    ---S---        ---       "InvalidateStereoDose"
+
+    -Q-----        ---       "IrregMonitorUnitColor"
+
+    -Q-----        ---       "IrregMonitorUnitWithinLimits"
+
+    -Q*S*--       Float      "IrregPointActualMonitorUnits"
+
+    ---S---        ---       "IrregPointChange"
+
+    PQ*S*--     SubObject    "IrregPointList"
+
+    PQ*S*--       Float      "IrregPointMonitorUnits"
+
+    PQ*S*--       Float      "IrregPointNumberOfFractions"
+
+    PQ*S*--       Bool       "IrregPointPrescribeOverall"
+
+    PQ*S*--       Float      "IrregPointPrescriptionDose"
+
+    -Q-----        ---       "IrregPrescriptionDescription"
+
+    PQ*S*--     ObjString    "IrregPrescriptionPointName"
+
+    ---S---        ---       "IrregSimulatorSAD"
+
+    PQ*S*--       Bool       "IrregSpecifyMonitorUnits"
+
+    -Q-----        ---       "IsBolussed"
+
+    -Q*S*--     SubObject    "IsCollimatorStartStopLocked"
+
+    -Q-----        ---       "IsComputedWithPoi"
+
+    -Q-----        ---       "IsConformalArc"
+
+    -Q*S*--     SubObject    "IsCouchStartStopLocked"
+
+    -Q-----        ---       "IsDosePending"
+
+    -Q-----        ---       "IsDoseValid"
+
+    -Q-----        ---       "IsElectronDoseValid"
+
+    -Q*S---     SubObject    "IsGantryStartStopLocked"
+
+    -Q*S*--     SubObject    "IsLeftRightIndependent"
+
+    -Q-----        ---       "IsOkForClinicalUse"
+
+    -Q-----        ---       "IsPhotonDoseValid"
+
+    -Q*S*--       Bool       "IsQABeam"
+
+    -Q-----        ---       "IsRVXIndependent"
+
+    -Q-----        ---       "IsRVYIndependent"
+
+    -Q-----        ---       "IsStereoDoseValid"
+
+    -Q*S*--     SubObject    "IsTopBottomIndependent"
+
+    -Q-----        ---       "IsWedgeValid"
+
+    PQ*S*--       Bool       "IsWeightLocked"
+
+    -Q*S---     SubObject    "IsoInLocalizerCoords"
+
+    -Q*S---     SubObject    "Isocenter"
+
+    PQ-S---        ---       "IsocenterName"
+
+    -Q*S*--     SubObject    "JawsConformance"
+
+    -Q-S---        ---       "LaserCoord"
+
+    -Q-----        ---       "LaserDescr"
+
+    -Q-----        ---       "LaserLabel"
+
+    ---S---        ---       "LaserMotionDirection"
+
+    PQ*S*--       Float      "LeftAutoSurroundMargin"
+
+    -Q--=--        ---       "LeftJawMax"
+
+    -Q--=--        ---       "LeftJawMin"
+
+    -Q*S*--     SubObject    "LeftJawPosition"
+
+    -Q*S*--     SubObject    "LeftRightJawWidth"
+
+    -Q*S*--       Bool       "LoadNewTrayFactor"
+
+    -Q*----       Bool       "LocalizationValid"
+
+    -Q-----        ---       "LocalizationValidColor"
+
+    -Q*S---     SubObject    "LocalizerList"
+
+    -----A-        ---       "MCDoseCallback"
+
+    -Q*S*--     SubObject    "MLCDisplayBlockContourList"
+
+    -Q*S*--     SubObject    "MLCError"
+
+    -Q*S*--     SubObject    "MLCInfo"
+
+    -Q*S*--     SubObject    "MLCLeafPositions"
+
+    -Q-----        ---       "MLCOpenExtraLeafPairs"
+
+    -Q*S*--     SubObject    "MLCPushMethod"
+
+    -Q*S*--        Int       "MLCSegmentIndex"
+
+    -Q*S*--     SubObject    "MLCSegmentList"
+
+    -Q*S*--     SubObject    "MLCTransForDisplay"
+
+    -Q-----        ---       "MLCTransmissionHasMeaning"
+
+    -Q*S*--     SubObject    "MLCTransmissionIfValid"
+
+    -Q*S---     SubObject    "Machine"
+
+    -Q-S*--     SubObject    "MachineAddress"
+
+    -Q*S---     SubObject    "MachineEnergy"
+
+    PQ-S---        ---       "MachineEnergyName"
+
+    -Q-S---        ---       "MachineName"
+
+    PQ-S---        ---       "MachineNameAndVersion"
+
+    -----A-        ---       "MakeAllModifiersManual"
+
+    ---S---        ---       "MakeIsocenterCurrent"
+
+    -Q-----        ---       "MaxMLCLeafPosition"
+
+    -Q*S*--       Float      "MeanCentralAxisDepth"
+
+    -Q*S*--       Float      "MeanRadCentralAxisDepth"
+
+    -Q*S*--       Float      "MeanRadRefPointDepth"
+
+    -Q*S*--       Float      "MeanRefPointDepth"
+
+    -Q*S*--       Bool       "MessageBatch"
+
+    -Q--=--        ---       "MinMLCLeafPosition"
+
+    PQ-S---        ---       "Modality"
+
+    ---S---        ---       "ModifierChange"
+
+    ---S---        ---       "ModifierDisplayChange"
+
+    -Q*S*--     SubObject    "ModifierList"
+
+    -Q-----        ---       "MonitorUnitColor"
+
+    PQ*S*--     SubObject    "MonitorUnitInfo"
+
+    -Q-----        ---       "MonitorUnitWithinLimits"
+
+    -Q-----        ---       "MonitorUnits"
+
+    PQ-S*--       Bool       "MonitorUnitsApproximate"
+
+    -Q-----        ---       "MonitorUnitsInvalid"
+
+    -Q-----        ---       "MonitorUnitsPerDegree"
+
+    PQ*S*--       Bool       "MonitorUnitsValid"
+
+    PQ*S*--     ObjString    "Name"
+
+    -Q*S*--       Bool       "NewVersionMachine"
+
+    -----A-        ---       "NormalizeToODM"
+
+    -Q-----        ---       "NormalizedDoseScalar"
+
+    PQ*S*--     SubObject    "ODM"
+
+    -Q-S---        ---       "ODMInfo"
+
+    -----A-        ---       "ODMOutput"
+
+    PQ*S*--     SubObject    "ObjectVersion"
+
+    -Q-----        ---       "OkToEditControlPoints"
+
+    -Q-----        ---       "OkToEditMLCPositions"
+
+    -Q*S*--       Bool       "OnlyNewMachineExists"
+
+    PQ*S---       Bool       "OpenExtraLeafPairs"
+
+    -----A-        ---       "OpenLeafPairsForSiemens"
+
+    -----A-        ---       "OpenMLCLeaves"
+
+    -Q*S*--     SubObject    "Oppose"
+
+    -Q*S*--     SubObject    "OpposeTable"
+
+    -Q-----        ---       "OppositeSSD"
+
+    -Q-----        ---       "OppositeSSDLabel"
+
+    PQ*S*-E  EnumeratedList  "PhilipsMLCBeamNumber"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0         No Export "No Export"
+                    1                 1 "1"
+                    2                 2 "2"
+                    3                 3 "3"
+                    4                 4 "4"
+                    5                 5 "5"
+                    6                 6 "6"
+                    7                 7 "7"
+                    8                 8 "8"
+
+    PQ*S*-E  EnumeratedList  "PhilipsMLCTreatment"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0         No Export "No Export"
+                    1                 1 "1"
+                    2                 2 "2"
+                    3                 3 "3"
+
+    -Q-----        ---       "PhotonDoseNormalization"
+
+    PQ*S*--     ObjString    "PhotonModelDescription"
+
+    -Q*S*--       Bool       "PhysicsMode"
+
+    -Q*S---     SubObject    "Prescription"
+
+    -Q*S*--     SubObject    "PrescriptionList"
+
+    -Q*S---      VoidPtr     "PrescriptionListObject"
+
+    PQ-S---        ---       "PrescriptionName"
+
+    -Q*S---     SubObject    "PrescriptionPoint"
+
+    PQ*S*--       Float      "PrescriptionPointDepth"
+
+    PQ-S---        ---       "PrescriptionPointName"
+
+    -Q-----        ---       "PrescriptionPointWorldCoords"
+
+    PQ*S*--       Float      "PrescriptionPointXOffset"
+
+    PQ*S*--       Float      "PrescriptionPointYOffset"
+
+    PQ-S---        ---       "PrevIMRTParameterType"
+
+    -Q*S*--     SubObject    "ProfileList"
+
+    -Q*S*--     SubObject    "PushMLCLeavesToBlock"
+
+    -Q*S*--     SubObject    "PushMLCLeavesToJaws"
+
+    -Q*S*--     SubObject    "PushMLCLeavesToJawsCenter"
+
+    -Q-----        ---       "RVX1JawPosition"
+
+    -Q-----        ---       "RVX2JawPosition"
+
+    -Q-----        ---       "RVY1JawPosition"
+
+    -Q-----        ---       "RVY2JawPosition"
+
+    -----A-        ---       "RecomputeSSD"
+
+    ---S---        ---       "RecomputeSSDIfInvalid"
+
+    ---S---        ---       "RedisplayBevIfNecessary"
+
+    -Q*S*--     SubObject    "RelyOnBolusList"
+
+    PQ-S---        ---       "RelyOnBolusNames"
+
+    -Q*S*--     SubObject    "RelyOnList"
+
+    ---S---        ---       "RemoveCurrentModifier"
+
+    ---S---        ---       "RemoveWindowId"
+
+    ---S---        ---       "RenderImage"
+
+    PQ*S*--       Float      "RightAutoSurroundMargin"
+
+    -Q--=--        ---       "RightJawMax"
+
+    -Q--=--        ---       "RightJawMin"
+
+    -Q*S*--     SubObject    "RightJawPosition"
+
+    PQ*S*--       Float      "RotationIndicatorOffset"
+
+    PQ-----        ---       "SSD"
+
+    -Q-----        ---       "SSDLabel"
+
+    PQ*S*--       Bool       "SSDValid"
+
+    -Q-----        ---       "SSDWithBolus"
+
+    -----A-        ---       "SaveIMRTParameters"
+
+    ---S---        ---       "SetBeamType"
+
+    -----A-        ---       "SetJawsBehaviorWithNewVersionMachine"
+
+    ---S---        ---       "SetSSD"
+
+    -----A-        ---       "SetSharedModifierList"
+
+    ---S---        ---       "ShapeChange"
+
+    -Q-----        ---       "ShowStoreCPDoseButton"
+
+    PQ*S*--       Bool       "SolidMLCDisplay"
+
+    -Q*S*--     SubObject    "SortedDisplayList"
+
+    PQ*S*--       Bool       "SpecifyDosePerMuAtPrescriptionPoint"
+
+    PQ*S*--       Bool       "SpeedUpCollimator"
+
+    PQ*S*--       Bool       "SpeedUpVirtFlouro"
+
+    -Q*S---     ObjString    "StandardOrientation"
+
+    -Q-----        ---       "StandardOrientationList"
+
+    -Q-----        ---       "StereoDoseAtIso"
+
+    PQ*S*--       Float      "StereoDoseDiValue"
+
+    PQ*S*--       Float      "StereoDosePerMULookup"
+
+    PQ*S*--     SubObject    "SupplementalBlockManager"
+
+    -Q*S*--     SubObject    "TPBDoseCalculator"
+
+    -Q-----        ---       "TPBDoseNormalization"
+
+    -Q-----        ---       "TableOrLaserMotion"
+
+    PQ*S*--     SubObject    "TarTable"
+
+    -------        ---       "TestMLCLimit"
+
+    -Q*S*--     SubObject    "ToggleWedgeOrientation"
+
+    PQ*S*--       Float      "TopAutoSurroundMargin"
+
+    -Q*S*--     SubObject    "TopBottomJawHeight"
+
+    -Q--=--        ---       "TopJawMax"
+
+    -Q--=--        ---       "TopJawMin"
+
+    -Q*S*--     SubObject    "TopJawPosition"
+
+    PQ*S*--     ObjString    "ToshibaMLCBeamNumberString"
+
+    PQ*S*-E  EnumeratedList  "ToshibaMLCPlanNumber"
+
+                  Enum     Short Name   Long Version
+                  ---- ---------------- ----------------------------------
+                    0         No Export "No Export"
+                    1                 1 "1"
+                    2                 2 "2"
+                    3                 3 "3"
+
+    -Q-S---        ---       "TraverseCurrentBolus"
+
+    PQ-S---        ---       "TrayFactor"
+
+    -Q-----        ---       "TrayFactorHasMeaning"
+
+    -Q-S*--       Float      "TrayFactorIfValid"
+
+    PQ*S*--     ObjString    "TrayNumber"
+
+    -Q-S*--      String      "TrayNumberIfValid"
+
+    -Q*S*--       Bool       "UndergoingIMRT"
+
+    -Q*S*--       Bool       "UndergoingMC"
+
+    -Q*S*--       Bool       "UnitTest"
+
+    -----A-        ---       "UpdateLockJaws"
+
+    ---S---        ---       "UpdateRevForNewBeam"
+
+    -------        ---       "UseDensityGridForSSD"
+
+    PQ*S---       Bool       "UseMLC"
+
+    PQ*S*--       Bool       "UsePoiForPrescriptionPoint"
+
+    -Q-----        ---       "UseVerticalMLC"
+
+    -Q*S*--     SubObject    "Wedge"
+
+    -Q*S*--     SubObject    "WedgeAngle"
+
+    -----A-        ---       "WedgeChange"
+
+    -Q*S*--     SubObject    "WedgeContext"
+
+    -----A-        ---       "WedgeDisplayChange"
+
+    -Q*S*--     SubObject    "WedgeName"
+
+    -Q*S*--     SubObject    "WedgeOffsetDistance"
+
+    -Q*S*--     SubObject    "WedgeOffsetList"
+
+    -Q*S*--     SubObject    "WedgeOffsetOrigin"
+
+    -Q*S*--     SubObject    "WedgeOrientation"
+
+    -Q*S*--     SubObject    "WedgeOrientationLabel"
+
+    -Q*S*--     SubObject    "WedgeRotation"
+
+    PQ-S---        ---       "Weight"
+
+    -Q*S*--       Bool       "WeightLocked"
+
+    ---S=--        ---       "X"
+
+    ---S=--        ---       "Y"
+
+    ---S=--        ---       "Z"
+

@@ -1,0 +1,3 @@
+// MaxThreads default value uses THREADS environment variable.
+// Modify at your own risk.
+MaxThreads=GetEnv.THREADS;

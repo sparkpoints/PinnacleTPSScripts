@@ -1,0 +1,10 @@
+//Load Patient
+Store.StringAt.PatientPath = GetEnv.PATIENTS;
+Store.At.PatientPath.AppendString = "/";
+Store.At.PatientPath.AppendString = BackupInstitutionList.Current.PatientLiteList.Current.PatientPath;
+Store.At.PatientPath.AppendString = "/Patient";
+
+BackupInstitutionList.Current.PatientLiteList.Current.Patient.Load = Store.StringAt.PatientPath;
+
+//Add backup Indicator
+BackupInstitutionList.Current.PatientLiteList.Current.Store.FloatAt.Backup = 0;

@@ -1,0 +1,37 @@
+Echo = TrialList.Current.BeamList.Current.CPManager.CPManagerObject.ControlPointList.Current.Index.Value;
+////////////////////////////////////////////////
+//Beam's Segments's MLC Position Save to file //
+////////////////////////////////////////////////
+
+Store.StringAt.SegmentMLC = "";
+//Store.At.SegmentMLC.AppendString = Store.StringAt.HomeDir;
+Store.At.SegmentMLC.AppendString = "/tmp/";
+Store.At.SegmentMLC.AppendString = TrialList.Current.BeamList.Current.Name;
+Store.At.SegmentMLC.AppendString = "_";
+Store.At.SegmentMLC.AppendString = TrialList.Current.BeamList.Current.CPManager.CPManagerObject.ControlPointList.Current.Index;
+
+TrialList.Current.BeamList.Current.CPManager.CPManagerObject.ControlPointList.Current.MLCLeafPositions.Save=Store.StringAt.SegmentMLC;
+
+
+///////////////////////////////
+// PyExe Calculate MLC Area  //
+///////////////////////////////
+
+Store.StringAt.Command = Store.StringAt.PyCalcMLC;
+Store.At.Command.AppendString = " -s \"";
+Store.At.Command.AppendString = TrialList.Current.BeamList.Current.Name;
+Store.At.Command.AppendString = "_";
+Store.At.Command.AppendString = TrialList.Current.BeamList.Current.CPManager.CPManagerObject.ControlPointList.Current.Index;
+Store.At.Command.AppendString = "\" -v ";
+Store.At.Command.AppendString = TrialList .Current .BeamList .Current .CPManager .ControlPointList .Current.MonitorUnits;
+Store.At.Command.AppendString = " -m \"";
+Store.At.Command.AppendString = Store.StringAt.SegmentMLC;
+Store.At.Command.AppendString = "\" -o ";
+Store.At.Command.AppendString = Store.StringAt.OutFile;
+SpawnCommand = Store.StringAt.Command;
+//Echo = Store.StringAt.Command;
+
+Store.StringAt.Command = "";
+Store.StringAt.SegmentMLC = "";
+
+

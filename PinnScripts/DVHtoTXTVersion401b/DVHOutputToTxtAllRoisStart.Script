@@ -1,0 +1,69 @@
+/**************************************************************
+*                                                             *
+*  **   ** ******   ****   *   *********  *******    ******   *
+*  **   **     *   ** **   *         **  *       *         *  *
+*  **   **    *   **  **   *       **    *       *  ********  *
+*  **   **   *   **   **   *     **      *       * *       *  *
+*  *******  *   **  ****   *   ********* *       * *********  *
+*   **** * ******     **   *                                  *
+*                                                             *
+**************************************************************/
+/*
+***************************************************************
+*** Name: DVHOutputToTxtAllRoisStart.Script                 ***
+***                                                         ***
+*** Purpose: Question to ask if your sure you want to       ***
+***          continu? All Trials and there roi's will be    ***
+***          exported.                                      ***
+***                                                         ***
+*** Remarks: This is one of the 2 starting scipts.          ***
+***          The other start-script will only export the    ***
+***          selected roi's and trials.                     ***
+***                                                         ***
+*** Goudry Bert 23-02-2011                                  ***
+***                                                         ***
+*** Adjustments:                                            ***
+***       Product of Trials x Roi max = 200                 ***
+***       Goudry Bert 03-02-2011                            ***
+***       Value of Last cell in tabular DVH is stored       ***
+***       Goudry Bert 21-03-2011                            ***
+***       Store and restore correct RPD-numbers             ***
+***       Goudry Bert 20-06-2011                            ***
+***                                                         ***
+***************************************************************
+*/
+
+// Store the current RPD
+Store.FreeAt.RRevision = "";
+Store.FreeAt.PRevision = "";
+Store.FreeAt.DRevision = "";
+
+Store.FloatAt.RRevision = ReportRevision.RoiModifiedSinceLastReport;
+Store.FloatAt.PRevision = ReportRevision.PoiModifiedSinceLastReport;
+Store.FloatAt.DRevision = ReportRevision.DoseModifiedSinceLastReport;
+
+//Open DVH
+WindowList .PlanEval .Create = "Dose Volume Histogram...";
+
+// Ask question and prepare standard answer
+Store.FreeAt.TempYesNo = "";
+AskYesNoPrompt = "Are you sure you want to export all the Trails and there Roi's?";
+AskYesNoDefault = "1";
+Store.FloatAt.TempYesNo = AskYesNo;
+
+// Consequences of the question : switch on every Roi and Trial
+
+IF.Store.At.TempYesNo.Value.EqualTo.#"#1".THEN 
+    ={
+    PluginManager.PlanEvalPlugin .TrialList.ChildrenEachCurrent.#"@".IF.PluginManager .PlanEvalPlugin .TrialList .Current .Selected. Value.EQUALTO. #"#0".THEN. PluginManager .PlanEvalPlugin .TrialList .Current .Selected = 1;
+    PluginManager.PlanEvalPlugin .ROIList.ChildrenEachCurrent.#"@".IF.PluginManager .PlanEvalPlugin .ROIList .Current .Selected. Value.EQUALTO. #"#0".THEN. PluginManager .PlanEvalPlugin .ROIList .Current .Selected = 1;
+    };
+
+IF.Store.At.TempYesNo.Value.EqualTo.#"#1".THEN.Script.ExecuteNow = "/usr/local/adacnew/PinnacleSiteData///Scripts/Fysica/DVHOutputToTxt/DVHOutputToTxtRunCheck.Script";
+    
+IF.Store.At.TempYesNo.Value.EqualTo.#"#0".
+THEN.WarningMessage = "Ok don't run this script.  But why did you click on me?";
+
+Store.FreeAt.TempYesNo = "";
+
+/* Ë */

@@ -1,0 +1,8 @@
+// Send PDF via FTP
+// use ~/.netrc
+// P3 7.6c - 8.0m
+// 02.08 Bj
+
+WaitMessage = "send Data";
+SpawnCommand = "xterm -e ftp -i planung"; 
+WaitMessageOff = "";

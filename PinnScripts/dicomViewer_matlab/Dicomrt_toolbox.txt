@@ -1,0 +1,243 @@
+dicomrt_DICOMimport
+(./dicomrt-toolbox/load/dicomrt_DICOMimport.m)
+
+--------------------------------------------------------------------------------
+
+Function Synopsis
+[item1,xm1,ym1,zm1,item2,xm2,ym2,zm2,item3]=dicomrt_DICOMimport(path2scan,scantype,memopt);
+
+
+--------------------------------------------------------------------------------
+
+Help text
+ [item1,xm1,ym1,zm1,item2,xm2,ym2,zm2,item3]=dicomrt_DICOMimport(path2scan,scantype);
+
+
+
+ Scan a directory for DICOM studies and guides users to import rtplans, ct scans and VOIs.
+
+ This function is interactive and requires user input.
+
+
+
+ path2scan is the directory path that will be scanned. Scan is not recursive.
+
+ scantype specifies the type of scan. Options are:
+
+          s=single
+
+          r=recursive (default)
+
+ memopt is a memory option parameter. The load of CT volumes is an intensive task. 
+
+   Choose this option if a "OUT OF MEMORY" message is received while loading DICOM study
+
+   in normal conditions. If memopt is ~=0 the CT loading process is split into 2 steps.
+
+   The default is memopt=1.
+
+
+
+ Data are returned in variables: [item1,xm1,ym1,zm1,item2,xm2,ym2,zm2,item3] where:
+
+
+
+ item1 can be an rtplan as loaded by dicomrt_loaddose or as loaded by dicominfo
+
+ xm1,ym1,zm1, are x-y-z coordinates of the center of the dose-pixel if rtdose is loaded (otherwise are set to zero)
+
+ item2 can be ct scan matrix as loaded by dicomrt_loadct
+
+ xm2,ym2,zm2, are x-y-z coordinates of the center of the ct images if ct scan is loaded (otherwise are set to zero)
+
+ item3 can be the VOI set as loaded by dicomrt_loadvoi (otherwise is set to zero)
+
+
+
+
+dicomrt_loadct
+(./dicomrt-toolbox/load/dicomrt_loadct.m)
+
+--------------------------------------------------------------------------------
+
+Function Synopsis
+[ctcell,ct_xmesh,ct_ymesh,ct_zmesh] = dicomrt_loadct(filename,sorting)
+
+
+--------------------------------------------------------------------------------
+
+Help text
+ dicomrt_loadct(filename,sorting)
+
+
+
+ Read dicom CT for a case using MATLAB native function dicomread. Light Version.
+
+
+
+ filename contains a list of CT slices to import 
+
+ 
+
+ CT are stored in a single 3D matrix: case_study
+
+ x-y-z coordinates of the center of the ct-pixel are stored in ct_xmesh, ct_ymesh and ct_zmesh.
+
+
+
+ NOTE:  CT numbers range from -1000 for air to 1000 for bone with that for water set to 0.
+
+ CT numbers normalized in this manner are called Hounfield numbers or units (HU):
+
+
+
+ HU = ((mu_tissue-mu_water)/mu_water)*1000
+
+
+
+ Following DICOM RT standard HU = m*(SV)+b where m is RescaleSlope, b RescaleIntercept
+
+ and SV are pixel (stored) values.
+
+
+
+ Often CT scale is shifted so that HU(water)=1000 (=CToffset) instead of 0. 
+
+
+
+ NOTE: as opposed to dicomrt_loadct ct_xmesh, ct_ymesh and ct_zmesh are vectors and not
+
+ matrices. This allow to run this functions also in "low" memory pcs.
+ 
+ 
+dicomrt_loaddose
+(./dicomrt-toolbox/load/dicomrt_loaddose.m)
+
+--------------------------------------------------------------------------------
+
+Function Synopsis
+[cell_case_study,xmesh,ymesh,zmesh] = dicomrt_loaddose(filename_list,force)
+
+
+--------------------------------------------------------------------------------
+
+Help text
+ dicomrt_loaddose(filename_list,force)
+
+
+
+ Read dicom dose for a case using MATLAB native function dicomread.
+
+
+
+ filename contains a list of dose matrices to import.
+
+
+
+ NOTE1:the first file listed in filename_list MUST BE the rtplan file.
+
+       rtplan is an essential source of information for the analysis of 
+
+       dose distribution and DVH calculation. Therefore is needed. 
+
+ NOTE2:CT slices are normally sent (and listed) in filename_list from the
+
+       the most negative to the most positive ZLocation.
+
+ NOTE3:as opposed to dicomrt_loaddodse *mesh* arguments are vectors and not
+
+ matrices. This allow to run this functions also in "low" memory pcs.
+
+
+
+ Dose matrices are stored in a single 3D matrix: case_study
+
+ x-y-z coordinates of the center of the dose-pixel are stored in xmesh,ymesh,zmesh
+
+ cell_case_study is a simple cell array with the following structure:
+
+
+
+  ------------------------
+
+  | [ rtplan structure ] |
+
+  | ----------------------
+
+  | [ 3D dose matrix   ] |
+
+  | ---------------------
+
+  | [ voxel dimension  ] |
+
+  ------------------------
+dicomrt_loadvoi
+(./dicomrt-toolbox/load/dicomrt_loadvoi.m)
+
+--------------------------------------------------------------------------------
+
+Function Synopsis
+[cellVOI] = dicomrt_loadvoi(rtstruct_filename)
+
+
+--------------------------------------------------------------------------------
+
+Help text
+ dicomrt_loadvoi(rtstruct_filename)
+
+
+
+ Load Volumes Of Interests (VOIs) from dicom-rt export file.
+
+
+
+ A=dicomrt_dvhcal('rtstruct_filename') load into A the VOIs
+
+ extracted from the file 'rtstruct_filename'
+
+
+
+ VOIs are stored in a cell array with the following structure:
+
+
+
+  -----------------------------
+
+  | [OAR 1] | [xyz contour 1] |
+
+  |         -------------------
+
+  |         | [xyz contour 2] |
+
+  |         -------------------
+
+  |         |     ...         |
+
+  |         ------------------- 
+
+  |         | [xyz contour n] |
+
+  -----------------------------
+
+  |   ...   |     ...         |
+
+  -----------------------------
+
+  | [OAR n] | [xyz contour 1] |
+
+  |         ------------------- 
+
+  |         | [xyz contour 2] |
+
+  |         -------------------
+
+  |         |     ...         |
+
+  |         ------------------- 
+
+  |         | [xyz contour n] |
+
+  -----------------------------
+
+
+

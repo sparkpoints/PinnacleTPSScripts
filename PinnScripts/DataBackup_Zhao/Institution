@@ -1,0 +1,74 @@
+InstitutionID = 7;
+InstitutionPath = "Institution_7";
+PinnInstitutionPath = "Institution_7";
+Name = "AutoPlanning";
+StreetAddress = "";
+StreetAddress2 = "";
+City = "";
+State = "";
+ZipCode = "";
+Country = "";
+PatientLiteList ={
+  PatientLite ={
+    PatientID = 8;
+    PatientPath = "Institution_7/Mount_0/Patient_8";
+    MountPoint = "Mount_0";
+    FormattedDescription = "Abdomen&&FN&&MN&&567890&&RO&&2015-04-30 18:30:01";
+    DirSize = 118.017;
+  };
+};
+MountPointList ={
+};
+SelectedMachineDirList ={
+};
+BackupMachineList ={
+};
+BackupMachineListNonCommissioned ={
+};
+BackupIsotopeList ={
+};
+BackupIsotopeListNonCommissioned ={
+};
+DeviceSpaceRequiredPatients = 0;
+DeviceSpaceRequiredPhysics = 0;
+DeviceSpaceRequiredScripts = 0;
+DeviceSpaceRequiredOrganModels = 0;
+DeviceSpaceRequiredAtlas = 0;
+DefaultMountPoint = "Mount_0";
+BackupDescription = "";
+BackupVolume = "";
+BackupFileName = "";
+Session = "1";
+ScriptsDir = "";
+OrganModelsDir = "";
+AtlasFile = "";
+BackupTimeStamp = "";
+BackupDeviceType = "None";
+IsPatientBackup = 0;
+IsPhysicsMachinesBackup = 0;
+IncludePhysicsData = 0;
+MachinesInV7Format = 0;
+IsSolarisFormat = 1;
+IncludeAllPatients = 0;
+FullFileNameIncluded = 0;
+BackupID = 0;
+SortFields = "Patient Lastname";
+ObjectVersion ={
+  WriteVersion = "Launch Pad: 9.10";
+  CreateVersion = "Launch Pad: 9.10";
+  LoginName = "p3rtp";
+  CreateTimeStamp = "2014-08-09 23:27:44";
+  WriteTimeStamp = "2015-05-10 22:33:07";
+  LastModifiedTimeStamp = "2015-04-30.19:55:24";
+};
+DynamicRebuild = 0;
+ScorecardsBackupInfo ={
+  DeviceSpaceRequired = 0;
+  Dir = "";
+};
+TreatmentTechniquesBackupInfo ={
+  DeviceSpaceRequired = 0;
+  TreatmentTechniquesDir = "";
+};
+
+/* “« */

@@ -1,0 +1,217 @@
+// Prints a plan to a single PDF file
+//
+// Compiled by Jimmy Jones and Nathan Childress
+//
+// Based on files from http://www.medphysfiles.com/
+// written by Blake Dirksen, Sean Geoghegan, Bert Goudry, and Simon Woodings 
+//
+
+// Set default answer to yes
+AskYesNoDefault = 1;
+
+Store.FreeAt.PDFHomeDir = "";
+Store.At.PDFHomeDir = SimpleString{};
+Store.At.PDFHomeDir.AppendString = "/home/peter/PDF/";
+Store.At.PDFHomeDir.AppendString = PlanInfo.MedicalRecordNumber;
+
+//make a new dir 
+Store.FreeAt.TempCommand = "";
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = "mkdir ";
+Store.At.TempCommand.AppendString = Store.At.PDFHomeDir.String;
+SpawnCommand = Store.At.TempCommand.String;
+Store.FreeAt.TempCommand = "";
+
+Store.At.PDFHomeDir.AppendString = "/";
+
+// Start building Ghostscript command
+Store.FreeAt.TempGS = "";
+Store.At.TempGS = SimpleString{};
+Store.At.TempGS.AppendString = "gs -dBATCH -dNOPAUSE -dSAFER -dAutoRotatePages=/PageByPage -dPDFSETTINGS=/prepress -q -sDEVICE=pdfwrite -sPAPERSIZE=letter -sOutputFile=a";
+Store.At.TempGS.AppendString = Store.At.PDFHomeDir.String;
+Store.At.TempGS.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.TempGS.AppendString = ".pdf ";
+
+// Make sure we're ready
+WarningMessage = "Make sure your 1,Isodose, 2,DVH and 3,DRR windows are open and ready to print.  If not, prepare them before pressing OK";
+
+/////////////////////////////////////////////////////////////////
+// PS file name for plan
+Store.FreeAt.TempPS = "";
+Store.At.TempPS = SimpleString{};
+Store.At.TempPS.AppendString = Store.At.PDFHomeDir.String;
+Store.At.TempPS.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.TempPS.AppendString = "-plan.ps";
+
+// Print Plan
+TrialList .Current .ReportType = "Summary and Text Report";
+TrialList .Current .PrintSubbeams = 0;
+TrialList .Current .PrintRois = 0;
+TrialList .Current .PrintBrachyByGroup = 0;
+TrialList .Current .PrintBrachyByCatheter = 0;
+TrialList .Current .PrintMLC = 0;
+TrialList .Current .PrintIMRTSummary = 0;
+TrialList .Current .BeamPageSelection = "Isocenter";
+PrinterControl .PrintToFile = 1;
+PrinterControl .PrintToFileFileList .File = Store.At.TempPS.String;
+PrinterControl .ValidateSelectedPrinter = "Print";
+TrialList .Current .Report = "Print";
+Store.At.TempGS.AppendString = Store.At.TempPS;
+Store.At.TempGS.AppendString = " ";
+
+/////////////////////////////////////////////////////////////////
+// PS file name for Isodose lines
+Store.FreeAt.TempPS = "";
+Store.At.TempPS = SimpleString{};
+Store.At.TempPS.AppendString = Store.At.PDFHomeDir.String;
+Store.At.TempPS.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.TempPS.AppendString = "-isodose.ps";
+Store.FreeAt.TempAnswer = "";
+
+// Ask to print isodoses
+AskYesNoPrompt = "Do you want to print an isodose window?";
+Store.FloatAt.TempAnswer = AskYesNo;
+IF.Store.At.TempAnswer.Value.THEN.ColorPrinterControl.WindowDumpSelectionMethod.LongName = "Click on window to be printed.";
+IF.Store.At.TempAnswer.Value.THEN.ColorPrinterControl.PrintToFile = 1;
+IF.Store.At.TempAnswer.Value.THEN.ColorPrinterControl.PrintToFileFileList.File = Store.At.TempPS.String;
+IF.Store.At.TempAnswer.Value.THEN.ColorPrinterControl.ValidateSelectedPrinter = "Proceed";
+IF.Store.At.TempAnswer.Value.THEN.ResolveDependencies = "Proceed";
+IF.Store.At.TempAnswer.Value.THEN.ProceedPrintWindow = "Proceed";
+IF.Store.At.TempAnswer.Value.THEN.Store.At.TempGS.AppendString = Store.At.TempPS;
+IF.Store.At.TempAnswer.Value.THEN.Store.At.TempGS.AppendString = " ";
+
+/////////////////////////////////////////////////////////////////
+// PS file name for DRRs
+Store.FreeAt.TempPS = "";
+Store.At.TempPS = SimpleString{};
+Store.At.TempPS.AppendString = Store.At.PDFHomeDir.String;
+Store.At.TempPS.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.TempPS.AppendString = "-drr.ps";
+Store.FreeAt.TempAnswer = "";
+
+// Ask to print DRRs
+AskYesNoPrompt = "Do you want to print a DRR window?";
+Store.FloatAt.TempAnswer = AskYesNo;
+//IF.Store.At.TempAnswer.Value.THEN.ColorPrinterControl.WindowDumpSelectionMethod.LongName = "Click on window to be printed.";
+IF.Store.At.TempAnswer.Value.THEN.TrialList .#"#0" .PlanEvalDRRSetup = "Plan Eval DRRs...";
+IF.Store.At.TempAnswer.Value.THEN.WindowList .WindowPrint .Create = "Print Window...";
+
+IF.Store.At.TempAnswer.Value.THEN.ColorPrinterControl.PrintToFile = 1;
+IF.Store.At.TempAnswer.Value.THEN.ColorPrinterControl.PrintToFileFileList.File = Store.At.TempPS.String;
+IF.Store.At.TempAnswer.Value.THEN.ColorPrinterControl.ValidateSelectedPrinter = "Proceed";
+IF.Store.At.TempAnswer.Value.THEN.ResolveDependencies = "Proceed";
+IF.Store.At.TempAnswer.Value.THEN.ProceedPrintWindow = "Proceed";
+IF.Store.At.TempAnswer.Value.THEN.Store.At.TempGS.AppendString = Store.At.TempPS;
+IF.Store.At.TempAnswer.Value.THEN.Store.At.TempGS.AppendString = " ";
+
+/////////////////////////////////////////////////////////////////
+// PS file name for DVH1
+Store.FreeAt.TempPS = "";
+Store.At.TempPS = SimpleString{};
+Store.At.TempPS.AppendString = Store.At.PDFHomeDir.String;
+Store.At.TempPS.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.TempPS.AppendString = "-dvh.ps";
+Store.FreeAt.TempAnswer = "";
+
+// Ask to print DVH
+AskYesNoPrompt = "Do you want to print a DVH window?";
+Store.FloatAt.TempAnswer = AskYesNo;
+
+//IF.Store.At.TempAnswer.Value.THEN.ColorPrinterControl.WindowDumpSelectionMethod.LongName = "Click on window to be printed.";
+IF.Store.At.TempAnswer.Value.THEN.WindowList .PlanEval .CreateUnrealized = "Dose Volume Histogram...";
+IF.Store.At.TempAnswer.Value.THEN.WindowList .PlanEval .PanelList .#"#0" .GotoPanel = "Dose Volume Histogram...";
+IF.Store.At.TempAnswer.Value.THEN.WindowList .PlanEval .Create = "Dose Volume Histogram...";
+IF.Store.At.TempAnswer.Value.THEN.WindowList .WindowPrint .Create = "Print Window...";
+IF.Store.At.TempAnswer.Value.THEN.ColorPrinterControl.PrintToFile = 1;
+IF.Store.At.TempAnswer.Value.THEN.ColorPrinterControl.PrintToFileFileList.File = Store.At.TempPS.String;
+IF.Store.At.TempAnswer.Value.THEN.ColorPrinterControl.ValidateSelectedPrinter = "Proceed";
+IF.Store.At.TempAnswer.Value.THEN.ResolveDependencies = "Proceed";
+IF.Store.At.TempAnswer.Value.THEN.ProceedPrintWindow = "Proceed";
+IF.Store.At.TempAnswer.Value.THEN.Store.At.TempGS.AppendString = Store.At.TempPS;
+IF.Store.At.TempAnswer.Value.THEN.Store.At.TempGS.AppendString = " ";
+
+/////////////////////////////////////////////////////////////////
+// PS file name for DVH2
+Store.FreeAt.TempPS = "";
+Store.At.TempPS = SimpleString{};
+Store.At.TempPS.AppendString = Store.At.PDFHomeDir.String;
+Store.At.TempPS.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.TempPS.AppendString = "-dvh2.ps";
+Store.FreeAt.TempAnswer = "";
+
+// Ask to print DVH
+AskYesNoPrompt = "Do you want to print a second DVH window?";
+Store.FloatAt.TempAnswer = AskYesNo;
+IF.Store.At.TempAnswer.Value.THEN.WarningMessage = "The script will pause. Please scroll the DVH screen to get ready for the 2nd screen.";
+IF.Store.At.TempAnswer.Value.THEN.SleepSeconds = "6";
+IF.Store.At.TempAnswer.Value.THEN.ColorPrinterControl.WindowDumpSelectionMethod.LongName = "Click on window to be printed.";
+IF.Store.At.TempAnswer.Value.THEN.ColorPrinterControl.PrintToFile = 1;
+IF.Store.At.TempAnswer.Value.THEN.ColorPrinterControl.PrintToFileFileList.File = Store.At.TempPS.String;
+IF.Store.At.TempAnswer.Value.THEN.ColorPrinterControl.ValidateSelectedPrinter = "Proceed";
+IF.Store.At.TempAnswer.Value.THEN.ResolveDependencies = "Proceed";
+IF.Store.At.TempAnswer.Value.THEN.ProceedPrintWindow = "Proceed";
+IF.Store.At.TempAnswer.Value.THEN.Store.At.TempGS.AppendString = Store.At.TempPS;
+IF.Store.At.TempAnswer.Value.THEN.Store.At.TempGS.AppendString = " ";
+
+
+/////////////////////////////////////////////////////////////////
+// PS file name for Misc
+Store.FreeAt.TempPS = "";
+Store.At.TempPS = SimpleString{};
+Store.At.TempPS.AppendString = Store.At.PDFHomeDir.String;
+Store.At.TempPS.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.TempPS.AppendString = "-misc.ps";
+Store.FreeAt.TempAnswer = "";
+
+// Ask to print DRRs
+AskYesNoPrompt = "Do you want to print a miscellaneous window?";
+Store.FloatAt.TempAnswer = AskYesNo;
+IF.Store.At.TempAnswer.Value.THEN.ColorPrinterControl.WindowDumpSelectionMethod.LongName = "Click on window to be printed.";
+IF.Store.At.TempAnswer.Value.THEN.ColorPrinterControl.PrintToFile = 1;
+IF.Store.At.TempAnswer.Value.THEN.ColorPrinterControl.PrintToFileFileList.File = Store.At.TempPS.String;
+IF.Store.At.TempAnswer.Value.THEN.ColorPrinterControl.PrintToFilePaperSize = "A4";
+IF.Store.At.TempAnswer.Value.THEN.ColorPrinterControl.ValidateSelectedPrinter = "Proceed";
+IF.Store.At.TempAnswer.Value.THEN.ResolveDependencies = "Proceed";
+IF.Store.At.TempAnswer.Value.THEN.ProceedPrintWindow = "Proceed";
+IF.Store.At.TempAnswer.Value.THEN.Store.At.TempGS.AppendString = Store.At.TempPS;
+IF.Store.At.TempAnswer.Value.THEN.Store.At.TempGS.AppendString = " ";
+
+// Reset to default printer values
+PrinterControl.PrintToFile = 0;
+PrinterControl.PrinterList.Current = 0;
+PrinterControl.PrinterName = 0;
+
+/////////////////////////////////////////////////////////////////
+// Now convert all ps files to one PDF
+Echo = Store.At.TempGS.String;
+SpawnCommand = Store.At.TempGS.String;
+
+// And delete PS files
+Store.FreeAt.TempGS = "";
+Store.At.TempGS = SimpleString{};
+Store.At.TempGS.AppendString = "rm ";
+Store.At.TempGS.AppendString = Store.At.PDFHomeDir.String;
+Store.At.TempGS.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.TempGS.AppendString = "*.ps";
+SpawnCommand = Store.At.TempGS.String;
+
+// And FTP files to a server
+//SpawnCommand = "$CBOBDIR/PinnacleSiteData/Scripts/FTPPDF";
+
+// Delete PDF file
+Store.FreeAt.TempGS = "";
+Store.At.TempGS = SimpleString{};
+Store.At.TempGS.AppendString = "rm ";
+Store.At.TempGS.AppendString = Store.At.PDFHomeDir.String;
+Store.At.TempGS.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.TempGS.AppendString = "*.pdf";
+
+AskYesNoPrompt = "Do you want to delete the PDF file on Pinnacle?";
+Store.FloatAt.TempAnswer = AskYesNo;
+IF.Store.At.TempAnswer.Value.THEN.SpawnCommand = Store.At.TempGS.String;
+
+// Clear variables
+Store.FreeAt.PDFHomeDir = "";
+Store.FreeAt.TempPS = "";
+Store.FreeAt.TempAnswer = "";
+Store.FreeAt.TempGS = "";

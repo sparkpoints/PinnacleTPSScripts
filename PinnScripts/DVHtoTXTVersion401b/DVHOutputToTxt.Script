@@ -1,0 +1,241 @@
+/**************************************************************
+*                                                             *
+*  **   ** ******   ****   *   *********  *******    ******   *
+*  **   **     *   ** **   *         **  *       *         *  *
+*  **   **    *   **  **   *       **    *       *  ********  *
+*  **   **   *   **   **   *     **      *       * *       *  *
+*  *******  *   **  ****   *   ********* *       * *********  *
+*   **** * ******     **   *                                  *
+*                                                             *
+**************************************************************/
+/*
+***************************************************************
+*** Name: DVHOutputToTxt.Script                             ***
+***                                                         ***
+*** Purpose: Prepare output and then run another script for ***
+***          each selected roi.                             ***
+***                                                         ***
+*** Remarks: You can adjust the bin Size (= points on dvh)  ***
+***          As standard we use Gray (script will switch    ***
+***          to cGy to more accurate).                      ***
+***                                                         ***
+*** Goudry Bert 13-07-2010                                  ***
+***                                                         ***
+*** Adjustments:                                            ***
+***          Convert all rois with Meshes to contours.      ***
+***          Remove empty roi's (external script).          ***
+***          Use Specify Max dose if not selected.          ***
+***          Goudry Bert 15-11-2010                         ***
+***          Added reference to extra script to import the  ***
+***          number of mu's for the selected trials.        ***
+***          Goudry Bert 16-02-2011                         ***
+***          Product of Trials x Roi max = 200              ***
+***          Goudry Bert 03-02-2011                         ***
+***          Value of Last cell in tabular DVH is stored    ***
+***          Goudry Bert 21-03-2011                         ***
+***          Store and restore correct RPD-numbers          ***
+***          Goudry Bert 20-06-2011                         ***
+***                                                         ***
+***************************************************************
+*/
+
+// Convert all Mesh to Contours (no dose available for rois whit mesh)
+RoiManager.ConvertAllMeshToContours = "Convert All Mesh to Contours";
+
+// Remove Empty Roi's
+Store.FloatAt.CounterEmpty = "0";
+
+RoiList.ChildrenEachCurrent.#"@".IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.Store.At.CounterEmpty.Add = "1";
+
+Store.StringAt.InfoMess =        "Attention";
+Store.At.InfoMess.AppendString = "@";
+Store.At.InfoMess.AppendString = Store.At.CounterEmpty.Value;
+IF.Store.At.CounterEmpty.Value.Equalto.#"#1".THEN.Store.At.InfoMess.AppendString = " empty Roi was detected.";
+IF.Store.At.CounterEmpty.Value.Greaterthan.#"#1".THEN.Store.At.InfoMess.AppendString = " empty Roi's were detected.";
+Store.At.InfoMess.AppendString = "@Extra script will run to remove them before continuing";
+Store.At.InfoMess.AppendString = "@Press OK to start script";
+
+IF.Store.At.CounterEmpty.Value.Greaterthan.#"#0".THEN.InfoMessage = Store.At.InfoMess.Value;
+IF.Store.At.CounterEmpty.Value.Greaterthan.#"#0".THEN.Script.ExecuteNow = "/usr/local/adacnew/PinnacleSiteData/Scripts/Tools/RemoveEmptyRois.Script";
+
+// Select Specify Max Dose if not selected and give an info message
+IF.DVHList.Current.AutoComputeMaxDose .EqualTo. #"#0" .THEN .InfoMessage = "Specify Max Dose was selected. Script switched to Auto-Compute Max";
+DVHList.Current.AutoComputeMaxDose = 1;
+
+// Clear Stores
+Store.FreeAt.InfoMess = "";
+Store.FreeAt.CounterEmpty = "";
+
+//Adjust Preferences temporaly
+PinnPreferences .UseGyForDoseDisplay = 0;
+DVHList .#"*" .AutoComputeBinSize = 0;
+DVHList .#"*" .BinSize = "  5";
+DVHList .#"*" .ColumnsPerRow = "1";
+
+// Change the RPD back to its original so output-file has correct RPD number
+
+ReportRevision.RoiModifiedSinceLastReport = Store.FloatAt.RRevision;
+ReportRevision.PoiModifiedSinceLastReport = Store.FloatAt.PRevision;
+ReportRevision.DoseModifiedSinceLastReport = Store.FloatAt.DRevision;
+
+// Prepare Stores
+Store.FreeAt.TempYesNo = "";
+Store.StringAt.new_line = "\n";
+
+//Prepare to merge diferent files
+Store.StringAt.MergeFiles = "cat ";
+
+//Prepare and execute output string of patiëntinfo
+
+Store.StringAt.PatInfo = "cat << EOF > /home/p3rtp/DVHtoTXT/";
+Store.At.PatInfo.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.PatInfo.AppendString = "info.tmp \n";
+Store.At.PatInfo.AppendString = "*****************************************************";
+Store.At.PatInfo.AppendString = Store.StringAt.new_line;
+Store.At.PatInfo.AppendString = "***   File was created by a script in Pinnacle.   ***";
+Store.At.PatInfo.AppendString = Store.StringAt.new_line;
+Store.At.PatInfo.AppendString = "***Script was created by Bert Goudry in July 2010.***";
+Store.At.PatInfo.AppendString = Store.StringAt.new_line;
+Store.At.PatInfo.AppendString = "***Script updated to version 4.01 (20-06-2011)    ***";
+Store.At.PatInfo.AppendString = Store.StringAt.new_line;
+Store.At.PatInfo.AppendString = "*****************************************************";
+Store.At.PatInfo.AppendString = Store.StringAt.new_line;
+Store.At.PatInfo.AppendString = "File was created on: ";
+Store.At.PatInfo.AppendString = PlanInfo.TimeStamp;
+Store.At.PatInfo.AppendString = Store.StringAt.new_line;
+Store.At.PatInfo.AppendString = "MedicalRecordNumber: ";
+Store.At.PatInfo.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.PatInfo.AppendString = Store.StringAt.new_line;
+Store.At.PatInfo.AppendString = "Lastname:            ";
+Store.At.PatInfo.AppendString = PlanInfo.LastName;
+Store.At.PatInfo.AppendString = Store.StringAt.new_line;
+Store.At.PatInfo.AppendString = "Firstname:           ";
+Store.At.PatInfo.AppendString = PlanInfo.FirstName;
+Store.At.PatInfo.AppendString = Store.StringAt.new_line;
+Store.At.PatInfo.AppendString = "Planname:            ";
+Store.At.PatInfo.AppendString = PlanInfo.PlanName;
+Store.At.PatInfo.AppendString = Store.StringAt.new_line;
+Store.At.PatInfo.AppendString = "Plan Version:        ";
+Store.At.PatInfo.AppendString = ReportRevision.CurrentReportRevision;
+Store.At.PatInfo.AppendString = Store.StringAt.new_line;
+
+// Run extra external script for each selected trail to import mu's
+TrialList .ChildrenEachCurrent.#"@".IF. TrialList.Current.RelyOnList.HasElements .THEN. Script.ExecuteNow = "/usr/local/adacnew/PinnacleSiteData/Scripts/Fysica/DVHOutputToTxt/DVHOutputToTxtAddTrial.Script";
+
+// Continu preparation of output string
+
+Store.At.PatInfo.AppendString = "Bin Size ";
+Store.At.PatInfo.AppendString = DVHList .Current. BinSize;
+Store.At.PatInfo.AppendString = Store.StringAt.new_line;
+Store.At.PatInfo.AppendString = "Dose per Bin in ";
+IF.PinnPreferences .UseGyForDoseDisplay.EqualTo. #"#0".
+THEN.Store.At.PatInfo.AppendString = "cGray";
+IF.PinnPreferences .UseGyForDoseDisplay.EqualTo. #"#1".
+THEN.Store.At.PatInfo.AppendString = "Gray";
+
+Store.At.PatInfo.AppendString = Store.StringAt.new_line;
+
+SpawnCommand = Store.StringAt.PatInfo;
+
+//Add file to Merge commando
+Store.At.MergeFiles.AppendString = "/home/p3rtp/DVHtoTXT/";
+Store.At.MergeFiles.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.MergeFiles.AppendString = "info.tmp ";
+
+// Make counter for dvh output files
+
+Store.FloatAt.Counter=0; // Reset Counter
+
+////////////////////////////////////////////////////////////////////////////////
+/////Calculate dimensions of table,needed in next script////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// create window, initial position is on the top-left cell
+WindowList.DoseVolHistTabular.Create = "";
+// move to bottom-right cell
+WindowList.DoseVolHistTabular.WidgetList.Table.Table.MakePreviousCellCurrent = "";
+// record position, it hints at the table dimensions
+Store.FloatAt.rows = WindowList.DoseVolHistTabular.WidgetList.Table.Table.CurrentRow;
+Store.FloatAt.cols = WindowList.DoseVolHistTabular.WidgetList.Table.Table.CurrentColumn;
+// move back to top-left
+WindowList.DoseVolHistTabular.WidgetList.Table.Table.MakeNextCellCurrent = "";
+// find total number of cells
+Store.At.rows.Add = 1;
+Store.At.cols.Add = 1;
+Store.FloatAt.total = Store.FloatAt.rows;
+Store.At.total.Multiply = Store.FloatAt.cols;
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// Store files for all roi's shown on dvh
+DVHList.ChildrenEachCurrent.#"@".Script.ExecuteNow = "/usr/local/adacnew/PinnacleSiteData/Scripts/Fysica/DVHOutputToTxt/DVHOutputToTxtEachRoiPartA.Script ";
+
+// Merge all different files to one
+Store.At.MergeFiles.AppendString = " > ";
+Store.At.MergeFiles.AppendString = "/home/p3rtp/DVHtoTXT/";
+Store.At.MergeFiles.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.MergeFiles.AppendString = ".txt";
+SpawnCommand = Store.StringAt.MergeFiles;
+
+// rename the txt file
+Store.FreeAt.Tempcomm = "";
+Store.At.Tempcomm = SimpleString{};
+Store.At.Tempcomm.AppendString = "mv";
+Store.At.Tempcomm.AppendString = " ";
+Store.At.Tempcomm.AppendString = "/home/p3rtp/DVHtoTXT/";
+Store.At.Tempcomm.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.Tempcomm.AppendString = ".txt";
+Store.At.Tempcomm.AppendString = " ";
+Store.At.Tempcomm.AppendString = "'";
+Store.At.Tempcomm.AppendString = "/home/p3rtp/DVHtoTXT/";
+Store.At.Tempcomm.AppendString = PlanInfo.LastName;
+Store.At.Tempcomm.AppendString = "_";
+Store.At.Tempcomm.AppendString = PlanInfo.FirstName;
+Store.At.Tempcomm.AppendString = "_";
+Store.At.Tempcomm.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.Tempcomm.AppendString = ".txt";
+Store.At.Tempcomm.AppendString = "'";
+SpawnCommand = Store.At.Tempcomm.String;
+
+// Delete all .tmp files for this patiënt
+Store.FreeAt.Tempcomm = "";
+Store.At.Tempcomm = SimpleString{};
+Store.At.Tempcomm.AppendString = "rm /home/p3rtp/DVHtoTXT/";
+Store.At.Tempcomm.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.Tempcomm.AppendString = "*.tmp";
+SpawnCommand = Store.At.Tempcomm.String;
+Store.FreeAt.Tempcomm = "";
+
+//Reset Preferences 
+DVHList .#"*" .AutoComputeBinSize = 1;
+DVHList .#"*" .NumberOfBins = "200";
+PinnPreferences .UseGyForDoseDisplay = 1;
+DVHList .#"*" .ColumnsPerRow = "10";
+
+// Clean Stores
+Store.FreeAt.TempYesNo = "";
+Store.FreeAt.new_line = "";
+Store.FreeAt.MergeFiles = "";
+Store.FreeAt.PatInfo = "";
+Store.FreeAt.Counter = "";
+Store.FreeAt.CounterString = "";
+Store.FreeAt.RoiName = "";
+Store.FreeAt.total = "";
+
+// Close tabular DVH
+WindowList .DoseVolHistTabular .Unrealize = "Dismiss";
+
+// Change the RPD back to its original RPD number
+
+ReportRevision.RoiModifiedSinceLastReport = Store.FloatAt.RRevision;
+ReportRevision.PoiModifiedSinceLastReport = Store.FloatAt.PRevision;
+ReportRevision.DoseModifiedSinceLastReport = Store.FloatAt.DRevision;
+
+Store.FreeAt.RRevision = "";
+Store.FreeAt.PRevision = "";
+Store.FreeAt.DRevision = "";
+
+// Message 
+WarningMessage = "Script finished!!! file can be found in /home/p3rtp/DVHtoTXT";
+
+/* Ë */

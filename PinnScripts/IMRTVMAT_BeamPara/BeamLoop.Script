@@ -1,0 +1,8 @@
+TrialList.Current.BeamList.Current.CPManager.CPManagerObject.ControlPointList.ChildrenEachCurrent.#"@".Script.ExecuteNow=Store.StringAt.SegmentLoop;
+TrialList .Last .PrescriptionList .Current .NumberOfFractions = TrialList .Current .PrescriptionList .Current .NumberOfFractions ;
+TrialList .Last .PrescriptionList .Current .MethodInt = "1";
+TrialList .Last .PrescriptionList .Current .PrescriptionRoi =TrialList .Current .PrescriptionList .Current .PrescriptionRoi;
+TrialList .Last .PrescriptionList .Current .NormalizationMethod =TrialList .Current .PrescriptionList .Current .NormalizationMethod ;
+TrialList .Last .PrescriptionList .Current .PrescriptionPercent = TrialList .Current .PrescriptionList .Current .PrescriptionPercent;
+TrialList .Last .PrescriptionList .Current .PrescriptionDose =TrialList .Current .PrescriptionList .Current .PrescriptionDose ;
+

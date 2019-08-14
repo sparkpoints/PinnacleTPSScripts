@@ -1,0 +1,38 @@
+// -> PDF_POI
+// 
+// P3 8.0m 
+// Bj 04.08
+
+PinnPreferences .UpdateDRRAutomatically = 0;
+
+WindowList .OrthoDRRs .Create = "Plan Eval DRRs...";
+WindowList .QABeamWindowLevel .StateList .Current = 1;
+
+// IZ vom akktuellen Beam
+PoiList .Current = TrialList.Current.BeamList.Current.Isocenter.Name ;
+
+TrialList .Current .QABeamList .# "*".Isocenter = TrialList.Current.BeamList.Current.IsocenterName;
+TrialList .Current .QABeamList .# "*".FilmImageList .Current .NormalDRRSpecs .CtToDensityTable = "Nur Knochen";
+TrialList .Current .QABeamList .# "*".FilmImageList .Current .NormalDRRSpecs .RayInterpolationMode .ShortName = "Smoothest";
+TrialList .Current .QABeamList .# "*".ClipMLCDisplay = 1;
+TrialList .Current .QABeamList .# "*".LeftJawPosition = "0";
+TrialList .Current .QABeamList .# "*".RightJawPosition = "0";
+TrialList .Current .QABeamList .# "*".TopJawPosition = "0";
+TrialList .Current .QABeamList .# "*".BottomJawPosition = "0";
+TrialList .Current .QABeamList .SetupBeam1 .StandardOrientation = "Anterior";
+TrialList .Current .QABeamList .SetupBeam2 .StandardOrientation = "Right";
+
+// rechts oder links
+IF.PoiList.Current.XCoord. GREATERTHAN.TrialList .Current .LaserLocalizer .LaserCenter .XCoord. THEN .TrialList .Current .QABeamList  .SetupBeam2  .StandardOrientation = "Left";
+
+// 3D Isodosen aus
+IsodoseControl .LineList .# "*".Display3dMode = "Off";
+// Punkte aus
+PoiList .# "*" .Display3d = "Off";
+
+PinnPreferences .UpdateDRRAutomatically = 1;
+
+
+// Open POI Window
+WindowList .NewPoiSpreadsheet .Create = "POIButton";
+PoiList .Current = TrialList.Current.BeamList.Current.Isocenter.Name ;

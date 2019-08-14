@@ -1,0 +1,106 @@
+// Add a new trial:
+//TrialList .CreateChild = "Add New Trial";
+//TrialList .Last .MakeCurrent = 1;
+//ViewWindowList .CtSimSingleSliceWin .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSimLargeBEVWin .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSimRevWindow .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSim4SliceUpperLeft .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSim4SliceUpperRight .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSim4SliceLowerLeft .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSim4SliceLowerRight .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSim9SliceR1C1 .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSim9SliceR1C2 .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSim9SliceR1C3 .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSim9SliceR2C1 .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSim9SliceR2C2 .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSim9SliceR2C3 .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSim9SliceR3C1 .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSim9SliceR3C2 .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSim9SliceR3C3 .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSimOrthoTop .TrialNonBEV = TrialList .Current .Name;
+///ViewWindowList .CtSimOrthoLowerLeft .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSimOrthoLowerRight .TrialNonBEV = TrialList .Current .Name;
+///ViewWindowList .CtSimLargeDRRUpperLeft .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSimLargeDRRCenterLeft .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSimLargeDRRLowerLeft .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSimLargeDRRLowerCenter .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSimLargeDRRLowerRight .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSimBigOrthoWith3DTransverseWindow .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSimBigOrthoWith3DSagittalWindow .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSimBigOrthoWith3DCoronalWindow .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSimBigOrthoWith3D_3DWindow .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSim9SliceOrthoT1 .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSim9SliceOrthoT2 .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSim9SliceOrthoT3 .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSim9SliceOrthoS1 .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSim9SliceOrthoS2 .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSim9SliceOrthoS3 .TrialNonBEV = TrialList .Current .Name;
+///ViewWindowList .CtSim9SliceOrthoC1 .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSim9SliceOrthoC2 .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSim9SliceOrthoC3 .TrialNonBEV = TrialList .Current .Name;
+//ViewWindowList .CtSimLargeDRR .TrialNonBEV = TrialList .Current .Name;
+//TrialList .Current .UseTrialForTreatment = 1;
+
+//PluginManager .PlanEvalPlugin .TrialList .#"*" .Selected = 0;
+//PluginManager .PlanEvalPlugin .TrialList .Last .Selected = 1;
+
+// Set CT density table:
+TrialList.Current.CtToDensityName = "Philips_Body";
+//TrialList.Current.PatientRepresentation.CtToDensityTableAccepted = 1;
+
+//Dose computer Area 
+WindowList .CTSim .PanelList .#"#0" .GotoPanel = "FunctionLayoutIcon0";
+TrialList .Children .PatientRepresentation .OutsidePatientAirThreshold = " 0.6";
+TrialList .Current .ShowPatAirThreshold = "Display as ROI";
+RoiList.Last.MakeCurrent = "";
+RoiList.Current.Name = "DoseArea";
+IF.RoiList.ContainsObject.#"Patient".THEN.RoiList.ELSE.RoiList.Current.Name = "Patient";
+
+WindowList .ROIErodeDilate .Create = "Smooth Contours...";
+RoiList .Current .ErodeDilatePixelFraction = "4";
+RoiList .Current .ErodeDilate2d = "Erode/Dilate ROI";
+WindowList .RoiCleanupWindow .Create = "Clean ROI...";
+RoiList .Current .CurveMinArea = "100";
+RoiList .Current .Clean = "Rescan";
+RoiList .Current .CleanAndDelete = "Delete Curves";
+WindowList .RoiCleanupWindow .Unrealize = "Dismiss";
+TrialList.Current.ROICoverageMarginInCm = "0.6";
+TrialList.Current.AutoCoverROI = "OK";
+
+//ref.point adjusting
+WindowList.NewPoiSpreadsheet.Create = "POIButton";
+PoiList.#"#0".Name = "Ref.point";
+PoiList.#"#0".Color = "green";
+Store.FloatAt.xRef = PoiList.Current.DisplayXCoord;
+Store.FloatAt.yRef = PoiList.Current.DisplayYCoord;
+Store.FloatAt.zRef = PoiList.Current.DisplayZCoord;
+
+IF.RoiList.ContainsObject.#"PTV".THEN.RoiList.Current = "PTV";
+IF.RoiList.ContainsObject.#"PGTV".THEN.RoiList.Current = "PGTV";
+Store.FloatAt.Temp = 1;
+IF.PoiList.ContainsObject.#"Iso.center".THEN.Store.At.Temp = 0;
+IF.Store.At.Temp.Value.THEN
+={
+CreateNewPOI = "Add Point Of Interest";
+PoiList.Current.Name = "Iso.center";
+};
+PoiList.Current = "Iso.center";
+PoiList.Current.Color = "red";
+PoiAutoplaceMode = "Centroid";
+AutoplaceCurrentPoi = "Automatically Place Point";
+
+Store.FloatAt.xIso = PoiList.Current.DisplayXCoord;
+Store.FloatAt.yIso = PoiList.Current.DisplayYCoord;
+Store.FloatAt.zIso = PoiList.Current.DisplayZCoord;
+Store.At.xIso.Subtract = Store.At.xRef.Value;
+Store.At.yIso.Subtract = Store.At.yRef.Value;
+Store.At.zIso.Subtract = Store.At.zRef.Value;
+
+PoiList.Current = "Iso.center";
+Store.At.xIso.Absolute = "";
+Store.At.yIso.Absolute = "";
+Store.At.zIso.Absolute = "";
+IF.Store.At.xIso.Value.LESSTHANOREQUALTO.#"#3".THEN.PoiList.Current.DisplayXCoord = Store.At.xRef.Value;
+IF.Store.At.yIso.Value.LESSTHANOREQUALTO.#"#3".THEN.PoiList.Current.DisplayYCoord = Store.At.yRef.Value;
+IF.Store.At.zIso.Value.LESSTHANOREQUALTO.#"#3".THEN.PoiList.Current.DisplayZCoord = Store.At.zRef.Value;
+

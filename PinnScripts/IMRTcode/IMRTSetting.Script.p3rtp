@@ -1,0 +1,61 @@
+//Free temp stored variables
+Store.FreeAt.HomeDir = "";
+Store.FreeAt.BinDir = "";
+Store.FreeAt.TempDir  = "";
+
+Store.FreeAt.TempCommand = "";
+Store.FreeAt.TempExeFile = "";
+
+//Set Home Dir "Home/"
+Store.At.HomeDir = SimpleString {};
+Store.At.HomeDir.AppendString = "/usr/local/adacnew/PinnacleSiteData/Scripts/IMRTcode/";
+//Set bin dir 
+Store.At.BinDir = SimpleString {};
+Store.At.BinDir.AppendString = Store.At.HomeDir.String;
+Store.At.BinDir.AppendString = "bin/";
+//Set Pinnacle Scripts dir
+Store.At.TempDir = SimpleString {};
+Store.At.TempDir.AppendString = Store.At.HomeDir.String;
+Store.At.TempDir.AppendString = "temp/";
+
+//WarningMessage = "perl scripts";
+
+//Step1:run "Lung_IMRT.perl" to Create Target PinnaScripts 
+Store.At.TempCommand = SimpleString {};
+Store.At.TempCommand.AppendString = "xterm -e perl ";
+Store.At.TempCommand.AppendString = Store.At.BinDir.String;
+Store.At.TempCommand.AppendString = "IMRTStepOne.pl ";
+Store.At.TempCommand.AppendString = " -m \"";
+Store.At.TempCommand.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.TempCommand.AppendString = "\"";
+Store.At.TempCommand.AppendString = " -l \"";
+Store.At.TempCommand.AppendString = PlanInfo.PlanPath;
+Store.At.TempCommand.AppendString = "\"";
+SpawnCommand = Store.At.TempCommand.String;
+Store.FreeAt.TempCommand = ""; 
+
+
+
+//run the target PinnScripts:"CurrentIMRTStepOne.Script.p3rtp"
+Store.At.TempExeFile = SimpleString {};
+Store.At.TempExeFile.AppendString = Store.At.TempDir.String;
+Store.At.TempExeFile.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.TempExeFile.AppendString = "CurrentIMRTStepOne.Script.p3rtp";
+
+WaitMessage = "Running Scripts";
+
+AskYesNoDefault = 1;
+AskYesNoPrompt = "Running This Script?";
+Store.FloatAt.TempCommand = AskYesNo;
+IF.Store.At.TempCommand.Value.THEN.Script.ExecuteNow = Store.At.TempExeFile.String;
+
+WaitMessageOff = "";
+//save plan data first
+//SavePlan = "Save Plan";
+
+//Free All variables
+Store.FreeAt.TempCommand = "";
+Store.FreeAt.TempExeFile = "";
+Store.FreeAt.HomeDir = "";
+Store.FreeAt.BinDir  = "";
+Store.FreeAt.TempDir = "";

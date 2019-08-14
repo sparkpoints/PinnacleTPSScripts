@@ -1,0 +1,5 @@
+ViewWindowList.Current.Enter3dMode="";
+ViewWindowList.Current.BEV=TrialList.Current.BeamList.Current.Name;
+
+
+ViewWindowList.MakePreviousCurrent="";

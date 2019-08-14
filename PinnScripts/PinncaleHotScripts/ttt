@@ -1,0 +1,74 @@
+***************************************************************
+*** Name: RemoveEmptyRois.Script                            ***
+***                                                         ***
+*** Purpose: Removing all empty ROIs                        ***
+***                                                         ***
+*** Remarkt: Script will scan max 100ROIs and 20 Trails.    ***
+***                                                         ***
+*** Goudry Bert 08-02-2010                                  ***
+***                                                         ***
+*** Adjustments: Script looks at curves in a roi and not    ***
+***              the volume of a roi.                       ***
+***              Goudry Bert 21-09-2010                     ***
+***                                                         ***
+***************************************************************
+*/
+
+//Store Display Status of each Trial (First 15 Trials)
+
+Store.FreeAt.DisplayStatTr1 = "";
+Store.FreeAt.DisplayStatTr2 = "";
+
+
+Store.FloatAt.DisplayStatTr1 = PluginManager .PlanEvalPlugin .TrialList .#"#0" .Selected;
+Store.FloatAt.DisplayStatTr2 = PluginManager .PlanEvalPlugin .TrialList .#"#1" .Selected;
+
+
+//Don' display any of het trails on the dvh (faster) 
+
+PluginManager .PlanEvalPlugin .TrialList .#"*" .Selected = 0;
+
+// Deleting Roi's If there is no curve present
+
+RoiList .#"#100" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#100" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+RoiList .#"#0" .MakeCurrent = 1;
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.PluginManager .PlanEvalPlugin .ROIList .#"#0" .Selected = 0;
+IF.RoiList.Current.RelyOnList.HasNoElements.THEN
+={
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.CancelRoiEditing = "Delete Selected ROI";
+IF.RoiList.Current.CurveCount.EqualTo.#"#0".
+THEN.DestroyCurrentROI = "Delete Selected Roi";
+};
+
+// Show the same Trails on the dvh as when starting the script.
+
+PluginManager .PlanEvalPlugin .TrialList .#"#0" .Selected = Store.FloatAt.DisplayStatTr1;
+PluginManager .PlanEvalPlugin .TrialList .#"#1" .Selected = Store.FloatAt.DisplayStatTr2;
+
+
+//Clear store
+
+Store.FreeAt.DisplayStatTr1 = "";
+Store.FreeAt.DisplayStatTr2 = "";
+
+
+// Message at end of script
+
+Store.StringAt.InfoMess =        "Removing empty Roi's is done.";
+Store.At.InfoMess.AppendString = "@Please press OK to continue.";
+InfoMessage = Store.At.InfoMess.Value;
+Store.FreeAt.InfoMess = "";
+
+/* ?*/

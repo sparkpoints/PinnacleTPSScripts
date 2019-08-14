@@ -1,0 +1,22 @@
+// -> PDF_HotScriptList
+// create a Script for export several slices
+// P3 7.6c - 8.0m
+// Bj 02.08
+
+ViewWindowList. Current. Enter2dMode = "Enter 2D Mode";
+
+WaitMessage = " create auto File";
+SpawnCommand = "xterm -e /usr/local/adacnew/PinnacleSiteData/Scripts/PY/pdf/PDF_createAutoSlices.sh";
+WaitMessageOff = "";
+
+Store.StringAt.Befehl = "/var/tmp/PDF_Slices.Script.";
+Store .At .Befehl .AppendString = GetEnv.SESSION_SVR;
+
+WaitMessage = "Schreibe Trans PDF";
+Script.ExecuteNow =  Store .StringAt .Befehl;
+WaitMessageOff = "";
+// Loesche Befehlsstring
+Store.RemoveAt .Befehl;
+
+// Open Window for DRR export
+Script.ExecuteNow = "/usr/local/adacnew/PinnacleSiteData/Scripts/PY/pdf/PDF_DRRWindow.Script.bj";

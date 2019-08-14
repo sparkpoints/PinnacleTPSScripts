@@ -1,0 +1,22 @@
+//Generate BackupInstitutionList from InstitutionList
+Store.StringAt.LoadPatientScript = Store.StringAt.HomeFolder;
+Store.At.LoadPatientScript.AppendString = "/LoadPatient.Script";
+
+//Load Institution to BackupInstitutionList
+InstitutionList.Save = Store.StringAt.TempFile;
+BackupInstitutionList.RemoveAllObjects = "";
+BackupInstitutionList.Load = Store.StringAt.TempFile;
+
+//Clear something need not backup
+BackupInstitutionList.#"*".MountPointList.RemoveAllObjects = "";
+BackupInstitutionList.#"*".BackupMachineList.RemoveAllObjects = "";
+BackupInstitutionList.#"*".BackupMachineListNonCommissioned.RemoveAllObjects = "";
+
+//Load Patient Info and Add Extra Attribute to BackupInstitutionList
+Store.StringAt.PatientPath = "";
+BackupInstitutionList.ChildrenEachCurrent.PatientLiteList.ChildrenEachCurrent.#"@".Script.ExecuteNow = Store.StringAt.LoadPatientScript;
+
+
+
+Store.FreeAt.PatientPath = "";
+Store.FreeAt.LoadPatientScript = "";

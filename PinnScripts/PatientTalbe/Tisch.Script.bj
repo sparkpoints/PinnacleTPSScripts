@@ -1,0 +1,161 @@
+// Einsetzen eines Tisches 
+// Idee Peter Mohr 
+// Bj 02.07 
+// Add english Messages 10.07 Bj
+// change Phath 
+// Tested on P3 7.6c
+
+
+WaitMessage = "Setze Punkt Tisch Mitte";
+// WaitMessage = "Insert Point Tisch Mitte";
+IF.PoiList.#"!ContainsObject".TischMitte.THEN.CreateNewPOI = "Add Point Of Interest";
+IF.PoiList.#"!ContainsObject".TischMitte.THEN.PoiList .Last .Color = "grey";
+IF.PoiList.#"!ContainsObject".TischMitte.THEN.PoiList .Last .XCoord = TrialList .Current .LaserLocalizer .LaserCenter .XCoord;
+IF.PoiList.#"!ContainsObject".TischMitte.THEN.PoiList .Last .ZCoord = TrialList .Current .LaserLocalizer .LaserCenter .ZCoord;
+IF.PoiList.#"!ContainsObject".TischMitte.THEN.PoiList .Last .YCoord = TrialList .Current .CouchRemovalYCoordinate ;
+IF.PoiList.#"!ContainsObject".TischMitte.THEN.PoiList .Last .Name = "TischMitte";
+
+WaitMessage = "Loesche alten Tisch";
+// WaitMessage = "delete previous Table";
+IF.RoiList.ContainsObject.Tisch.THEN.RoiList .Tisch .MakeCurrent = 1;
+IF.RoiList.ContainsObject.Tisch.THEN.CancelRoiEditing = "Delete Selected ROI   (Tisch)";
+IF.RoiList.ContainsObject.Tisch.THEN.RoiList .Tisch .Destroy = "Delete Selected ROI   (Tisch)";
+
+IF.RoiList.ContainsObject.TischSpace.THEN.RoiList .TischSpace .MakeCurrent = 1;
+IF.RoiList.ContainsObject.TischSpace.THEN.CancelRoiEditing = "Delete Selected ROI   (TischSpace)";
+IF.RoiList.ContainsObject.TischSpace.THEN.RoiList .TischSpace .Destroy = "Delete Selected ROI   (TischSpace)";
+
+WaitMessage = "Bestimme Tisch Mitte";
+// WaitMessage = "find the Middle of the Table";
+// Bilde Befehlsstring Tisch Mitte x  - send xPositon of POI "TischMitte" to a file
+Store .StringAt .Befehl = "echo ";
+Store .At .Befehl .AppendString = PoiList .TischMitte .XCoord;
+Store .At .Befehl .AppendString = " > /var/tmp/Tisch.csv";
+SpawnCommand = Store .StringAt .Befehl;
+// Loesche Befehlsstring
+Store.RemoveAt .Befehl = "";
+
+// Bilde Befehlsstring Tisch Mitte y  - send yPositon of POI "TischMitte" to a file
+Store .StringAt .Befehl = "echo "; 
+Store .At .Befehl .AppendString = PoiList .TischMitte .YCoord;
+Store .At .Befehl .AppendString = " >> /var/tmp/Tisch.csv";
+SpawnCommand = Store .StringAt .Befehl;
+// Loesche Befehlsstring
+Store.RemoveAt .Befehl = "";
+
+// Bilde Befehlsstring Tisch Mitte z  - send zPositon of POI "TischMitte" to a file
+Store .StringAt .Befehl = "echo ";
+Store .At .Befehl .AppendString = PoiList .TischMitte .ZCoord;
+Store .At .Befehl .AppendString = " >> /var/tmp/Tisch.csv";
+SpawnCommand = Store .StringAt .Befehl;
+// Loesche Befehlsstring
+Store.RemoveAt .Befehl = "";
+
+// Setze Punkt in Bildmitte - Insert a POI to find the CT Origin
+CreateNewPOI = "Add Point Of Interest";
+
+// Bilde Befehlsstring Bild Mitte x  - send xPositon of the lastPOI to a file
+Store .StringAt .Befehl = "echo "; 
+Store .At .Befehl .AppendString = PoiList .Last .XCoord;
+Store .At .Befehl .AppendString = " >> /var/tmp/Tisch.csv";
+SpawnCommand = Store .StringAt .Befehl;
+// Loesche Befehlsstring
+Store.RemoveAt .Befehl = "";
+
+// Bilde Befehlsstring Bild Mitte y - send yPositon of the lastPOI to a file
+Store .StringAt .Befehl = "echo ";
+Store .At .Befehl .AppendString = PoiList .Last .YCoord;
+Store .At .Befehl .AppendString = " >> /var/tmp/Tisch.csv";
+SpawnCommand = Store .StringAt .Befehl;
+// Loesche Befehlsstring
+Store.RemoveAt .Befehl = "";
+
+// Loesche Punkt Bild Bitte - delete the lastPOI
+PoiList .Last .Destroy = "Delete Selected POI   (POI_1)";
+
+
+WaitMessage = "Berechne ROI";
+// WaitMessage = "Compute ROI";
+// bilde ROI Tisch - compute ROI Tabel ("Tisch")
+SpawnCommand = "awk -f /usr/local/adacnew/PinnacleSiteData/Scripts/buildTisch.awk /var/tmp/Tisch.csv > /var/tmp/Tisch.roi";
+
+// bilde ROI Tischspace - compute ROI to cover the CT Tabel ("Tischspace")
+SpawnCommand = "awk -f /usr/local/adacnew/PinnacleSiteData/Scripts/buildTischSpace.awk /var/tmp/Tisch.csv > /var/tmp/TischSpace.roi";
+
+
+WaitMessage = "Importiere Tisch";
+// WaitMessage = "Import Tabel";
+// Importiere TischSpace - import ROI to cover the CT Tabel ("Tischspace")
+RoiImportFileList .File = "/var/tmp/TischSpace.roi";
+ImportRoi = "OK";
+
+// Kopiere TischSpace in erste und letzte Schicht - copy ROI to first and last Sclice
+RoiList .Last .MakeCurrent = 1;
+ViewWindowList .Current .UserSliceNumber = "1";
+RoiList .Current .CopyCurvesOnLastSliceToSlice = ViewWindowList .Current .Address;
+ViewWindowList .Current .UserSliceNumber = ViewWindowList .Current .NumberOfSlices ;
+RoiList .Current .CopyCurvesOnLastSliceToSlice = ViewWindowList .Current .Address;
+
+// Interpoliere TischSpace - interpolate
+RoiList .Current .InterpolateContours = "Interpolate between all contours of TischSpace";
+RoiList .Current .Display2d = "Off";
+ViewWindowList .Current .SetSliceToCurrentPoi = "Set Slice To Current POI";
+
+// Importiere Tisch - import Table
+RoiImportFileList .File = "/var/tmp/Tisch.roi";
+ImportRoi = "OK";
+
+//Kopiere Tisch in erste und letzte Schicht - copy ROI to first and last Sclice
+RoiList .Last .MakeCurrent = 1;
+ViewWindowList .Current .UserSliceNumber = "1";
+RoiList .Current .CopyCurvesOnLastSliceToSlice = ViewWindowList .Current .Address;
+ViewWindowList .Current .UserSliceNumber = ViewWindowList .Current .NumberOfSlices ;
+RoiList .Current .CopyCurvesOnLastSliceToSlice = ViewWindowList .Current .Address;
+
+// Interpoliere Tisch - interpolate
+RoiList .Current .InterpolateContours = "Interpolate between all contours of Tisch";
+ViewWindowList .Current .SetSliceToCurrentPoi = "Set Slice To Current POI";
+
+// Subtrahiere den Tisch vom Space - subtract the Tabel from ROI "Tischspace"
+CreateNewROI = "Add Region Of Interest";
+RoiList .Last .Name = "TischSpace";
+RoiList .Last .Color = "grey";
+RoiList .Last .Display2d = "Off";
+RoiList .Last .Density = "0.1";
+
+RoiExpandControl .SourceRoiList .# "*" .Remove = "TischTempSpace";
+RoiExpandControl .AvoidRoiList .# "*" .Remove = "TischTempSpace";
+
+RoiExpandControl .TargetRoi = "TischSpace";
+RoiList .Current = "TischTempSpace";
+RoiExpandControl .AddSourceRoi = "Add -->";
+RoiList .Current = "Tisch";
+RoiExpandControl .AddAvoidRoi = "Add -->";
+RoiExpandControl .DoExpand = "Proceed";
+
+RoiList .TischTempSpace .Destroy = "Delete Selected ROI   (TischTempSpace)";
+
+WaitMessage = "Reduziere Punkte in der ROI";
+// Reduziere Punktanzahl - reduce Number of Points
+RoiList .Tisch .ReduceArea = "Reduce Current ROI by Area...";
+RoiList .TischSpace .ReduceArea = "Reduce Current ROI by Area...";
+WaitMessageOff = "";
+
+// Ueberschrreibe CT Werte - overwrite CT density
+RoiList .TischSpace .OverrideDataSetData = 1 ;
+RoiList .Tisch .OverrideDataSetData = 1 ;
+
+// Schwellwert fuer Luft herabsetzen Dischdichte = 4x0.12=0.48 - reduce the Air threshold value
+TrialList .Children .OutsidePatientAirThreshold = "0.4";
+
+WaitMessage = "Setze Rechengrenze";
+// WaitMessage = "Set new CouchRemoval";
+// CouchRemovalYCoordinate verschieben Tischdicke 1.75 cm 
+Store .FloatAt .NewCouchRemoval = PoiList .TischMitte .YCoord ;
+Store .At .NewCouchRemoval .Subtract = 2.0 ;
+WaitMessageOff = "";
+TrialList .Current .CouchRemovalYCoordinate = Store .FloatAt .NewCouchRemoval ;
+Store .RemoveAt .NewCouchRemoval ;
+
+
+

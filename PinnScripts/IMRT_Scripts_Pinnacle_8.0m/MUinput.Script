@@ -1,0 +1,111 @@
+//THIS IS THE SECTION WHERE YOU INPUT THE MU FOR EACH BEAM
+//AT THE END OF EACH LINE, INPUT A NUMBER VALUE ONLY.  DON'T INPUT ANY OTHER CHARACTER OR PRESS ENTER.
+ Store.FloatAt.MU1 = 
+;Store.FloatAt.MU2 = 
+;Store.FloatAt.MU3 = 
+;Store.FloatAt.MU4 = 
+;Store.FloatAt.MU5 = 
+;Store.FloatAt.MU6 = 
+;Store.FloatAt.MU7 = 
+;Store.FloatAt.MU8 = 
+;Store.FloatAt.MU9 = 
+;
+
+
+//SETS THE NAME FOR EACH PLANAR DOSE FILE 
+  Store.StringAt.BeamName1 = "01
+";Store.StringAt.BeamName2 = "02
+";Store.StringAt.BeamName3 = "03
+";Store.StringAt.BeamName4 = "04
+";Store.StringAt.BeamName5 = "05
+";Store.StringAt.BeamName6 = "06
+";Store.StringAt.BeamName7 = "07
+";Store.StringAt.BeamName8 = "08
+";Store.StringAt.BeamName9 = "09
+";
+
+
+//CREATES EACH PLANAR DOSE AND EXPORTS IT
+TrialList .Current .SetBeamMonitorUnits .#"#0" .Address = Store.FloatAt.MU1;
+TrialList .Current .PlanarDoseList .#"#0" .YDimension = "301";
+TrialList .Current .ComputePlanarDose .#"#0" = 0;
+TrialList .Current .PlanarDoseList .Current .ExportName = Store.StringAt.BeamName1;
+TrialList .Current .OutputCurrentPlanarDose = "Export Plane To File";
+
+TrialList .Current .SetBeamMonitorUnits .#"#0" .Address = "0";
+TrialList .Current .SetBeamMonitorUnits .#"#1" .Address = Store.FloatAt.MU2;
+TrialList .Current .PlanarDoseList .#"#0" .YDimension = "299";
+TrialList .Current .ComputePlanarDose .#"#0" = 0;
+TrialList .Current .PlanarDoseList .Current .ExportName = Store.StringAt.BeamName2;
+TrialList .Current .OutputCurrentPlanarDose = "Export Plane To File";
+
+TrialList .Current .SetBeamMonitorUnits .#"#1" .Address = "0";
+TrialList .Current .SetBeamMonitorUnits .#"#2" .Address = Store.FloatAt.MU3;
+TrialList .Current .PlanarDoseList .#"#0" .YDimension = "301";
+TrialList .Current .ComputePlanarDose .#"#0" = 0;
+TrialList .Current .PlanarDoseList .Current .ExportName = Store.StringAt.BeamName3;
+TrialList .Current .OutputCurrentPlanarDose = "Export Plane To File";
+
+TrialList .Current .SetBeamMonitorUnits .#"#2" .Address = "0";
+TrialList .Current .SetBeamMonitorUnits .#"#3" .Address = Store.FloatAt.MU4;
+TrialList .Current .PlanarDoseList .#"#0" .YDimension = "299";
+TrialList .Current .ComputePlanarDose .#"#0" = 0;
+TrialList .Current .PlanarDoseList .Current .ExportName = Store.StringAt.BeamName4;
+TrialList .Current .OutputCurrentPlanarDose = "Export Plane To File";
+
+TrialList .Current .SetBeamMonitorUnits .#"#3" .Address = "0";
+TrialList .Current .SetBeamMonitorUnits .#"#4" .Address = Store.FloatAt.MU5;
+TrialList .Current .PlanarDoseList .#"#0" .YDimension = "301";
+TrialList .Current .ComputePlanarDose .#"#0" = 0;
+TrialList .Current .PlanarDoseList .Current .ExportName = Store.StringAt.BeamName5;
+TrialList .Current .OutputCurrentPlanarDose = "Export Plane To File";
+
+TrialList .Current .SetBeamMonitorUnits .#"#4" .Address = "0";
+TrialList .Current .SetBeamMonitorUnits .#"#5" .Address = Store.FloatAt.MU6;
+TrialList .Current .PlanarDoseList .#"#0" .YDimension = "299";
+TrialList .Current .ComputePlanarDose .#"#0" = 0;
+TrialList .Current .PlanarDoseList .Current .ExportName = Store.StringAt.BeamName6;
+TrialList .Current .OutputCurrentPlanarDose = "Export Plane To File";
+
+TrialList .Current .SetBeamMonitorUnits .#"#5" .Address = "0";
+TrialList .Current .SetBeamMonitorUnits .#"#6" .Address = Store.FloatAt.MU7;
+TrialList .Current .PlanarDoseList .#"#0" .YDimension = "301";
+TrialList .Current .ComputePlanarDose .#"#0" = 0;
+TrialList .Current .PlanarDoseList .Current .ExportName = Store.StringAt.BeamName7;
+TrialList .Current .OutputCurrentPlanarDose = "Export Plane To File";
+
+TrialList .Current .SetBeamMonitorUnits .#"#6" .Address = "0";
+TrialList .Current .SetBeamMonitorUnits .#"#7" .Address = Store.FloatAt.MU8;
+TrialList .Current .PlanarDoseList .#"#0" .YDimension = "299";
+TrialList .Current .ComputePlanarDose .#"#0" = 0;
+TrialList .Current .PlanarDoseList .Current .ExportName = Store.StringAt.BeamName8;
+TrialList .Current .OutputCurrentPlanarDose = "Export Plane To File";
+
+TrialList .Current .SetBeamMonitorUnits .#"#7" .Address = "0";
+TrialList .Current .SetBeamMonitorUnits .#"#8" .Address = Store.FloatAt.MU9;
+TrialList .Current .PlanarDoseList .#"#0" .YDimension = "301";
+TrialList .Current .ComputePlanarDose .#"#0" = 0;
+TrialList .Current .PlanarDoseList .Current .ExportName = Store.StringAt.BeamName9;
+TrialList .Current .OutputCurrentPlanarDose = "Export Plane To File";
+
+
+//DESTROYS ALL VARIABLES USED
+Store.FreeAt.MU1 = "";
+Store.FreeAt.MU2 = "";
+Store.FreeAt.MU3 = "";
+Store.FreeAt.MU4 = "";
+Store.FreeAt.MU5 = "";
+Store.FreeAt.MU6 = "";
+Store.FreeAt.MU7 = "";
+Store.FreeAt.MU8 = "";
+Store.FreeAt.MU9 = "";
+Store.FreeAt.BeamName1 = "";
+Store.FreeAt.BeamName2 = "";
+Store.FreeAt.BeamName3 = "";
+Store.FreeAt.BeamName4 = "";
+Store.FreeAt.BeamName5 = "";
+Store.FreeAt.BeamName6 = "";
+Store.FreeAt.BeamName7 = "";
+Store.FreeAt.BeamName8 = "";
+Store.FreeAt.BeamName9 = "";
+/* ֓ */

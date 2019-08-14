@@ -1,0 +1,139 @@
+/////////////////////////////////////////////////////////////////////////////////
+//Default Path & Parameter, Modify if Need
+/////////////////////////////////////////////////////////////////////////////////
+
+Store.StringAt.DataFolder = GetEnv.HOME;   			//Backup data placement
+Store.StringAt.HomeFolder = "/home/p3rtp/MyScript/DataHelper";  //Scripts directory
+Store.FloatAt.MovePatient = 0;     				//Move patient after backup
+Store.FloatAt.MoveDest = 0;					//Where to move
+Store.FloatAt.IgnoreBackuped = 1;				//Same patient backup again or ignore
+Store.FloatAt.AutoBackupIntrval = 60;				//How old will be archived, days
+
+
+/////////////////////////////////////////////////////////////////////////////////
+//Default Path & file
+//Don't modify anything below
+/////////////////////////////////////////////////////////////////////////////////
+
+Store.StringAt.TempFile = Store.StringAt.HomeFolder;
+Store.At.TempFile.AppendString = "/.temp";
+Store.StringAt.LogFile = Store.StringAt.HomeFolder;
+Store.At.LogFile.AppendString = "/backup.log";
+Store.StringAt.PyFile = "/usr/bin/python ";
+Store.At.PyFile.AppendString = Store.StringAt.HomeFolder;
+Store.At.PyFile.AppendString = "/func.py ";
+
+Store.FloatAt.NeedBackup = 0;
+Store.StringAt.MakeCommand = "";
+Store.StringAt.BackupFile = "";
+Store.FloatAt.FileExist = 0;					//if file exist?
+Store.FloatAt.Space = 0;					//how much space need for backup
+Store.StringAt.Log = "";
+Store.FloatAt.AutoBackup = 0;					//Auto Backup?
+
+
+Store.StringAt.BackupList = Store.StringAt.HomeFolder;
+Store.At.BackupList.AppendString = "/BackupInstitutionList";
+
+Store.StringAt.BackupInstitutionFile = Store.StringAt.HomeFolder;
+Store.At.BackupInstitutionFile.AppendString = "/Institution";
+
+/////////////////////////////////////////////////////////////////////////////////
+//Scripts setting
+////////////////////////////////////////////////////////////////////////////////
+
+Store.StringAt.CreateBackupListScript = Store.StringAt.HomeFolder;
+Store.At.CreateBackupListScript.AppendString = "/CreateBackupList.Script";
+
+Store.StringAt.AutoBackupScript = Store.StringAt.HomeFolder;
+Store.At.AutoBackupScript.AppendString = "/AutoBackup.Script";
+
+Store.StringAt.ManualBackupScript = Store.StringAt.HomeFolder;
+Store.At.ManualBackupScript.AppendString = "/ManualBackup.Script";
+
+Store.StringAt.GenBackupInstitutionScript = Store.StringAt.HomeFolder;
+Store.At.GenBackupInstitutionScript.AppendString = "/GenBackupInstitution.Script";
+
+Store.StringAt.MakeFilenameScript = Store.StringAt.HomeFolder;
+Store.At.MakeFilenameScript.AppendString = "/MakeFilename.Script";
+
+Store.StringAt.FindFileScript = Store.StringAt.HomeFolder;
+Store.At.FindFileScript.AppendString = "/FindFile.Script";
+
+Store.StringAt.BackupOneScript = Store.StringAt.HomeFolder;
+Store.At.BackupOneScript.AppendString = "/BackupOne.Script";
+
+Store.StringAt.MovePatientScript = Store.StringAt.HomeFolder;
+Store.At.MovePatientScript.AppendString = "/MovePatient.Script";
+
+Store.StringAt.WriteLogFileScript = Store.StringAt.HomeFolder;
+Store.At.WriteLogFileScript.AppendString = "/WriteLogFile.Script";
+
+Store.StringAt.BackupChecker = "IF.BackupInstitutionList.Current.PatientLiteList.Current.Store.FloatAt.Backup.EQUALTO.#1.THEN.Script.ExecuteNow = Store.StringAt.BackupOneScript";
+Store.StringAt.MoveChecker   = "IF.BackupInstitutionList.Current.PatientLiteList.Current.Store.FloatAt.Backup.EQUALTO.#1.THEN.Script.ExecuteNow = Store.StringAt.MovePatientScript";
+
+////////////////////////////////////////////////////////////////////////
+//Main Backup Routine
+////////////////////////////////////////////////////////////////////////
+
+//Load Backup Method:0-Manual, 1-Auto
+Store.At.AutoBackup.Load = Store.StringAt.TempFile;
+
+//Create Backup List and Load Patient Info
+Script.ExecuteNow = Store.StringAt.CreateBackupListScript;
+
+//Manual OR Auto?
+IF.Store.FloatAt.AutoBackup.EQUALTO.#"#0".THEN.Script.ExecuteNow = Store.StringAt.ManualBackupScript;
+IF.Store.FloatAt.AutoBackup.EQUALTO.#"#1".THEN.Script.ExecuteNow = Store.StringAt.AutoBackupScript;
+
+//Start Backup All Selected Patients
+IF.Store.FloatAt.NeedBackup.EQUALTO.#"#1".THEN.BackupInstitutionList.ChildrenEachCurrent.PatientLiteList.ChildrenEachCurrent.#"@".Store.At.BackupChecker.Execute = "";
+
+//Batch Move Patient
+IF.Store.FloatAt.MovePatient.EQUALTO.#"#1".THEN.BackupInstitutionList.ChildrenEachCurrent.PatientLiteList.ChildrenEachCurrent.#"@".Store.At.MoveChecker.Execute = "";
+
+
+//////////////////////////////////////////////////////////////////////////
+
+Store.FreeAt.TempFile = "";
+Store.FreeAt.LogFile = "";
+Store.FreeAt.PyFile = "";
+
+Store.FreeAt.NeedBackup = "";
+Store.FreeAt.MakeCommand = "";
+Store.FreeAt.BackupFile = "";
+Store.FreeAt.FileExist = "";
+Store.FreeAt.Space = "";
+Store.FreeAt.Log = "";
+Store.FreeAt.AutoBackup = "";
+
+Store.FreeAt.BackupList = "";
+Store.FreeAt.BackupInstitutionFile = "";
+
+Store.FreeAt.CreateBackupListScript = "";
+Store.FreeAt.AutoBackupScript = "";
+Store.FreeAt.ManualBackupScript = "";
+Store.FreeAt.GenBackupInstitutionScript = "";
+Store.FreeAt.MakeFilenameScript = "";
+Store.FreeAt.FindFileScript = "";
+Store.FreeAt.BackupOneScript = "";
+Store.FreeAt.MovePatientScript = "";
+Store.FreeAt.WriteLogFileScript = "";
+
+Store.FreeAt.BackupChecker = "";
+Store.FreeAt.MoveChecker = "";
+
+
+/////////////////////////////////////////////////////////////////////////////////
+
+Store.FreeAt.DataFolder = "";
+Store.FreeAt.HomeFolder = "";
+
+Store.FreeAt.MovePatient = "";
+Store.FreeAt.MoveDest = "";
+Store.FreeAt.IgnoreBackuped = "";
+Store.FreeAt.AutoBackupIntrval = "";
+
+///////////////////////////////////////////////////////////////////////////
+//Quit Launch Pad
+Exit = 1;

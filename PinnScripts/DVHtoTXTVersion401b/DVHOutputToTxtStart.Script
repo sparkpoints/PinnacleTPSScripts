@@ -1,0 +1,66 @@
+/**************************************************************
+*                                                             *
+*  **   ** ******   ****   *   *********  *******    ******   *
+*  **   **     *   ** **   *         **  *       *         *  *
+*  **   **    *   **  **   *       **    *       *  ********  *
+*  **   **   *   **   **   *     **      *       * *       *  *
+*  *******  *   **  ****   *   ********* *       * *********  *
+*   **** * ******     **   *                                  *
+*                                                             *
+**************************************************************/
+/*
+***************************************************************
+*** Name: DVHOutputToTxtStart.Script                        ***
+***                                                         ***
+*** Purpose: Question to ask if your sure you want to       ***
+***          continue? You will need to prepare some things ***
+***          (DVH).                                         ***
+***                                                         ***
+*** Remarks: This is one of the 2 starting scipts.          ***  
+***          The other start-script will export all the     ***
+***          trails and roi's which have contours.          ***
+***                                                         ***
+*** Goudry Bert 13-07-2010                                  ***
+***                                                         ***
+*** Adjustments:                                            ***
+***       Product of Trials x Roi max = 200                 ***
+***       Goudry Bert 03-02-2011                            ***
+***       Value of Last cell in tabular DVH is stored       ***
+***       Goudry Bert 21-03-2011                            ***
+***       Store and restore correct RPD-numbers             ***
+***       Goudry Bert 20-06-2011                            ***
+***                                                         ***
+***************************************************************
+*/
+
+
+
+// Store the current RPD
+Store.FreeAt.RRevision = "";
+Store.FreeAt.PRevision = "";
+Store.FreeAt.DRevision = "";
+
+Store.FloatAt.RRevision = ReportRevision.RoiModifiedSinceLastReport;
+Store.FloatAt.PRevision = ReportRevision.PoiModifiedSinceLastReport;
+Store.FloatAt.DRevision = ReportRevision.DoseModifiedSinceLastReport;
+
+//Open DVH
+WindowList .PlanEval .Create = "Dose Volume Histogram...";
+
+// Ask question and prepare standard answer
+Store.FreeAt.TempYesNo = "";
+AskYesNoPrompt = "Have you selected the correct Trails and Roi's? And are you ready to continue?";
+AskYesNoDefault = "1";
+Store.FloatAt.TempYesNo = AskYesNo;
+
+// Consequences of the question
+
+IF.Store.At.TempYesNo.Value.EqualTo.#"#1".
+THEN.Script.ExecuteNow = "/usr/local/adacnew/PinnacleSiteData/Scripts/Fysica/DVHOutputToTxt/DVHOutputToTxtRunCheck.Script";
+
+IF.Store.At.TempYesNo.Value.EqualTo.#"#0".
+THEN.WarningMessage = "Select right Trials and then restart the script";
+
+Store.FreeAt.TempYesNo = "";
+
+/* Ë */

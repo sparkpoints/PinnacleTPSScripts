@@ -1,0 +1,50 @@
+/**************************************************************
+*                                                             *
+*  **   ** ******   ****   *   *********  *******    ******   *
+*  **   **     *   ** **   *         **  *       *         *  *
+*  **   **    *   **  **   *       **    *       *  ********  *
+*  **   **   *   **   **   *     **      *       * *       *  *
+*  *******  *   **  ****   *   ********* *       * *********  *
+*   **** * ******     **   *                                  *
+*                                                             *
+**************************************************************/
+/*
+***************************************************************
+*** Name: DVHOutputToTxtAddTrial.Script                     ***
+***                                                         ***
+*** Purpose: Prepare output by running this script for each ***
+***          different trial.                               ***
+***                                                         ***
+*** Remarks:                                                ***
+***                                                         ***
+*** Goudry Bert 16-02-2011                                  ***
+***                                                         ***
+*** Adjustments:                                            ***
+***       Product of Trials x Roi max = 200                 ***
+***       Goudry Bert 03-02-2011                            ***
+***       Value of Last cell in tabular DVH is stored       ***
+***       Goudry Bert 21-03-2011                            ***
+***                                                         ***
+***************************************************************
+*/
+
+// Add info to the commando creating the output file
+Store.At.PatInfo.AppendString = "Trial : ";
+Store.At.PatInfo.AppendString = TrialList.Current.Name;
+Store.At.PatInfo.AppendString = " ";
+
+// Store 0mu for the current trail mu's
+Store.FloatAt.TotalMuTrial = 0;
+
+// Add all the mu from each beam together
+TrialList. Current. BeamList. ChildrenEachCurrent.#"@".Store.At.TotalMuTrial.Add = TrialList.Current.BeamList.Current.MonitorUnits;
+
+// Add total mu to the commando creating the output file
+Store.At.PatInfo.AppendString = "mu";
+Store.At.PatInfo.AppendString = Store.FloatAt.TotalMuTrial;
+Store.At.PatInfo.AppendString = Store.StringAt.new_line;
+
+// Free some variables from the store
+Store.FreeAt.TotalMuTrial = "";
+
+/* Ë */

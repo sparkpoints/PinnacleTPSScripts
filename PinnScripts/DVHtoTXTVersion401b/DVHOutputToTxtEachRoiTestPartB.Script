@@ -1,0 +1,117 @@
+/**************************************************************
+*                                                             *
+*  **   ** ******   ****   *   *********  *******    ******   *
+*  **   **     *   ** **   *         **  *       *         *  *
+*  **   **    *   **  **   *       **    *       *  ********  *
+*  **   **   *   **   **   *     **      *       * *       *  *
+*  *******  *   **  ****   *   ********* *       * *********  *
+*   **** * ******     **   *                                  *
+*                                                             *
+**************************************************************/
+/*
+***************************************************************
+*** Name: DVHOutputToTxtEachRoiTestPartA.Script             ***
+***                                                         ***
+*** Purpose: Prepare/Make output for each Roi               ***
+***                                                         ***
+*** Remarks:                                                ***
+***                                                         ***
+*** Goudry Bert 13-07-2010                                  ***
+***                                                         ***
+*** Adjustments:                                            ***
+***       Product of Trials x Roi max = 200                 ***
+***       Goudry Bert 03-02-2011                            ***
+***       Value of Last cell in tabular DVH is stored       ***
+***       Goudry Bert 21-03-2011                            ***
+***       Split in two scriptfiles                          ***
+***       Goudry Bert 14-04-2011                            ***
+***                                                         ***
+***************************************************************
+*/
+
+// prepare output string
+
+Store.StringAt.output = "cat -n << EOF > /home/p3rtp/DVHtoTXT/";
+Store.At.output.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.output.AppendString = "dvhB";
+Store.At.output.AppendString = Store.FloatAt.CounterString; 
+Store.At.output.AppendString = ".tmp \n";
+
+//Add file to Merge commando
+
+Store.At.MergeFiles.AppendString = "/home/p3rtp/DVHtoTXT/";
+Store.At.MergeFiles.AppendString = PlanInfo.MedicalRecordNumber;
+Store.At.MergeFiles.AppendString = "dvhB";
+Store.At.MergeFiles.AppendString = Store.FloatAt.CounterString; 
+Store.At.MergeFiles.AppendString = ".tmp ";
+
+// iteration trigger and counter
+
+Store.FloatAt.i = 0;
+
+Store.FloatAt.j = 3;
+
+// delimiter
+
+Store.StringAt.new_line = "\n";
+
+KeyDependencyList.CreateChild = "";
+
+KeyDependencyList.Last = {
+
+      Name = "traverse_table";
+
+      KeyString = "Store.FloatAt.i";
+
+      // save cell
+
+      AddAction = "Store.At.output.AppendString = WindowList.DoseVolHistTabular.WidgetList.Table.Table.EntryBuffer";
+
+      AddAction = "Store.At.output.AppendString = Store.StringAt.new_line";
+
+      // trigger dependency key again unless counter meets the termination condition
+
+      AddAction = "IF.Store.FloatAt.j.LESSTHAN.Store.FloatAt.total.THEN.Store.At.i.Add = 1";
+
+      // go to next cell
+
+      AddAction = "WindowList.DoseVolHistTabular.WidgetList.Table.Table.MakeNextCellCurrent = #";
+
+      // increment counter
+
+      AddAction = "Store.At.j.Add = 2";
+
+};
+ 
+
+// trigger the process
+
+Store.FloatAt.i.Add = 1;
+
+// Store the last cell
+
+Store.At.output.AppendString = WindowList.DoseVolHistTabular.WidgetList.Table.Table.EntryBuffer;
+
+Store.At.output.AppendString = Store.StringAt.new_line;
+
+// save file
+
+SpawnCommand = Store.StringAt.output;
+
+// clean up
+
+KeyDependencyList.traverse_table.Destroy = "";
+
+WindowList.DoseVolHistTabular.Unrealize = "";
+
+Store.FreeAt.output = "";
+
+Store.FreeAt.new_line = "";
+
+Store.FreeAt.i = "";
+
+Store.FreeAt.j = "";
+
+Store.FreeAt.rows = "";
+
+Store.FreeAt.cols = "";

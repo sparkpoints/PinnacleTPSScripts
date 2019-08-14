@@ -1,0 +1,70 @@
+SavePlan = "Save Plan";// save plan data first
+
+//Define stored variables
+Store.FreeAt.HomeDir = "";  
+Store.FreeAt.BinDir  = "";
+Store.FreeAt.SysTempDir = "";
+Store.At.HomeDir = SimpleString {};             //--Set Main dir contain all scripts
+Store.At.HomeDir.AppendString = "/usr/local/adacnew/PinnacleSiteData/Scripts/IMRTcode/";
+//Store.At.BinDir = SimpleString {};              //--Set Perl Scripts dir
+//Store.At.BinDir.AppendString = Store.At.HomeDir.String;
+//Store.At.BinDir.AppendString = "bin/";
+//Store.At.SysTempDir = SimpleString {};          //--Set Temp dir
+//Store.At.SysTempDir.AppendString = Store.At.HomeDir.String;
+//Store.At.SysTempDir.AppendString = "Temp/";
+
+//==============Del empty ROIs============================
+Store.FreeAt.TempInfoMessage = ""; 
+Store.At.TempInfoMessage = SimpleString{};
+Store.At.TempInfoMessage.AppendString = Store.At.HomeDir.String;
+Store.At.TempInfoMessage.AppendString = "RemoveEmptyROIs.Script.p3rtp";
+Script.ExecuteNow = Store.At.TempInfoMessage.String;
+Store.FreeAt.TempInfoMessage = "";
+
+//==========Checking! if this is a new plan ==========================================================
+Store.FloatAt.RunMark = 1;                 //ErrorMark = 3 is new plan
+
+//plan is locked or not
+IF.PlanInfo.PlanIsEditable.LESSTHANOREQUALTO.#"#0".THEN
+={
+Store.At.RunMark = 0;
+WarningMessage = "Plan had been locked, Copy a New Plan";
+};
+
+//Checking external reference point definition
+IF.PoiList.HasNoElements.THEN
+={
+Store.At.RunMark = 0;
+WarningMessage = "You Must define <Ref.Point>,Mannually";
+};
+
+//Preparing define
+//WarningMessage = Store.At.RunMark.Value;
+Store.At.TempInfoMessage = SimpleString{};
+Store.At.TempInfoMessage.AppendString = Store.At.HomeDir.String;
+Store.At.TempInfoMessage.AppendString = "PreparingPlanData.Script.p3rtp";
+//IF.Store.At.RunMark.Value.THEN.WarningMessage = Store.At.TempInfoMessage.String;
+IF.Store.At.RunMark.Value.THEN.Script.ExecuteNow = Store.At.TempInfoMessage.String;
+Store.FreeAt.TempInfoMessage = "";
+
+//========================================================================================================
+//Step1:IMRT setting
+//WarningMessage = "IMRT setting ";
+Store.At.TempInfoMessage = SimpleString{};
+Store.At.TempInfoMessage.AppendString = Store.At.HomeDir.String;
+Store.At.TempInfoMessage.AppendString = "IMRTSetting.Script.p3rtp";
+IF.Store.At.RunMark.Value.THEN.Script.ExecuteNow = Store.At.TempInfoMessage.String;
+Store.FreeAt.TempInfoMessage = "";
+
+//Step2:Define Dose and Setting Initial DMPO paramenterl
+
+SavePlan = "Save Plan";                  //Save Result
+
+//Free All variables
+Store.FreeAt.HomeDir = "";
+//Store.FreeAt.BinDir  = "";
+//Store.FreeAt.SysTempDir = "";
+//Store.FreeAt.temp = "";
+
+
+/* v */

@@ -1,0 +1,135 @@
+
+Key:  P=Persistent Q=Query S=Set A=Action E=EnumeratedList
+
+          Query/Set Access types: 
+
+              '-' = Not Direct Access 
+              '*' = Direct Access
+              '?' = Indeterminate
+              '=' = Old Style if/then/else structure
+
+    pq*s*ae       Type       Class Messages
+    -------  --------------  --------------------------------------------------
+
+                 <None>
+
+    pq*s*ae       Type       Instance Messages
+    -------  --------------  --------------------------------------------------
+    ---S=--        ---       "*"
+
+    PQ*S*--       Bool       "AutoComputeBinSize"
+
+    -Q*S*--     SubObject    "AutoComputeMaxDose"
+
+    -Q*S*--     SubObject    "Beam"
+
+    PQ-S---        ---       "BeamName"
+
+    -Q*S*--       Bool       "BeginMessageBatch"
+
+    -Q*S---       Float      "BinSize"
+
+    PQ*S---       Float      "BinSizeP"
+
+    -----A-        ---       "BroadcastRegenerateDependency"
+
+    -Q-----        ---       "ColumnFormat"
+
+    -Q-----        ---       "ColumnHeader"
+
+    PQ*S*--        Int       "ColumnsPerRow"
+
+    -Q*S*--       Float      "ComputedNTCP"
+
+    -Q*S*--      VoidPtr     "DVHGroupObject"
+
+    PQ*S---     ObjString    "DashColor"
+
+    -Q*S*--     SubObject    "Data"
+
+    -Q-----        ---       "Description"
+
+    -Q*S*--       Float      "DoseMax"
+
+    -Q-----        ---       "DoseMaxDisplay"
+
+    -Q*S*--       Float      "DoseMean"
+
+    -Q-----        ---       "DoseMeanDisplay"
+
+    -Q*S*--       Float      "DoseMin"
+
+    -Q-----        ---       "DoseMinDisplay"
+
+    -Q*S*--       Float      "DoseStd"
+
+    -Q-----        ---       "DoseStdDisplay"
+
+    -Q-S---        ---       "DrawLineType"
+
+    -Q*S*--       Float      "EffectiveVolume"
+
+    -----A-        ---       "EndMessageBatch"
+
+    -----A-        ---       "ForceRegenerate"
+
+    PQ*S*--       Bool       "IncludeInReports"
+
+    PQ*S*--     SubObject    "LineStyle"
+
+    -Q-----        ---       "LineStyleObject"
+
+    -Q*S*--     SubObject    "MaxDoseOverride"
+
+    -Q-----        ---       "ModificationDependency"
+
+    PQ*S*--     SubObject    "NTCP"
+
+    -Q*S*--     SubObject    "NTCPDisplay"
+
+    PQ*S*--       Float      "NTCPDisplayMaxDose"
+
+    -Q*S*--     SubObject    "NTCPDisplayPlotStyle"
+
+    PQ*S*--       Float      "NTCPDisplayVolume"
+
+    -Q-----        ---       "NTCPLabel"
+
+    -Q*S*--     ObjString    "Name"
+
+    -Q*----        Int       "NumColumns"
+
+    -Q-----        ---       "NumRows"
+
+    -Q*S---        Int       "NumberOfBins"
+
+    PQ*S---        Int       "NumberOfBinsP"
+
+    -Q*S*--     SubObject    "NumberOfPoints"
+
+    PQ*S*--     SubObject    "ObjectVersion"
+
+    -Q*S*--       Float      "PercentOutOfRange"
+
+    -Q*S*--       Float      "PercentUnknown"
+
+    -----A-        ---       "Regenerate"
+
+    -Q*S*--     SubObject    "RegionOfInterest"
+
+    PQ-S---        ---       "RegionOfInterestName"
+
+    -Q-----        ---       "RowHeader"
+
+    -Q-S---        ---       "Trial"
+
+    PQ-S---        ---       "TrialName"
+
+    -Q-----        ---       "Value"
+
+    -Q*S*--       Float      "Volume"
+
+    -Q*S*--     SubObject    "X"
+
+    -Q*S*--     SubObject    "Y"
+

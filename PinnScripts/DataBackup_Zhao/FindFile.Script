@@ -1,0 +1,18 @@
+///////////////////////////////////////////////////////////////
+//Check if file exists
+///////////////////////////////////////////////////////////////
+
+//Make OS Command and Execute
+Store.StringAt.MakeCommand = Store.StringAt.PyFile;
+Store.At.MakeCommand.AppendString = "-f '";
+Store.At.MakeCommand.AppendString = Store.StringAt.DataFolder;
+Store.At.MakeCommand.AppendString = "/";
+Store.At.MakeCommand.AppendString = Store.StringAt.BackupFile;
+Store.At.MakeCommand.AppendString = "' > ";
+Store.At.MakeCommand.AppendString = Store.StringAt.TempFile;
+
+SpawnCommand = Store.StringAt.MakeCommand;
+
+//Load back File List to Param
+Store.At.FileExist.Load = Store.StringAt.TempFile;
+//WarningMessage = Store.FloatAt.FileExist;
